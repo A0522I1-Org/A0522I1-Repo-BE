@@ -3,6 +3,24 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ArticleController {
+man
+  public void save(){
+        String name = "hello";
+    }
+
+    public void save(){
+        String name = "hello";
+    }
+
+    public void save(){
+        String name = "hello";
+    }
+
+    public void save(){
+        String name = "hello";
+    }
+
+  trung
     24343242
     34
     234
@@ -14,4 +32,5 @@ public class ArticleController {
     432
     432
     423
+      
 }
