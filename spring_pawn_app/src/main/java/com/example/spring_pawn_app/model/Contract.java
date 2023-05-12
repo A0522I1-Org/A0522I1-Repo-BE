@@ -27,7 +27,7 @@ public class Contract {
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @Column(columnDefinition = "bit(1)")
