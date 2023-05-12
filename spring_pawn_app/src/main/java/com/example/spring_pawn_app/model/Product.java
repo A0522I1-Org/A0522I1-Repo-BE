@@ -13,18 +13,15 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @Column(columnDefinition = "bit(1)")
-    private boolean isFlag;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, double price, Category category, boolean isFlag) {
+    public Product(Integer id, String name, double price, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
-        this.isFlag = isFlag;
     }
 
     public Integer getId() {
@@ -57,13 +54,5 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public boolean isFlag() {
-        return isFlag;
-    }
-
-    public void setFlag(boolean flag) {
-        isFlag = flag;
     }
 }
