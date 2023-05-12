@@ -1,56 +1,42 @@
-package com.example.spring_pawn_app.model;
+package com.example.spring_pawn_app.dto;
 
-import com.example.spring_pawn_app.dto.ContractDTO;
+import com.example.spring_pawn_app.model.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
-@Entity
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDTO {
     private Integer id;
 
     private LocalDate beginDate;
     private LocalDate endDate;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "status_id")
     private Status status;
-
     private double interest;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit(1)")
     private boolean isFlag;
 
-    public Contract() {
+    public ContractDTO() {
     }
 
-    public Contract(ContractDTO contractDTO){
-        this.id = contractDTO.getId();
-        this.beginDate = contractDTO.getBeginDate();
-        this.endDate = contractDTO.getEndDate();
-        this.customer = contractDTO.getCustomer();
-        this.status = contractDTO.getStatus();
-        this.interest = contractDTO.getInterest();
-        this.employee = contractDTO.getEmployee();
-        this.product = contractDTO.getProduct();
+    public ContractDTO(Contract contract){
+        this.id = contract.getId();
+        this.beginDate = contract.getBeginDate();
+        this.endDate = contract.getEndDate();
+        this.customer = contract.getCustomer();
+        this.status = contract.getStatus();
+        this.interest = contract.getInterest();
+        this.employee = contract.getEmployee();
+        this.product = contract.getProduct();
         this.isFlag = false;
     }
 
-    public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
+    public ContractDTO(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
         this.id = id;
         this.beginDate = beginDate;
         this.endDate = endDate;
