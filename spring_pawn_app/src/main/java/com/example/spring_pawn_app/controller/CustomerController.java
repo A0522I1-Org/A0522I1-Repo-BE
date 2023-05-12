@@ -1,7 +1,9 @@
 package com.example.spring_pawn_app.controller;
 
-import org.springframework.stereotype.Controller;
 
-@Controller
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
 public class CustomerController {
 }
