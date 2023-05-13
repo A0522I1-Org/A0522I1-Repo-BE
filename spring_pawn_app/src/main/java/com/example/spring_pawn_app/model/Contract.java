@@ -30,7 +30,7 @@ public class Contract {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
     private boolean isFlag;
 
     public Contract() {

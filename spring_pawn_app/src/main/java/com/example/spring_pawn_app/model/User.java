@@ -20,7 +20,7 @@ public class User {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
     private boolean isFlag;
 
     public User() {
