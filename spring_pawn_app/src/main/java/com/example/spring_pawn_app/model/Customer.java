@@ -23,7 +23,7 @@ public class Customer {
     private String avt;
     private String status;
     private String note;
-    @Column(columnDefinition = "bit")
+    @Column(columnDefinition = "bit DEFAULT 1")
     private boolean isFlag;
 
     public Customer() {

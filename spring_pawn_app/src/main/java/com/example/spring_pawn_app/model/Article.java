@@ -17,7 +17,7 @@ public class Article {
 
     private LocalDate date_public;
 
-    @Column(columnDefinition = "bit")
+    @Column(columnDefinition = "bit DEFAULT 1")
     private boolean isFlag;
 
     @ManyToOne

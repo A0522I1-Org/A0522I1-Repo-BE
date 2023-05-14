@@ -20,7 +20,7 @@ public class Employee {
     private String address;
     @Column(columnDefinition = ("varchar(255)"))
     private String id_cart;
-    @Column(columnDefinition = "bit")
+    @Column(columnDefinition = "bit DEFAULT 1")
     private boolean isFlag;
     private String avt;
 
