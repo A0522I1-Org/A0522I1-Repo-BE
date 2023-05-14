@@ -8,8 +8,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private double price;
-
+    private Double price;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -21,6 +20,7 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+
         this.category = category;
     }
 

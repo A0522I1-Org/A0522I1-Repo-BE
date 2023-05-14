@@ -20,23 +20,20 @@ public class Contract {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    private double interest;
+    private Double interest;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit(1)")
+
     private boolean isFlag;
 
-    public Contract() {
-    }
-
-    public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
+    public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, Double interest, Employee employee, Product product, boolean isFlag) {
         this.id = id;
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -88,11 +85,11 @@ public class Contract {
         this.status = status;
     }
 
-    public double getInterest() {
+    public Double getInterest() {
         return interest;
     }
 
-    public void setInterest(double interest) {
+    public void setInterest(Double interest) {
         this.interest = interest;
     }
 
@@ -118,5 +115,8 @@ public class Contract {
 
     public void setFlag(boolean flag) {
         isFlag = flag;
+    }
+
+    public Contract() {
     }
 }
