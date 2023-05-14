@@ -9,11 +9,11 @@ public class UserHasRole {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", columnDefinition = "varchar(200)")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", columnDefinition = "varchar(200)")
     private Role role;
 
     public UserHasRole() {

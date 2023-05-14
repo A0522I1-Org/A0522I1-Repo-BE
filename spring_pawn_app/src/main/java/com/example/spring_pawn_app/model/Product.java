@@ -7,6 +7,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(45)")
     private String name;
     private Double price;
 

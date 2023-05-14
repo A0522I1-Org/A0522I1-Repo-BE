@@ -23,7 +23,7 @@ public class User {
     private Employee employee;
 
     @Column(columnDefinition = "bit")
-    @ColumnDefault("1")
+    @ColumnDefault("0")
     private boolean isFlag;
 
     public User() {

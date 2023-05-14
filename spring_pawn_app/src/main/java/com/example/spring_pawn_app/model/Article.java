@@ -10,17 +10,18 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(50)")
     private String title;
+    @Column(columnDefinition = "varchar(200)")
     private String img;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    private LocalDate date_public;
+    private LocalDate publicDate;
 
     @Column(columnDefinition = "bit")
-    @ColumnDefault("1")
+    @ColumnDefault("0")
     private boolean isFlag;
 
     @ManyToOne
@@ -30,12 +31,12 @@ public class Article {
     public Article() {
     }
 
-    public Article(Integer id, String title, String img, String content, LocalDate date_public, boolean isFlag, Employee employee) {
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
         this.id = id;
         this.title = title;
         this.img = img;
         this.content = content;
-        this.date_public = date_public;
+        this.publicDate = publicDate;
         this.isFlag = isFlag;
         this.employee = employee;
     }
@@ -72,12 +73,12 @@ public class Article {
         this.content = content;
     }
 
-    public LocalDate getDate_public() {
-        return date_public;
+    public LocalDate getPublicDate() {
+        return publicDate;
     }
 
-    public void setDate_public(LocalDate date_public) {
-        this.date_public = date_public;
+    public void setPublicDate(LocalDate publicDate) {
+        this.publicDate = publicDate;
     }
 
     public boolean isFlag() {
