@@ -1,6 +1,10 @@
 package com.example.spring_pawn_app.model;
 
+<<<<<<< HEAD
 import com.example.spring_pawn_app.dto.ContractDTO;
+=======
+import org.hibernate.annotations.ColumnDefault;
+>>>>>>> 3cbc625c24b3f3ebd6fa65d053651537827c5209
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,22 +26,25 @@ public class Contract {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    private double interest;
+    @Column(columnDefinition = "double DEFAULT 0.0")
+    private Double interest;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("1")
     private boolean isFlag;
 
     public Contract() {
     }
 
+<<<<<<< HEAD
     public Contract(ContractDTO contractDTO){
         this.id = contractDTO.getId();
         this.beginDate = contractDTO.getBeginDate();
@@ -51,6 +58,9 @@ public class Contract {
     }
 
     public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
+=======
+    public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, Double interest, Employee employee, Product product, boolean isFlag) {
+>>>>>>> 3cbc625c24b3f3ebd6fa65d053651537827c5209
         this.id = id;
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -102,11 +112,11 @@ public class Contract {
         this.status = status;
     }
 
-    public double getInterest() {
+    public Double getInterest() {
         return interest;
     }
 
-    public void setInterest(double interest) {
+    public void setInterest(Double interest) {
         this.interest = interest;
     }
 

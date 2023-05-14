@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +22,8 @@ public class User {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("1")
     private boolean isFlag;
 
     public User() {
