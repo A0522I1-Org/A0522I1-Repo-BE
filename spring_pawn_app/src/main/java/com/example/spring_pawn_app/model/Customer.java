@@ -26,7 +26,7 @@ public class Customer {
     private String status;
     private String note;
     @Column(columnDefinition = "bit")
-    @ColumnDefault("false")
+    @ColumnDefault("1")
     private boolean isFlag;
 
     public Customer() {

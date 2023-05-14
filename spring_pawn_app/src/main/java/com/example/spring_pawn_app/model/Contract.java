@@ -34,7 +34,7 @@ public class Contract {
     private Product product;
 
     @Column(columnDefinition = "bit")
-    @ColumnDefault("false")
+    @ColumnDefault("1")
     private boolean isFlag;
 
     public Contract() {
