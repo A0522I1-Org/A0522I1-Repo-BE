@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
+import com.example.spring_pawn_app.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,17 +19,7 @@ public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Override
-    public void sendEmailPay() throws MessagingException {
-        ////     Create a Simple MailMessage.
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(student.getEmail());
-//        message.setSubject("Spring mail");
-//        message.setText("Hello, Im testing Simple Email");
-//        this.emailSender.send(message);
-
-
-//         Create HTML Mail
+    public void sendEmailPay(Contract contract) throws MessagingException {
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true,"utf-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -40,24 +31,46 @@ public class MailSender {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        context.setVariable();
+        context.setVariable("name",contract.getCustomer().getName());
+        context.setVariable("dateOfBirth",contract.getCustomer().getDob());
+        context.setVariable("gender",contract.getCustomer().getGender());
+        context.setVariable("address",contract.getCustomer().getAddress());
+        context.setVariable("phone",contract.getCustomer().getPhone());
 
         String html = templateEngine.process("payment", context);
         messages.setContent(html,"text/html");
-        helper.setTo();
-        helper.setSubject("Thông báo thanh toán");
+        helper.setTo(contract.getCustomer().getEmail());
+        helper.setSubject("Thông báo thanh toán thành công");
 
-//        String file = "com/example/demo/res/helloWorld.txt";
-
-        // Attachment 1
-        FileSystemResource file1 = new FileSystemResource(new File("/static/text.html"));
-
-        helper.addAttachment(file1.getFilename(), file1);
-
-
-//        // Send Message!
         this.javaMailSender.send(messages);
 
     }
+
+//    public void sendEmailSub(Contract contract) throws MessagingException {
+//        MimeMessage message = javaMailSender.createMimeMessage();
+//        MimeMessageHelper helper = new MimeMessageHelper(message, true,"utf-8");
+//        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+//        templateResolver.setPrefix("/templates/");
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setTemplateMode("HTML");
+//
+//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//        templateEngine.setTemplateResolver(templateResolver);
+//
+//        Context context = new Context();
+//        context.setVariable("name",contract.getCustomer().getName());
+//        context.setVariable("dateOfBirth",contract.getCustomer().getDob());
+//        context.setVariable("gender",contract.getCustomer().getGender());
+//        context.setVariable("address",contract.getCustomer().getAddress());
+//        context.setVariable("phone",contract.getCustomer().getPhone());
+//
+//        String html = templateEngine.process("payment", context);
+//        message.setContent(html,"text/html");
+//        helper.setTo(contract.getCustomer().getEmail());
+//        helper.setSubject("Thông báo thanh toán thành công");
+//
+//        this.javaMailSender.send(message);
+//
+//    }
 
 }
