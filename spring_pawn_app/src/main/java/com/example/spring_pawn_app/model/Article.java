@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -17,7 +19,8 @@ public class Article {
 
     private LocalDate date_public;
 
-    @Column(columnDefinition = "bit DEFAULT 1")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("false")
     private boolean isFlag;
 
     @ManyToOne

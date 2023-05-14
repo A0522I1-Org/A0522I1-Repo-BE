@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -31,7 +33,8 @@ public class Contract {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit DEFAULT 1")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("false")
     private boolean isFlag;
 
     public Contract() {
