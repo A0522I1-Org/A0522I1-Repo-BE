@@ -7,6 +7,7 @@ public class Img {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(200)")
     private String img;
 
     @ManyToOne
