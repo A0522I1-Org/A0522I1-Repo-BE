@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -21,6 +23,7 @@ public class Employee {
     @Column(columnDefinition = ("varchar(255)"))
     private String id_cart;
     @Column(columnDefinition = "bit(1)")
+    @ColumnDefault("0")
     private boolean isFlag;
     private String avt;
 

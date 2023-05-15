@@ -1,43 +1,26 @@
-package com.example.spring_pawn_app.model;
+package com.example.spring_pawn_app.dto;
 
+import com.example.spring_pawn_app.model.Employee;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "article")
-public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ArticleDTO {
+
     private Integer id;
-    @Column(name = "title",columnDefinition = "varchar(45)")
     private String title;
-    @Column(name = "img")
     private String img;
-
-    @Column(name = "content",columnDefinition = "LONGTEXT")
     private String content;
-
-    @Column(name = "date_public")
     private LocalDate date_public;
-
-    @Column(columnDefinition = "bit")
-    @ColumnDefault("0")
     private Boolean isFeature;
-    @Column(columnDefinition = "bit")
-    @ColumnDefault("0")
     private Boolean isFlag;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public Article() {
+    public ArticleDTO() {
     }
 
-
-    public Article(Integer id, String title, String img, String content, LocalDate date_public, boolean isFeature, boolean isFlag, Employee employee) {
+    public ArticleDTO(Integer id, String title, String img, String content, LocalDate date_public, Boolean isFeature, Boolean isFlag, Employee employee) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -80,14 +63,6 @@ public class Article {
         this.content = content;
     }
 
-    public boolean isFeature() {
-        return isFeature;
-    }
-
-    public void setFeature(boolean feature) {
-        isFeature = feature;
-    }
-
     public LocalDate getDate_public() {
         return date_public;
     }
@@ -96,11 +71,19 @@ public class Article {
         this.date_public = date_public;
     }
 
-    public boolean isFlag() {
+    public Boolean getFeature() {
+        return isFeature;
+    }
+
+    public void setFeature(Boolean feature) {
+        isFeature = feature;
+    }
+
+    public Boolean getFlag() {
         return isFlag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setFlag(Boolean flag) {
         isFlag = flag;
     }
 
