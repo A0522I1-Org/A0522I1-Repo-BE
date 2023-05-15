@@ -7,8 +7,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(45)")
     private String name;
     private Double price;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -16,11 +18,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, double price, Category category) {
+    public Product(Integer id, String name, Double price, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
-
         this.category = category;
     }
 
@@ -40,11 +41,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

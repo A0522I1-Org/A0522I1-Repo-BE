@@ -2,9 +2,6 @@ package com.example.spring_pawn_app.DTO;
 
 import com.example.spring_pawn_app.model.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 
 public class ContractDTO {

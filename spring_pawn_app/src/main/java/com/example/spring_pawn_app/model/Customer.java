@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,9 +10,14 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column( name = "customer_code", columnDefinition = ("varchar(25)"))
+    private String customerCode;
+    @Column( name = "customer_name", columnDefinition = ("varchar(45)"))
     private String name;
 
-    private LocalDate dob;
+    @Column( name = "date_of_birth", columnDefinition = ("varchar(20)"))
+    private LocalDate dateOfBirth;
     private Integer gender;
     @Column(columnDefinition = ("varchar(256)"))
     private String email;
@@ -18,27 +25,31 @@ public class Customer {
     private String address;
     @Column(columnDefinition = ("varchar(15)"))
     private String phone;
-    @Column(columnDefinition = ("varchar(255)"))
-    private String idCart;
-    private String avt;
+    @Column( name = "id_card", columnDefinition = ("varchar(20)"))
+    private String identityCard;
+    @Column(columnDefinition = "varchar(200)")
+    private String avatar;
+    @Column(columnDefinition = "varchar(45)")
     private String status;
     private String note;
-
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
     private boolean isFlag;
 
     public Customer() {
     }
 
-    public Customer(Integer id, String name, LocalDate dob, Integer gender, String email, String address, String phone, String idCart, String avt, String status, String note, boolean isFlag) {
+    public Customer(Integer id, String customerCode, String name, LocalDate dateOfBirth, Integer gender, String email, String address, String phone, String identityCard, String avatar, String status, String note, boolean isFlag) {
         this.id = id;
+        this.customerCode = customerCode;
         this.name = name;
-        this.dob = dob;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.email = email;
         this.address = address;
         this.phone = phone;
-        this.idCart = idCart;
-        this.avt = avt;
+        this.identityCard = identityCard;
+        this.avatar = avatar;
         this.status = status;
         this.note = note;
         this.isFlag = isFlag;
@@ -52,6 +63,14 @@ public class Customer {
         this.id = id;
     }
 
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
+
     public String getName() {
         return name;
     }
@@ -60,12 +79,12 @@ public class Customer {
         this.name = name;
     }
 
-    public LocalDate getDob() {
-        return dob;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Integer getGender() {
@@ -100,20 +119,20 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getIdCart() {
-        return idCart;
+    public String getIdentityCard() {
+        return identityCard;
     }
 
-    public void setIdCart(String idCart) {
-        this.idCart = idCart;
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard;
     }
 
-    public String getAvt() {
-        return avt;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvt(String avt) {
-        this.avt = avt;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getStatus() {

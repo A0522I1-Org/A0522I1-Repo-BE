@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.controller;
 
+
 import com.example.spring_pawn_app.DTO.ContractDTO;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Img;
@@ -35,12 +36,17 @@ public class ProductController {
                                                                    @RequestParam(defaultValue = "")String categoryId,
                                                                    @RequestParam(defaultValue = "0") int page){
         Page<Contract> contractPage = iContractService.findAllProductNotPay(PageRequest.of(page,5),nameCustomer,categoryId);
-        List<ContractDTO> contractPageDTO = new ArrayList<>();
-        BeanUtils.copyProperties(contractPage, contractPageDTO);
-        if (contractPageDTO == null){
+        List<ContractDTO> contractDTOList = new ArrayList<>();
+        for (Contract contract : contractPage) {
+            contractDTOList = new ArrayList<>();
+            ContractDTO contractDTO = new ContractDTO();
+            BeanUtils.copyProperties(contract, contractDTO);
+            contractDTOList.add(contractDTO);
+        }
+        if (contractDTOList == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(contractPageDTO, HttpStatus.OK);
+        return new ResponseEntity<>(contractDTOList, HttpStatus.OK);
     }
 
     @GetMapping("products/{id}")
