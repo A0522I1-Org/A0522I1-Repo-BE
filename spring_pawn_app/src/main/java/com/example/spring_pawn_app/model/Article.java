@@ -11,14 +11,27 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+// main
+    @Column(columnDefinition = "varchar(50)")
+    private String title;
+    @Column(columnDefinition = "varchar(200)")
+=======
     @Column(name = "title",columnDefinition = "varchar(45)")
     private String title;
     @Column(name = "img")
+// TrungDV
     private String img;
 
     @Column(name = "content",columnDefinition = "LONGTEXT")
     private String content;
 
+// main
+    private LocalDate publicDate;
+
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
+    private boolean isFlag;
+=======
     @Column(name = "date_public")
     private LocalDate date_public;
 
@@ -28,6 +41,7 @@ public class Article {
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private Boolean isFlag;
+// TrungDV
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -36,14 +50,22 @@ public class Article {
     public Article() {
     }
 
+// main
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
+=======
 
     public Article(Integer id, String title, String img, String content, LocalDate date_public, boolean isFeature, boolean isFlag, Employee employee) {
+>>>>> TrungDV
         this.id = id;
         this.title = title;
         this.img = img;
         this.content = content;
+// main
+        this.publicDate = publicDate;
+=======
         this.date_public = date_public;
         this.isFeature = isFeature;
+// TrungDV
         this.isFlag = isFlag;
         this.employee = employee;
     }
@@ -79,7 +101,11 @@ public class Article {
     public void setContent(String content) {
         this.content = content;
     }
-
+      
+// main
+    public LocalDate getPublicDate() {
+        return publicDate;
+=======
     public boolean isFeature() {
         return isFeature;
     }
@@ -90,10 +116,11 @@ public class Article {
 
     public LocalDate getDate_public() {
         return date_public;
+// TrungDV
     }
 
-    public void setDate_public(LocalDate date_public) {
-        this.date_public = date_public;
+    public void setPublicDate(LocalDate publicDate) {
+        this.publicDate = publicDate;
     }
 
     public boolean isFlag() {
