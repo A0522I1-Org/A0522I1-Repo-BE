@@ -40,6 +40,10 @@ public class Employee {
         this.avt = avt;
     }
 
+    public Employee(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
