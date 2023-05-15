@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,18 +10,20 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(50)")
     private String title;
+    @Column(columnDefinition = "varchar(200)")
     private String img;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    private LocalDate date_public;
+    private LocalDate publicDate;
 
-    @Column(columnDefinition = "bit(1)")
-    private boolean isFeature;
-    @Column(columnDefinition = "bit(1)")
+
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
+
     private boolean isFlag;
 
     @ManyToOne
@@ -30,13 +34,12 @@ public class Article {
     }
 
 
-    public Article(Integer id, String title, String img, String content, LocalDate date_public, boolean isFeature, boolean isFlag, Employee employee) {
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
         this.id = id;
         this.title = title;
         this.img = img;
         this.content = content;
-        this.date_public = date_public;
-        this.isFeature = isFeature;
+        this.publicDate = publicDate;
         this.isFlag = isFlag;
         this.employee = employee;
     }
@@ -73,20 +76,13 @@ public class Article {
         this.content = content;
     }
 
-    public boolean isFeature() {
-        return isFeature;
+    public LocalDate getPublicDate() {
+        return publicDate;
+
     }
 
-    public void setFeature(boolean feature) {
-        isFeature = feature;
-    }
-
-    public LocalDate getDate_public() {
-        return date_public;
-    }
-
-    public void setDate_public(LocalDate date_public) {
-        this.date_public = date_public;
+    public void setPublicDate(LocalDate publicDate) {
+        this.publicDate = publicDate;
     }
 
     public boolean isFlag() {
