@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
+import com.example.spring_pawn_app.dto.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -19,7 +20,7 @@ public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendEmailPay(Contract contract) throws MessagingException {
+    public void sendEmailPay(ContractDto contract) throws MessagingException {
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true,"utf-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -32,7 +33,7 @@ public class MailSender {
 
         Context context = new Context();
         context.setVariable("name",contract.getCustomer().getName());
-        context.setVariable("dateOfBirth",contract.getCustomer().getDob());
+        context.setVariable("dateOfBirth",contract.getCustomer().getDateOfBirth());
         context.setVariable("gender",contract.getCustomer().getGender());
         context.setVariable("address",contract.getCustomer().getAddress());
         context.setVariable("phone",contract.getCustomer().getPhone());

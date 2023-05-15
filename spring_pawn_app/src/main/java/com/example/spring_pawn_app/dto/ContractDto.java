@@ -14,11 +14,12 @@ public class ContractDto {
     private LocalDate beginDate;
     private LocalDate endDate;
     private Customer customer;
-    private Status status;
     private double interest;
-    private Employee employee;
     private Product product;
     private boolean isFlag;
+    private Employee employee;
+    private Status status;
+
 
     public ContractDto() {
     }
@@ -63,28 +64,12 @@ public class ContractDto {
         this.customer = customer;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public double getInterest() {
         return interest;
     }
 
     public void setInterest(double interest) {
         this.interest = interest;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Product getProduct() {
@@ -101,5 +86,21 @@ public class ContractDto {
 
     public void setFlag(boolean flag) {
         isFlag = flag;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
