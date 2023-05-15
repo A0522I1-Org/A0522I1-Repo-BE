@@ -30,12 +30,7 @@ public class ArticleController {
     public ResponseEntity<?> findById(@PathVariable Integer id){
         return new ResponseEntity<>(this.articleService.findById(id), HttpStatus.OK);
     }
-
-//    @GetMapping("/list/find/{id}")
-//    public ArticleDTO findById(@PathVariable Integer id){
-//        return this.articleService.findById(id);
-//    }
-
+    
     @PatchMapping("/delete-article/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         articleService.deleteArticle(id);
