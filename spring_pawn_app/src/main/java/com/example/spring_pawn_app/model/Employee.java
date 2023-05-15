@@ -20,9 +20,15 @@ public class Employee {
     private Integer gender;
     @Column(columnDefinition = ("varchar(255)"))
     private String address;
+// main
     @Column(columnDefinition = ("varchar(25)"))
     private String idCard;
     @Column(columnDefinition = "bit")
+=======
+    @Column(columnDefinition = ("varchar(255)"))
+    private String id_cart;
+    @Column(columnDefinition = "bit(1)")
+// TrungDV
     @ColumnDefault("0")
     private boolean isFlag;
     @Column(columnDefinition = "varchar(200)")
