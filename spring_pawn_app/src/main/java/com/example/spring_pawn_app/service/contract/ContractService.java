@@ -5,7 +5,12 @@ import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class ContractService implements IContractService{
@@ -23,5 +28,11 @@ public class ContractService implements IContractService{
     public void updateContractPayment(Integer id) {
         iContractRepository.updateContractPayment(id);
     }
+
+    @Override
+    public Page<Contract> findAllContractWithPage(PageRequest pageRequest,String contractCode, String nameCustomer, String nameProduct, LocalDate beginDate) {
+        return iContractRepository.findAllContractWithPage(pageRequest,contractCode,nameCustomer,nameProduct,beginDate);
+    }
+
 
 }
