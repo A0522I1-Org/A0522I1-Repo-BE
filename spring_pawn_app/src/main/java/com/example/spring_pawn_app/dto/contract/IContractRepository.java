@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.repository.contract;
+package com.example.spring_pawn_app.dto.contract;
 
 import com.example.spring_pawn_app.dto.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
