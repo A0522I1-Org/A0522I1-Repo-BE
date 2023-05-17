@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
-    @Query(value = "select * "+
+    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.status "+
                    "from customer as c "+
                    "where c.customer_name like %:nameCustomer% and c.is_flag = 0",
-            countQuery = "select * "+
+            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.status "+
                     "from customer as c "+
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<Customer> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
