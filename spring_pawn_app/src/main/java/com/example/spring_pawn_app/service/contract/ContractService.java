@@ -1,8 +1,9 @@
 package com.example.spring_pawn_app.service.contract;
 
-import com.example.spring_pawn_app.dto.ContractDto;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
+import com.example.spring_pawn_app.dto.contract.ContractProjection;
 import com.example.spring_pawn_app.model.Contract;
-import com.example.spring_pawn_app.dto.contract.IContractRepository;
+import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,8 +30,9 @@ public class ContractService implements IContractService{
     }
 
     @Override
-    public Page<Contract> findAllContractWithPage(PageRequest pageRequest,String contractCode, String nameCustomer, String nameProduct, LocalDate beginDate) {
+    public Page<ContractProjection> findAllContractWithPage(PageRequest pageRequest,String contractCode, String nameCustomer, String nameProduct, String beginDate) {
         return iContractRepository.findAllContractWithPage(pageRequest,contractCode,nameCustomer,nameProduct,beginDate);
+//        return iContractRepository.findAllContractWithPage(ContractProjection.class);
     }
 
 

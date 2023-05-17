@@ -72,9 +72,7 @@ public class Contract {
         this.contractCode = contractCode;
     }
 
-    public LocalDate getBeginDate() {
-        return beginDate;
-    }
+    public LocalDate getBeginDate() {return beginDate; }
 
     public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;

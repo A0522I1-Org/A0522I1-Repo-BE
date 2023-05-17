@@ -1,9 +1,7 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
-import com.example.spring_pawn_app.dto.ContractDto;
-import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -13,7 +11,6 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
 
 @Component
 public class MailSender {
