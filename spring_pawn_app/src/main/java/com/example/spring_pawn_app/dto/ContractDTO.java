@@ -1,51 +1,27 @@
 package com.example.spring_pawn_app.dto;
 
-import com.example.spring_pawn_app.model.*;
+import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.model.Product;
+import com.example.spring_pawn_app.model.Status;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class ContractDTO {
+public class ContractDto {
     private Integer id;
-
+    private String contractCode;
     private LocalDate beginDate;
     private LocalDate endDate;
     private Customer customer;
-    private Status status;
     private double interest;
-    private Employee employee;
-
     private Product product;
-
     private boolean isFlag;
+    private Employee employee;
+    private Status status;
 
-    public ContractDTO() {
-    }
 
-    public ContractDTO(Contract contract){
-        this.id = contract.getId();
-        this.beginDate = contract.getBeginDate();
-        this.endDate = contract.getEndDate();
-        this.customer = contract.getCustomer();
-        this.status = contract.getStatus();
-        this.interest = contract.getInterest();
-        this.employee = contract.getEmployee();
-        this.product = contract.getProduct();
-        this.isFlag = false;
-    }
-
-    public ContractDTO(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
-        this.id = id;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.customer = customer;
-        this.status = status;
-        this.interest = interest;
-        this.employee = employee;
-        this.product = product;
-        this.isFlag = isFlag;
+    public ContractDto() {
     }
 
     public Integer getId() {
@@ -54,6 +30,14 @@ public class ContractDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
     }
 
     public LocalDate getBeginDate() {
@@ -80,28 +64,12 @@ public class ContractDTO {
         this.customer = customer;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public double getInterest() {
         return interest;
     }
 
     public void setInterest(double interest) {
         this.interest = interest;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Product getProduct() {
@@ -118,5 +86,21 @@ public class ContractDTO {
 
     public void setFlag(boolean flag) {
         isFlag = flag;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.model;
 
+import com.example.spring_pawn_app.dto.ContractDto;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -54,6 +55,19 @@ public class Contract {
         this.employee = employee;
         this.product = product;
         this.isFlag = isFlag;
+    }
+
+    public Contract(ContractDto contractDto){
+        this.id = contractDto.getId();
+        this.contractCode = contractDto.getContractCode();
+        this.beginDate = contractDto.getBeginDate();
+        this.endDate = contractDto.getEndDate();
+        this.customer = contractDto.getCustomer();
+        this.status = contractDto.getStatus();
+        this.interest = contractDto.getInterest();
+        this.employee = contractDto.getEmployee();
+        this.product = contractDto.getProduct();
+        this.isFlag = contractDto.isFlag();
     }
 
     public Integer getId() {
