@@ -21,5 +21,4 @@ public class CustomerDTO {
     private String phone;
     private String identityCard;
     private String avatar;
-    private String note;
 }
