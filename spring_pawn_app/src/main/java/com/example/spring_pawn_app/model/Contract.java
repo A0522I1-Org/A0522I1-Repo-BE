@@ -22,7 +22,7 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "status_id", columnDefinition = "varchar(200)")
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @Column(columnDefinition = "double DEFAULT 0.0")

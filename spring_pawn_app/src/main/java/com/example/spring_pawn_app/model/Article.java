@@ -20,7 +20,8 @@ public class Article {
 
     private LocalDate publicDate;
 
-
+    @Column(columnDefinition = "bit")
+    private boolean isFeature;
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
 
@@ -33,13 +34,13 @@ public class Article {
     public Article() {
     }
 
-
-    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFeature, boolean isFlag, Employee employee) {
         this.id = id;
         this.title = title;
         this.img = img;
         this.content = content;
         this.publicDate = publicDate;
+        this.isFeature = isFeature;
         this.isFlag = isFlag;
         this.employee = employee;
     }
@@ -78,11 +79,18 @@ public class Article {
 
     public LocalDate getPublicDate() {
         return publicDate;
-
     }
 
     public void setPublicDate(LocalDate publicDate) {
         this.publicDate = publicDate;
+    }
+
+    public boolean isFeature() {
+        return isFeature;
+    }
+
+    public void setFeature(boolean feature) {
+        isFeature = feature;
     }
 
     public boolean isFlag() {
