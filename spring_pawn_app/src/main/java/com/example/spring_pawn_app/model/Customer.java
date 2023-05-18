@@ -16,20 +16,19 @@ public class Customer {
     @Column( name = "customer_name", columnDefinition = ("varchar(45)"))
     private String name;
 
-    @Column( name = "date_of_birth", columnDefinition = ("varchar(20)"))
     private LocalDate dateOfBirth;
     private Integer gender;
     @Column(columnDefinition = ("varchar(256)"))
     private String email;
-    @Column(columnDefinition = ("varchar(255)"))
+    @Column(columnDefinition = ("varchar(200)"))
     private String address;
-    @Column(columnDefinition = ("varchar(15)"))
+    @Column(columnDefinition = ("varchar(20)"))
     private String phone;
     @Column( name = "id_card", columnDefinition = ("varchar(20)"))
     private String identityCard;
     @Column(columnDefinition = "varchar(200)")
     private String avatar;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(40)")
     private String status;
     private String note;
     @Column(columnDefinition = "bit")
