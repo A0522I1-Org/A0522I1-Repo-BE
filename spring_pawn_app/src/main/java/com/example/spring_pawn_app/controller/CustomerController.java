@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.controller;
 
+
 import com.example.spring_pawn_app.dto.customer.CustomerDTO;
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/addnewcustomer")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
+
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
