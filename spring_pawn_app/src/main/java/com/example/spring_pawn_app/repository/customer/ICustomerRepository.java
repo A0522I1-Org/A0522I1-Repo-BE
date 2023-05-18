@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
+// <<<<<<< main
     @Query(value = "SELECT c.customerCode, c.name, c.gender, c.dateOfBirth, c.identityCard, c.phone, c.email, " +
             "c.address, c.avatar, c.note, COUNT(con.id) " +
             "FROM Customer c " +
@@ -17,4 +18,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
     List<Object[]> getCustomerById(Integer id);
 
     
+=======
+
+// >>>>>>> ManPD
 }
