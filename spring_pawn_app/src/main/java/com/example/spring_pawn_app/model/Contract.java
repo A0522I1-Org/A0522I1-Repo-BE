@@ -11,7 +11,7 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( name = "contract_code", columnDefinition = ("varchar(25)"))
+    @Column( name = "contract_code", columnDefinition = ("varchar(45)"))
     private String contractCode;
 
     private LocalDate beginDate;

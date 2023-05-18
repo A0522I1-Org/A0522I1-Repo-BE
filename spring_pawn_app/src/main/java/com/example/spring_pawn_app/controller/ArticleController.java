@@ -1,15 +1,12 @@
 package com.example.spring_pawn_app.controller;
-import com.example.spring_pawn_app.dto.ArticleDTO;
+import com.example.spring_pawn_app.dto.article.ArticleDTO;
 import com.example.spring_pawn_app.model.Article;
 import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.service.article.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -19,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;

@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.dto;
+package com.example.spring_pawn_app.dto.employee;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.Errors;
