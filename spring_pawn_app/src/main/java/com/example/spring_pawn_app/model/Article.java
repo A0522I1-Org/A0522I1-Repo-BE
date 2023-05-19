@@ -20,10 +20,8 @@ public class Article {
 
     private LocalDate publicDate;
 
-
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
-
     private boolean isFlag;
 
     @ManyToOne
@@ -32,7 +30,6 @@ public class Article {
 
     public Article() {
     }
-
 
     public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
         this.id = id;
@@ -78,7 +75,6 @@ public class Article {
 
     public LocalDate getPublicDate() {
         return publicDate;
-
     }
 
     public void setPublicDate(LocalDate publicDate) {
