@@ -93,7 +93,7 @@ public class Article {
         return isFlag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setIsFlag(boolean flag) {
         isFlag = flag;
     }
 
@@ -101,7 +101,7 @@ public class Article {
         return isFeature;
     }
 
-    public void setFeature(Boolean feature) {
+    public void setIsFeature(Boolean feature) {
         isFeature = feature;
     }
 

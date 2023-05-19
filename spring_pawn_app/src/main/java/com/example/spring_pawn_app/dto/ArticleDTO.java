@@ -1,9 +1,7 @@
 package com.example.spring_pawn_app.dto;
 
 import com.example.spring_pawn_app.model.Employee;
-import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 public class ArticleDTO {
@@ -12,7 +10,7 @@ public class ArticleDTO {
     private String title;
     private String img;
     private String content;
-    private LocalDate date_public;
+    private LocalDate publicDate;
     private Boolean isFeature;
     private Boolean isFlag;
     private Employee employee;
@@ -25,7 +23,7 @@ public class ArticleDTO {
         this.title = title;
         this.img = img;
         this.content = content;
-        this.date_public = date_public;
+        this.publicDate = date_public;
         this.isFeature = isFeature;
         this.isFlag = isFlag;
         this.employee = employee;
@@ -63,19 +61,19 @@ public class ArticleDTO {
         this.content = content;
     }
 
-    public LocalDate getDate_public() {
-        return date_public;
+    public LocalDate getPublicDate() {
+        return publicDate;
     }
 
-    public void setDate_public(LocalDate date_public) {
-        this.date_public = date_public;
+    public void setPublicDate(LocalDate publicDate) {
+        this.publicDate = publicDate;
     }
 
     public Boolean getFeature() {
         return isFeature;
     }
 
-    public void setFeature(Boolean feature) {
+    public void setIsFeature(Boolean feature) {
         isFeature = feature;
     }
 
@@ -83,7 +81,7 @@ public class ArticleDTO {
         return isFlag;
     }
 
-    public void setFlag(Boolean flag) {
+    public void setIsFlag(Boolean flag) {
         isFlag = flag;
     }
 
