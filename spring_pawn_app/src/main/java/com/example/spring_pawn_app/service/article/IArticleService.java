@@ -12,4 +12,5 @@ public interface IArticleService {
     List<Article> findAllWithFeature();
     ArticleDTO findById(int id);
     void deleteArticle(int id);
+    void save(Article article);
 }

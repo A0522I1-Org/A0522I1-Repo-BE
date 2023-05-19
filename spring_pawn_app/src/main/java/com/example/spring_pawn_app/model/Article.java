@@ -24,12 +24,14 @@ public class Article {
     private LocalDate publicDate;
 
     @Column(columnDefinition = "bit")
+    private boolean isFeature;
+    @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
 
-    @Column(columnDefinition = "bit")
-    @ColumnDefault("0")
-    private Boolean isFeature;
+//    @Column(columnDefinition = "bit")
+//    @ColumnDefault("0")
+//    private Boolean isFeature;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")

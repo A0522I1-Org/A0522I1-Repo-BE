@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.dto;
+package com.example.spring_pawn_app.dto.article;
 
 import com.example.spring_pawn_app.model.Employee;
 import org.hibernate.validator.constraints.Length;
@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class ArticleDTO implements Validator {
-
     private Integer id;
     @NotBlank(message = "Vui lòng nhập tiêu đề")
     @Length(min = 5,max = 50,message = "Tiêu đề chứa ít nhất 5 kí tự và tối đa 50 kí tự")

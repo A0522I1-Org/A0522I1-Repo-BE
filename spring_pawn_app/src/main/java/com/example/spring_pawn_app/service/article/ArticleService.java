@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import com.example.spring_pawn_app.model.Article;
+import com.example.spring_pawn_app.repository.article.IArticleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +38,11 @@ public class ArticleService implements IArticleService{
 
     @Override
     public void deleteArticle(int id) {
-        articleRepository.deleteArticle(id);
+        articleRepository.deleteArticle(id);}
+
+    @Override
+    public void save(Article article) {
+        articleRepository.save(article);
     }
+
 }
