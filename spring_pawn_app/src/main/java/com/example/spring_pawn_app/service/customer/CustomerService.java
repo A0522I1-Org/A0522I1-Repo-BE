@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.customer;
 
+import com.example.spring_pawn_app.dto.CustomerListDto;
 import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ public class CustomerService implements ICustomerService{
     ICustomerRepository iCustomerRepository;
     @Override
     public Customer findCustomerById(int idCustomer) {
-        return iCustomerRepository.findById(idCustomer).get();
+        return iCustomerRepository.findCustomerById(idCustomer);
     }
 
     @Override
-    public Page<Customer> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
+    public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
 }
