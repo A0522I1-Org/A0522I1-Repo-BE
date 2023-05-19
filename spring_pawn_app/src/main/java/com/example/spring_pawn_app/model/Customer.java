@@ -11,10 +11,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( name = "customer_code", columnDefinition = ("varchar(25)"))
+    @Column( columnDefinition = ("varchar(25)"))
     private String customerCode;
-    @Column( name = "customer_name", columnDefinition = ("varchar(45)"))
-    private String name;
+    @Column(columnDefinition = ("varchar(45)"))
+    private String customerName;
 
     private LocalDate dateOfBirth;
     private Integer gender;
@@ -24,7 +24,7 @@ public class Customer {
     private String address;
     @Column(columnDefinition = ("varchar(20)"))
     private String phone;
-    @Column( name = "id_card", columnDefinition = ("varchar(20)"))
+    @Column( columnDefinition = ("varchar(20)"))
     private String identityCard;
     @Column(columnDefinition = "varchar(200)")
     private String avatar;
@@ -41,7 +41,7 @@ public class Customer {
     public Customer(Integer id, String customerCode, String name, LocalDate dateOfBirth, Integer gender, String email, String address, String phone, String identityCard, String avatar, String status, String note, boolean isFlag) {
         this.id = id;
         this.customerCode = customerCode;
-        this.name = name;
+        this.customerName = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.email = email;
@@ -70,12 +70,12 @@ public class Customer {
         this.customerCode = customerCode;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public LocalDate getDateOfBirth() {
