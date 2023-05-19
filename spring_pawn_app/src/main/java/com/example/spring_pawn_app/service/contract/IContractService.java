@@ -14,5 +14,6 @@ public interface IContractService {
 
     void updateContractPayment(Integer id);
 
-    public Page<ContractProjection> findAllContractWithPage(PageRequest pageRequest, String contractCode, String nameCustomer, String nameProduct, String beginDate);
+    public Page<Contract> findAllContractWithPage(PageRequest pageRequest, String contractCode, String nameCustomer, String nameProduct, String beginDate);
+
 }

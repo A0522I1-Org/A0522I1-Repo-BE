@@ -17,7 +17,6 @@ public interface ContractProjection{
         Integer getId();
         String getCustomer_name();
     }
-
     Status getStatus();
     interface Status{
         Integer getId();

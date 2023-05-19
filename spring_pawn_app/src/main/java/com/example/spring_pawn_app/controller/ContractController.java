@@ -2,6 +2,7 @@ package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.dto.contract.ContractProjection;
+import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class ContractController {
     @Autowired
     MailSender mailSender;
     @GetMapping("/contract")
-    public Page<ContractProjection> findAllContractWithPage(@RequestParam(value = "page",defaultValue = "0")int page,
-                                                     @RequestParam(value = "contractCode",defaultValue = "")String contractCode,
-                                                     @RequestParam(value = "nameCustomer",defaultValue = "")String nameCustomer,
-                                                     @RequestParam(value = "nameProduct",defaultValue = "")String nameProduct,
-                                                     @RequestParam(value = "beginDate",defaultValue = "")String beginDate){
-        Page<ContractProjection> contractDtoPage = iContractService.findAllContractWithPage(PageRequest.of(page,1),contractCode,nameCustomer,nameProduct,beginDate);
-        return contractDtoPage;
+    public Page<Contract> findAllContractWithPage(@RequestParam(value = "page",defaultValue = "0")int page,
+                                                  @RequestParam(value = "contractCode",defaultValue = "")String contractCode,
+                                                  @RequestParam(value = "nameCustomer",defaultValue = "")String nameCustomer,
+                                                  @RequestParam(value = "nameProduct",defaultValue = "")String nameProduct,
+                                                  @RequestParam(value = "beginDate",defaultValue = "")String beginDate){
+        Page<Contract> contractPage = iContractService.findAllContractWithPage(PageRequest.of(page,1),contractCode,nameCustomer,nameProduct,beginDate);
+        return contractPage;
     }
     @GetMapping("/contract/{id}")
     public ContractDto findContractById(@PathVariable("id") Integer id){
