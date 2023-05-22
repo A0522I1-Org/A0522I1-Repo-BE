@@ -1,7 +1,6 @@
 package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.dto.contract.ContractDto;
-import com.example.spring_pawn_app.dto.contract.ContractProjection;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api")
@@ -23,6 +21,18 @@ public class ContractController {
 
     @Autowired
     MailSender mailSender;
+
+    /**
+     * Created by: HoangVV,
+     * Date create: 20/05/2023
+     * Function: get all contract and search contract with contractCode, nameCustomer, nameProduct, beginDate
+     * @param page
+     * @param contractCode
+     * @param nameCustomer
+     * @param nameProduct
+     * @param beginDate
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/contract")
     public Page<Contract> findAllContractWithPage(@RequestParam(value = "page",defaultValue = "0")int page,
                                                   @RequestParam(value = "contractCode",defaultValue = "")String contractCode,
@@ -32,11 +42,27 @@ public class ContractController {
         Page<Contract> contractPage = iContractService.findAllContractWithPage(PageRequest.of(page,1),contractCode,nameCustomer,nameProduct,beginDate);
         return contractPage;
     }
+
+    /**
+     * Created by: HoangVV,
+     * Date create: 15/05/2023
+     * Function: get contract with id
+     * @param id
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
     @GetMapping("/contract/{id}")
     public ContractDto findContractById(@PathVariable("id") Integer id){
         return iContractService.findContractById(id);
     }
 
+    /**
+     * Created by: HoangVV
+     * Date create: 15/05/2023
+     * Function: update contract with id
+     * @param id
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     * @throws MessagingException
+     */
     @PutMapping("/contract/{id}")
     public ResponseEntity<?> getiContractService(@PathVariable("id")Integer id) throws MessagingException {
         iContractService.updateContractPayment(id);
