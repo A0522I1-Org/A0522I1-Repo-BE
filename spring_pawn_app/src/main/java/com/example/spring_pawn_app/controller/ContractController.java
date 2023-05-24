@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class ContractController {
     @Autowired
     IContractService iContractService;

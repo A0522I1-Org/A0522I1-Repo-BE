@@ -1,9 +1,11 @@
 package com.example.spring_pawn_app.dto;
-import com.example.spring_pawn_app.model.*;
+import com.example.spring_pawn_app.model.Category;
+import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.model.Status;
+
 import java.time.LocalDate;
 
 public class ContractCreateDto {
-    private String contractCode;
     private LocalDate beginDate;
     private LocalDate endDate;
     private Customer customer;
@@ -12,15 +14,20 @@ public class ContractCreateDto {
     private double price;
     private Category category;
     private Status status;
-
+    private String username;
     public ContractCreateDto() {
     }
-    public String getContractCode() {
-        return contractCode;
-    }
 
-    public void setContractCode(String contractCode) {
-        this.contractCode = contractCode;
+    public ContractCreateDto(LocalDate beginDate, LocalDate endDate, Customer customer, double interest, String nameProduct, double price, Category category, Status status, String username) {
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.customer = customer;
+        this.interest = interest;
+        this.status = status;
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.category = category;
+        this.username = username;
     }
 
     public LocalDate getBeginDate() {
@@ -84,5 +91,13 @@ public class ContractCreateDto {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
