@@ -16,6 +16,6 @@ public class ImgService implements IImgService{
 
     @Override
     public List<Img> findAll() {
-        return iImgRepository.findAll();
+        return iImgRepository.findAllImg();
     }
 }

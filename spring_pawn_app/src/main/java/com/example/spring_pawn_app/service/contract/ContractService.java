@@ -5,7 +5,10 @@ import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ContractService implements IContractService {
@@ -13,7 +16,7 @@ public class ContractService implements IContractService {
     private IContractRepository iContractRepository;
 
     @Override
-    public Page<Contract> findAllProductNotPay(PageRequest page, String nameCustomer, String categoryId) {
+    public Page<Contract> findAllProductNotPay(Pageable page, String nameCustomer, String categoryId) {
         return iContractRepository.findAllProductNotPay( nameCustomer, categoryId, page);
     }
 

@@ -13,12 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.Beans;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,34 +31,53 @@ public class ProductController {
     private IProdcutService iProdcutService;
     @Autowired
     private IContractService iContractService;
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return List of contract with status in (1,2) and can find with customer name and category id of product
+     */
     @GetMapping("products")
-    public ResponseEntity<List<ContractDTO>> findAllContractNotPay(
-                                                                   @RequestParam(defaultValue = "")String nameCustomer,
-                                                                   @RequestParam(defaultValue = "")String categoryId,
-                                                                   @RequestParam(defaultValue = "0") int page){
-        Page<Contract> contractPage = iContractService.findAllProductNotPay(PageRequest.of(page,5),nameCustomer,categoryId);
-        List<ContractDTO> contractDTOList = new ArrayList<>();
-        for (Contract contract : contractPage) {
-            contractDTOList = new ArrayList<>();
-            ContractDTO contractDTO = new ContractDTO();
-            BeanUtils.copyProperties(contract, contractDTO);
-            contractDTOList.add(contractDTO);
-        }
-        if (contractDTOList == null){
+    public ResponseEntity<Page<Contract>> findAllContractNotPay(
+            @RequestParam(value = "namecustomer", defaultValue = "") String nameCustomer,
+            @RequestParam(value = "categoryid", defaultValue = "") String categoryId,
+            @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<Contract> contractPage = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryId);
+        if (contractPage.getContent() == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(contractDTOList, HttpStatus.OK);
+       return new ResponseEntity<>(contractPage,HttpStatus.OK);
+    }
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return total pages of contract
+     */
+    @GetMapping("products/totalpages")
+    public ResponseEntity<Integer> findAllContractNotPay( @RequestParam(value = "namecustomer", defaultValue = "") String nameCustomer,
+                                                          @RequestParam(value = "categoryid", defaultValue = "") String categoryId) {
+        Pageable pageable = PageRequest.of(0, 5);
+        Integer totalPages = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryId).getTotalPages();
+        if (totalPages == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(totalPages, HttpStatus.OK);
     }
 
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return contract with status in (1,2) by ID of contract
+     */
     @GetMapping("products/{id}")
-    public ResponseEntity<ContractDTO> getContract(@PathVariable("id") int id){
+    public ResponseEntity<ContractDTO> getProduct(@PathVariable("id") int id) {
         Contract contract = iContractService.findById(id);
         ContractDTO contractDTO = new ContractDTO();
         BeanUtils.copyProperties(contract, contractDTO);
-        if(contractDTO == null){
+        if (contractDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(contractDTO,HttpStatus.OK);
+        return new ResponseEntity<>(contractDTO, HttpStatus.OK);
     }
 
 

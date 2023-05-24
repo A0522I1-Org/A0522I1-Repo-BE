@@ -31,25 +31,30 @@ public class ServiceFinace implements IFinaceService {
     @Override
     public Double getAllInterest() {
         double totalInterest = 0;
-        for (Contract contract : iContractRepository.findAll()) {
-            if (contract.getStatus().getId() == 3) {
+        for (Contract contract : iContractRepository.findAllCurrentInterest()) {
                 totalInterest += contract.getInterest();
-            }
         }
         return totalInterest;
     }
     @Override
     public Double getAllPrice() {
         double totalPriceProduct = 0;
-        for (Contract contract : iContractRepository.findALlPriceByContract()) {
-            totalPriceProduct += contract.getProduct().getPrice();
+        for (Contract contract : iContractRepository.findAll()) {
+            if(contract.getStatus().getId()==1||contract.getStatus().getId() == 2) {
+                totalPriceProduct += contract.getProduct().getPrice();
+            }
         }
         return totalPriceProduct;
     }
 
     @Override
     public Double getExpectedInterest() {
-        double totalExpectedInterest = getAllPrice() /100 * 10;
+        double totalExpectedInterest = 0;
+        for (Contract contract : iContractRepository.findAll()) {
+            if(contract.getStatus().getId()==1||contract.getStatus().getId() == 2) {
+                totalExpectedInterest += contract.getInterest();
+            }
+        }
         return totalExpectedInterest;
     }
 }

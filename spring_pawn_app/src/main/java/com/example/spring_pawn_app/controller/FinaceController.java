@@ -18,6 +18,11 @@ public class FinaceController {
     @Autowired
     private IFinaceService iFinaceService;
 
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return Finance of pawnshop
+     */
     @GetMapping("finace")
     public ResponseEntity<FinaceDTO> getFinaceDTO(){
         if (iFinaceService.getFinaction()==null){

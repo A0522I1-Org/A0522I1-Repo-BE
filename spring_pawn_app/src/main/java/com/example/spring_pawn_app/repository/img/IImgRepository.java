@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface IImgRepository extends JpaRepository<Img, Integer> {
-    @Query("select id,img,product from Img")
-    List<Img> findAll();
+    @Query(value = "select id,img,product_id from img",nativeQuery = true)
+    List<Img> findAllImg();
+
 }
