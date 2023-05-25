@@ -2,15 +2,21 @@ package com.example.spring_pawn_app.service.contract;
 
 import com.example.spring_pawn_app.dto.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.awt.print.Pageable;
 
 @Service
 public class ContractService implements IContractService{
     @Autowired
     IContractRepository iContractRepository;
+
     @Override
     public ContractDto findContractById(Integer id) {
         ContractDto contractDto = new ContractDto();
@@ -20,8 +26,14 @@ public class ContractService implements IContractService{
     }
 
     @Override
-    public void updateContractPayment(Integer id) {
-        iContractRepository.updateContractPayment(id);
+    public void updateContractLiquidation(Integer id) {
+        iContractRepository.updateContractLiquidation( id );
     }
+
+    @Override
+    public Page<Contract> findContractByCustomerId(PageRequest page, Integer id) {
+        return iContractRepository.findContractByCustomerId( page, id );
+    }
+
 
 }
