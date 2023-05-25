@@ -1,18 +1,27 @@
 package com.example.spring_pawn_app.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.service.employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("employee")
+@RequestMapping("/api")
 public class EmployeeController {
+
+    @Autowired
+    EmployeeService employeeService;
+
     @GetMapping("/test")
     public ResponseEntity<String> test(){
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @GetMapping("/employee/{username}")
+    public Employee findEmployeeByUserName(@PathVariable("username") String username){
+        return employeeService.findEmployeeByUserName(username);
     }
 }

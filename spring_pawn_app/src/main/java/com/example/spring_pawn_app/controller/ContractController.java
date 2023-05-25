@@ -1,6 +1,7 @@
 package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.service.contract.ContractService;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,14 @@ import javax.mail.MessagingException;
 @CrossOrigin("*")
 public class ContractController {
     @Autowired
-    IContractService iContractService;
+    ContractService contractService;
 
     @Autowired
     MailSender mailSender;
 
     @PostMapping("/contract")
     public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
-        iContractService.saveContract(contractDto);
+        contractService.saveContract(contractDto);
         try {
             mailSender.sendEmailPay(contractDto);
         } catch (MessagingException e) {

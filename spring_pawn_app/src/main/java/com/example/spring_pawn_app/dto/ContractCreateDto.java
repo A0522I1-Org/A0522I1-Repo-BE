@@ -15,10 +15,11 @@ public class ContractCreateDto {
     private Category category;
     private Status status;
     private String username;
+    private String imgPath;
     public ContractCreateDto() {
     }
 
-    public ContractCreateDto(LocalDate beginDate, LocalDate endDate, Customer customer, double interest, String nameProduct, double price, Category category, Status status, String username) {
+    public ContractCreateDto(LocalDate beginDate, LocalDate endDate, Customer customer, double interest, String nameProduct, double price, Category category, Status status, String username, String imgPath) {
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.customer = customer;
@@ -28,6 +29,7 @@ public class ContractCreateDto {
         this.price = price;
         this.category = category;
         this.username = username;
+        this.imgPath = imgPath;
     }
 
     public LocalDate getBeginDate() {
@@ -99,5 +101,13 @@ public class ContractCreateDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

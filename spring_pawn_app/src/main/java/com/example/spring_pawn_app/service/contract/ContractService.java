@@ -3,10 +3,12 @@ package com.example.spring_pawn_app.service.contract;
 import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.model.Img;
 import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
-import com.example.spring_pawn_app.repository.employee.IEmployeeRepository;
-import com.example.spring_pawn_app.repository.product.IProductRepository;
+import com.example.spring_pawn_app.service.employee.EmployeeService;
+import com.example.spring_pawn_app.service.img.ImgService;
+import com.example.spring_pawn_app.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,11 @@ public class ContractService implements IContractService {
     @Autowired
     IContractRepository iContractRepository;
     @Autowired
-    IEmployeeRepository iEmployeeRepository;
+    EmployeeService employeeService;
     @Autowired
-    IProductRepository iProductRepository;
+    ProductService productService;
+    @Autowired
+    ImgService imgService;
 
     private String generateContractCode() {
         int codeLength = 4; // Độ dài của mã xác thực
@@ -37,10 +41,12 @@ public class ContractService implements IContractService {
     public void saveContract(ContractCreateDto contractDto) {
         Contract contract = new Contract();
         Product product = new Product(contractDto.getNameProduct(), contractDto.getPrice(), contractDto.getCategory());
+        Img img = new Img(contractDto.getImgPath(), product);
 
-        iProductRepository.save(product);
+        productService.save(product);
+        imgService.saveImg(img);
 
-        Employee employee = iEmployeeRepository.findEmployeeByUserName(contractDto.getUsername());
+        Employee employee = employeeService.findEmployeeByUserName(contractDto.getUsername());
 
         contract.setContractCode("CT-"+this.generateContractCode());
         contract.setBeginDate(contractDto.getBeginDate());
