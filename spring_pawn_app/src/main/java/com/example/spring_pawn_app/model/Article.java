@@ -12,7 +12,7 @@ public class Article {
     private Integer id;
     @Column(columnDefinition = "varchar(50)")
     private String title;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
 
     @Column(columnDefinition = "LONGTEXT")

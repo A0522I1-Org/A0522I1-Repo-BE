@@ -7,5 +7,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
+    /**
+     * Created by: TanNC
+     * Date created: 12/05/2023
+     * Function: find by employee
+     * @param employee
+     * @return Null if result null or User if result not null
+     */
     User findByEmployee(Employee employee);
 }
