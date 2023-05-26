@@ -11,6 +11,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
+
 
 @Component
 public class MailSender {
@@ -18,8 +20,9 @@ public class MailSender {
     private JavaMailSender javaMailSender;
 
     public void sendEmailPay(ContractDto contract) throws MessagingException {
+        LocalDate currentDate = LocalDate.now();
         MimeMessage messages = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(messages, true,"utf-8");
+        MimeMessageHelper helper = new MimeMessageHelper(messages, true,"UTF-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("/templates/");
         templateResolver.setSuffix(".html");
@@ -34,6 +37,7 @@ public class MailSender {
         context.setVariable("gender",contract.getCustomer().getGender());
         context.setVariable("address",contract.getCustomer().getAddress());
         context.setVariable("phone",contract.getCustomer().getPhone());
+        context.setVariable("time",currentDate);
 
         String html = templateEngine.process("payment", context);
         messages.setContent(html,"text/html");
@@ -43,32 +47,4 @@ public class MailSender {
         this.javaMailSender.send(messages);
 
     }
-
-//    public void sendEmailSub(Contract contract) throws MessagingException {
-//        MimeMessage message = javaMailSender.createMimeMessage();
-//        MimeMessageHelper helper = new MimeMessageHelper(message, true,"utf-8");
-//        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-//        templateResolver.setPrefix("/templates/");
-//        templateResolver.setSuffix(".html");
-//        templateResolver.setTemplateMode("HTML");
-//
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.setTemplateResolver(templateResolver);
-//
-//        Context context = new Context();
-//        context.setVariable("name",contract.getCustomer().getName());
-//        context.setVariable("dateOfBirth",contract.getCustomer().getDob());
-//        context.setVariable("gender",contract.getCustomer().getGender());
-//        context.setVariable("address",contract.getCustomer().getAddress());
-//        context.setVariable("phone",contract.getCustomer().getPhone());
-//
-//        String html = templateEngine.process("payment", context);
-//        message.setContent(html,"text/html");
-//        helper.setTo(contract.getCustomer().getEmail());
-//        helper.setSubject("Thông báo thanh toán thành công");
-//
-//        this.javaMailSender.send(message);
-//
-//    }
-
 }

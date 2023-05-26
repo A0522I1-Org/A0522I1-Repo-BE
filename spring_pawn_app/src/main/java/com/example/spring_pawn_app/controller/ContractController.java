@@ -12,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:4200")
 public class ContractController {
     @Autowired
     IContractService iContractService;
@@ -39,7 +41,7 @@ public class ContractController {
                                                   @RequestParam(value = "nameCustomer",defaultValue = "")String nameCustomer,
                                                   @RequestParam(value = "nameProduct",defaultValue = "")String nameProduct,
                                                   @RequestParam(value = "beginDate",defaultValue = "")String beginDate){
-        Page<Contract> contractPage = iContractService.findAllContractWithPage(PageRequest.of(page,1),contractCode,nameCustomer,nameProduct,beginDate);
+        Page<Contract> contractPage = iContractService.findAllContractWithPage(PageRequest.of(page,5),contractCode,nameCustomer,nameProduct,beginDate);
         return contractPage;
     }
 
@@ -50,9 +52,16 @@ public class ContractController {
      * @param id
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
+//    @GetMapping("/contract/{id}")
+//    public ContractDto findContractById(@PathVariable("id") Integer id){
+//        return iContractService.findContractById(id);
+//    }
     @GetMapping("/contract/{id}")
-    public ContractDto findContractById(@PathVariable("id") Integer id){
-        return iContractService.findContractById(id);
+    public ResponseEntity<ContractDto> findContractById(@PathVariable("id") Integer id){
+        if (iContractService.findContractById(id)!=null){
+            return ResponseEntity.of(Optional.of(iContractService.findContractById(id)));
+        }
+        return ResponseEntity.ok(null);
     }
 
     /**
@@ -64,9 +73,14 @@ public class ContractController {
      * @throws MessagingException
      */
     @PutMapping("/contract/{id}")
-    public ResponseEntity<?> getiContractService(@PathVariable("id")Integer id) throws MessagingException {
-        iContractService.updateContractPayment(id);
-        mailSender.sendEmailPay(iContractService.findContractById(id));
+    public ResponseEntity<?> getContractService(@PathVariable("id")Integer id) throws MessagingException {
+        ContractDto contractDto = iContractService.findContractById(id);
+        if (contractDto.getStatus().getId() != 3){
+            iContractService.updateContractPayment(id);
+            mailSender.sendEmailPay(iContractService.findContractById(id));
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

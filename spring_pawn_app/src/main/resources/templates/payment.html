@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h2>Thanh toán thành công!!</h2>
-<p>Họ và tên <span></span></p>
-<p>Họ và tên <span></span></p>
-<p>Họ và tên <span></span></p>
-<p>Họ và tên <span></span></p>
-<p>Họ và tên <span></span></p>
+<p>Họ và tên: <span style="font-weight: bold" th:text="${name}"></span></p>
+<p>Sinh nhật: <span style="font-weight: bold" th:text="${dateOfBirth}"></span></p>
+<p>Giới tính: <span style="font-weight: bold" th:text="${gender == 1 ? 'Nam' : 'Nữ'}"></span></p>
+<p>Địa chỉ: <span style="font-weight: bold" th:text="${address}"></span></p>
+<p>Số điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+<p>Bạn đã hoàn thành thanh toán vào thời gian: <span style="font-weight: bold" th:text="${time}"></span></p>
 </body>
 </html>
