@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface IImgService {
     List<Img> findAll();
+
+    void saveImg(Img img);
 }
+

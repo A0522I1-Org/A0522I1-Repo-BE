@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/")
@@ -22,14 +25,16 @@ public class CategoryController {
     /**
      * genarate 13May2023
      * TinPNT
+     *
      * @return List of category
      */
     @GetMapping("category")
-    public ResponseEntity<List<Category>> findAll(){
+    public ResponseEntity<List<Category>> findAll() {
         List<Category> categoryList = iCategoryService.findAllCategory();
         if (iCategoryService.findAllCategory() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<Category>>(categoryList,HttpStatus.OK);
+        return new ResponseEntity<List<Category>>(categoryList, HttpStatus.OK);
+
     }
 }
