@@ -6,6 +6,7 @@ import com.example.spring_pawn_app.service.article.ArticleService;
 import com.example.spring_pawn_app.service.article.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -23,26 +24,25 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
-
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
-    
+
 //    @Autowired
 //    private Employee employee;
 
-    @GetMapping("/list")
-    public ResponseEntity<Page<Article>> getList(@PageableDefault(size = 5) Pageable pageable){
-        Page<Article> list = articleService.findAllWithPage(pageable);
+    @GetMapping("/article-list")
+    public ResponseEntity<Page<Article>> getList(@RequestParam(defaultValue = "0") int page){
+        Page<Article> list = articleService.findAllWithPage(PageRequest.of(page, 5));
         System.out.println(list);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/list/find/{id}")
+    @GetMapping("/article-view/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id){
         return new ResponseEntity<>(this.articleService.findById(id), HttpStatus.OK);
     }
-    
+
     @PatchMapping("/delete-article/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         articleService.deleteArticle(id);
