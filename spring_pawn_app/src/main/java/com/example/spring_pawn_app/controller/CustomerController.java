@@ -19,7 +19,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/customer/{id}")
-    public Customer findCustomerByIdOrName(@PathVariable("id") Integer id) {
+    public Customer findCustomerById(@PathVariable("id") Integer id) {
         return customerService.findCustomerById(id);
     }
 

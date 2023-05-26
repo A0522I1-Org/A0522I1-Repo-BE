@@ -8,4 +8,5 @@ public interface CustomerListDto {
     public String getPhone();
     public String getId_card();
     public String getAddress();
+    public String getEmail();
 }

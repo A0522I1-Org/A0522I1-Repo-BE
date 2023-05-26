@@ -48,14 +48,6 @@ public class ContractCreateDto {
         this.endDate = endDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public double getInterest() {
         return interest;
     }
@@ -109,5 +101,13 @@ public class ContractCreateDto {
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

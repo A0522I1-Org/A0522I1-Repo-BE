@@ -6,6 +6,7 @@ import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.model.Img;
 import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
+import com.example.spring_pawn_app.service.customer.CustomerService;
 import com.example.spring_pawn_app.service.employee.EmployeeService;
 import com.example.spring_pawn_app.service.img.ImgService;
 import com.example.spring_pawn_app.service.product.ProductService;
@@ -22,6 +23,8 @@ public class ContractService implements IContractService {
     EmployeeService employeeService;
     @Autowired
     ProductService productService;
+    @Autowired
+    CustomerService customerService;
     @Autowired
     ImgService imgService;
 
@@ -51,7 +54,7 @@ public class ContractService implements IContractService {
         contract.setContractCode("CT-"+this.generateContractCode());
         contract.setBeginDate(contractDto.getBeginDate());
         contract.setEndDate(contractDto.getEndDate());
-        contract.setCustomer(contractDto.getCustomer());
+        contract.setCustomer(customerService.findCustomerById(contractDto.getCustomer().getId()));
         contract.setInterest(contractDto.getInterest());
         contract.setStatus(contractDto.getStatus());
         contract.setProduct(product);
