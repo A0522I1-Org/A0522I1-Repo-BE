@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.contract;
 
+import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,8 @@ public interface IContractService {
     ContractDto findContractById(Integer id);
 
     void updateContractPayment(Integer id);
+
+    void saveContract(ContractCreateDto contractDto);
 
     public Page<Contract> findAllContractWithPage(PageRequest pageRequest, String contractCode, String nameCustomer, String nameProduct, String beginDate);
 

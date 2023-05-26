@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" filepath="$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" />
+=======
+>>>>>>> origin/ThuongVTH
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
+import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,7 +12,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
 import java.time.LocalDate;
+
 
 
 @Component
@@ -32,6 +35,7 @@ public class MailSender {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
+
         context.setVariable("name",contract.getCustomer().getName());
         context.setVariable("dateOfBirth",contract.getCustomer().getDateOfBirth());
         context.setVariable("gender",contract.getCustomer().getGender());
@@ -39,12 +43,42 @@ public class MailSender {
         context.setVariable("phone",contract.getCustomer().getPhone());
         context.setVariable("time",currentDate);
 
-        String html = templateEngine.process("payment", context);
-        messages.setContent(html,"text/html");
+
+        String html = templateEngine.process("addContractSuccess", context);
+        messages.setContent(html, "text/html");
         helper.setTo(contract.getCustomer().getEmail());
-        helper.setSubject("Thông báo thanh toán thành công");
+        helper.setSubject("Thông báo thêm mới thành công");
 
         this.javaMailSender.send(messages);
+    }
 
+    public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
+        LocalDate currentDate = LocalDate.now();
+        MimeMessage messages = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(messages, true,"UTF-8");
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML");
+
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        Context context = new Context();
+
+        context.setVariable("name",contract.getCustomer().getName());
+        context.setVariable("dateOfBirth",contract.getCustomer().getDateOfBirth());
+        context.setVariable("gender",contract.getCustomer().getGender());
+        context.setVariable("address",contract.getCustomer().getAddress());
+        context.setVariable("phone",contract.getCustomer().getPhone());
+        context.setVariable("time",currentDate);
+
+
+        String html = templateEngine.process("addContractSuccess", context);
+        messages.setContent(html, "text/html");
+        helper.setTo(contract.getCustomer().getEmail());
+        helper.setSubject("Thông báo thêm mới thành công");
+
+        this.javaMailSender.send(messages);
     }
 }
