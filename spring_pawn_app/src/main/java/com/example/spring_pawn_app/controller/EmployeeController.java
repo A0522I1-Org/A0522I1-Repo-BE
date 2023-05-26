@@ -81,62 +81,6 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    /**
-//     * Created by: TanNC
-//     * Date created: 12/05/2023
-//     * Function: check duplicate email
-//     *
-//     * @param id
-//     * @param email
-//     * @return true if email is duplicate or false if email is not duplicate
-//     */
-//    @GetMapping("/employee/checkDuplicateEmail")
-//    public ResponseEntity<Boolean> isDuplicateEmail(@RequestParam Integer id, @RequestParam String email) {
-//        Employee employee = employeeService.finById(id);//employee current
-//        List<Employee> list = employeeService.findByEmail(email);
-//        if (list.size() > 0 && !employee.getEmail().equals(email)) {
-//            return ResponseEntity.ok(true);
-//        }
-//        return ResponseEntity.ok(false);
-//    }
-//
-//    /**
-//     * Created by: TanNC
-//     * Date created: 12/05/2023
-//     * Function: check duplicate phone
-//     *
-//     * @param id
-//     * @param phone
-//     * @return true if phone is duplicate or false if phone is not duplicate
-//     */
-//    @GetMapping("/employee/checkDuplicatePhone")
-//    public ResponseEntity<Boolean> isDuplicatePhone(@RequestParam Integer id, @RequestParam String phone) {
-//        Employee employee = employeeService.finById(id);//employee current
-//        List<Employee> list = employeeService.findByPhone(phone);
-//        if (list.size() > 0 && !employee.getPhone().equals(phone)) {
-//            return ResponseEntity.ok(true);
-//        }
-//        return ResponseEntity.ok(false);
-//    }
-//
-//    /**
-//     * Created by: TanNC
-//     * Date created: 12/05/2023
-//     * Function: check duplicate idCard
-//     *
-//     * @param id
-//     * @param idCard
-//     * @return true if idCard is duplicate or false if idCard is not duplicate
-//     */
-//    @GetMapping("/employee/checkDuplicateIdCard")
-//    public ResponseEntity<Boolean> isDuplicateIdCard(@RequestParam Integer id, @RequestParam String idCard) {
-//        Employee employee = employeeService.finById(id);//employee current
-//        List<Employee> list = employeeService.findByIdCard(idCard);
-//        if (list.size() > 0 && !employee.getIdCard().equals(idCard)) {
-//            return ResponseEntity.ok(true);
-//        }
-//        return ResponseEntity.ok(false);
-//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidDataException.class)
