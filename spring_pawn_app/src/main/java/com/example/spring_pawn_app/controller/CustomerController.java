@@ -26,7 +26,7 @@ public class CustomerController {
     @GetMapping("/customer")
     public Page<CustomerListDto> findAllCustomersByNameWithPage(@RequestParam(value = "page", defaultValue = "0") int page,
                                                                 @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
-        Page<CustomerListDto> customerPage = customerService.findAllCustomerWithPage(PageRequest.of(page, 3), nameCustomer);
+        Page<CustomerListDto> customerPage = customerService.findAllCustomerWithPage(PageRequest.of(page, 2), nameCustomer);
         return customerPage;
     }
 
