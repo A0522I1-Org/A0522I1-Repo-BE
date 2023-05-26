@@ -16,11 +16,7 @@ import java.util.List;
 
 @Repository
 public interface IContractRepository extends JpaRepository<Contract, Integer> {
-    //    @Query(value = "SELECT p.price,c.begin_date,c.contract_code,c.end_date,c.customer_id,c.employee_id,c.is_flag,c.product_id, c.id, p.id,c.interest,c.status_id \n" +
-//            "FROM contract c \n" +
-//            "JOIN product p ON c.id = p.id \n" +
-//            "WHERE c.status_id IN (1, 2);", nativeQuery = true)
-//    List<Contract> findALlPriceByContract();
+
     @Query(value = "  select id ,begin_date,contract_code,end_date,interest,is_flag,customer_id,employee_id,product_id,status_id from contract where status_id =3", nativeQuery = true)
     List<Contract> findAllCurrentInterest();
 

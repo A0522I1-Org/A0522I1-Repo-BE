@@ -48,21 +48,7 @@ public class ProductController {
         }
        return new ResponseEntity<>(contractPage,HttpStatus.OK);
     }
-    /**
-     * genarate 13May2023
-     * TinPNT
-     * @return total pages of contract
-     */
-    @GetMapping("products/totalpages")
-    public ResponseEntity<Integer> findAllContractNotPay( @RequestParam(value = "namecustomer", defaultValue = "") String nameCustomer,
-                                                          @RequestParam(value = "categoryid", defaultValue = "") String categoryId) {
-        Pageable pageable = PageRequest.of(0, 5);
-        Integer totalPages = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryId).getTotalPages();
-        if (totalPages == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(totalPages, HttpStatus.OK);
-    }
+
 
     /**
      * genarate 13May2023

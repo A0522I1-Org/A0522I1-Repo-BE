@@ -21,7 +21,7 @@ public class ServiceFinace implements IFinaceService {
         FinaceDTO finaction = new FinaceDTO();
         System.out.println(totalInterest);
         System.out.println(totalInvestment);
-        finaction.setTotalFinace(totalFinace);
+        finaction.setTotalFinace(totalFinace);  
         finaction.setCurrentFinace(currentFinace);
         finaction.setInvestment(totalInvestment);
         finaction.setInterest(totalExpectedInterest);
