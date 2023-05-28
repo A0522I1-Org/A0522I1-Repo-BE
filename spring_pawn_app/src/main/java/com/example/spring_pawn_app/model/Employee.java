@@ -25,7 +25,7 @@ public class Employee {
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "LONGTEXT")
     private String avatar;
 
     public Employee() {
