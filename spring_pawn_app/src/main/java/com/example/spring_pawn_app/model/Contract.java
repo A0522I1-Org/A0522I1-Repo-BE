@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,6 +10,9 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column( name = "contract_code", columnDefinition = ("varchar(45)"))
+    private String contractCode;
 
     private LocalDate beginDate;
     private LocalDate endDate;
@@ -20,24 +25,27 @@ public class Contract {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    private double interest;
+    @Column(columnDefinition = "double DEFAULT 0.0")
+    private Double interest;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
     private boolean isFlag;
 
     public Contract() {
     }
 
-    public Contract(Integer id, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, double interest, Employee employee, Product product, boolean isFlag) {
+    public Contract(Integer id, String contractCode, LocalDate beginDate, LocalDate endDate, Customer customer, Status status, Double interest, Employee employee, Product product, boolean isFlag) {
         this.id = id;
+        this.contractCode = contractCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.customer = customer;
@@ -54,6 +62,14 @@ public class Contract {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
     }
 
     public LocalDate getBeginDate() {
@@ -88,11 +104,11 @@ public class Contract {
         this.status = status;
     }
 
-    public double getInterest() {
+    public Double getInterest() {
         return interest;
     }
 
-    public void setInterest(double interest) {
+    public void setInterest(Double interest) {
         this.interest = interest;
     }
 

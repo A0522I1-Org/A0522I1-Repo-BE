@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,7 +26,8 @@ public class User {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
     private boolean isFlag;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",inverseJoinColumns = @JoinColumn(name = "user_id"),
