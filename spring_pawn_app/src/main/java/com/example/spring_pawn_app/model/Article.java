@@ -22,9 +22,9 @@ public class Article {
 
     @Column(columnDefinition = "bit")
     private boolean isFeature;
+
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
-
     private boolean isFlag;
 
     @ManyToOne
@@ -32,17 +32,6 @@ public class Article {
     private Employee employee;
 
     public Article() {
-    }
-
-    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFeature, boolean isFlag, Employee employee) {
-        this.id = id;
-        this.title = title;
-        this.img = img;
-        this.content = content;
-        this.publicDate = publicDate;
-        this.isFeature = isFeature;
-        this.isFlag = isFlag;
-        this.employee = employee;
     }
 
     public Integer getId() {
@@ -108,4 +97,18 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFeature, boolean isFlag, Employee employee) {
+        this.id = id;
+        this.title = title;
+        this.img = img;
+        this.content = content;
+        this.publicDate = publicDate;
+        this.isFeature = isFeature;
+        this.isFlag = isFlag;
+        this.employee = employee;
+    }
+
 }
+
+
