@@ -17,7 +17,6 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "customer_code", columnDefinition = ("varchar(25)"))
     private String customerCode;
     @Column(name = "customer_name", columnDefinition = "varchar(45)")
@@ -25,28 +24,20 @@ public class Customer {
     private Integer gender;
     @Column(name = "date_of_birth", columnDefinition = "varchar(20)")
     private LocalDate dateOfBirth;
-
     @Column(name = "id_card", columnDefinition = "varchar(20)")
     private String identityCard;
-
     @Column(name = "phone_number", columnDefinition = "varchar(20)")
     private String phone;
-
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = ("varchar(256)"))
     private String email;
-
-    @Column(columnDefinition = "varchar(120)")
+    @Column(columnDefinition = ("varchar(200)"))
     private String address;
-
     @Column(columnDefinition = "varchar(200)")
     private String avatar;
-
     @Column(columnDefinition = "varchar(45)")
     private String status;
-
     @Column(columnDefinition = "varchar(200)")
     private String note;
-
     @Column(name = "delete_time")
     private LocalDateTime deleteTime;
     @Column(columnDefinition = "bit")

@@ -11,7 +11,7 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( name = "contract_code", columnDefinition = ("varchar(25)"))
+    @Column( columnDefinition = ("varchar(45)"))
     private String contractCode;
 
     private LocalDate beginDate;
@@ -22,7 +22,7 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "status_id", columnDefinition = "varchar(200)")
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @Column(columnDefinition = "double DEFAULT 0.0")
