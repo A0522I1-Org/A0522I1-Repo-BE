@@ -10,9 +10,9 @@ public interface IEmployeeService {
 
     void save(Employee employee);
 
-    List<Employee> findByEmail(String email);
+    List<Employee> findByEmails(String email);
 
-    List<Employee> findByPhone(String phone);
+    List<Employee> findByPhones(String phone);
 
-    List<Employee> findByIdCard(String idCard);
+    List<Employee> findByIdCards(String idCard);
 }
