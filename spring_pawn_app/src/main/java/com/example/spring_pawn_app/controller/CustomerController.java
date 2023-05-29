@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static java.util.Optional.of;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")
@@ -19,8 +21,8 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/customer/{id}")
-    public Customer findCustomerById(@PathVariable("id") Integer id) {
-        return customerService.findCustomerById(id);
+    public Customer  findCustomerById(@PathVariable("id") Integer id) {
+        return  customerService.findCustomerById(id);
     }
 
     @GetMapping("/customer")
