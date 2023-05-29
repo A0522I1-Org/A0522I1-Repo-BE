@@ -23,8 +23,10 @@ public class Article {
 
     private LocalDate publicDate;
 
+    @ColumnDefault("0")
     @Column(columnDefinition = "bit")
     private boolean isFeature;
+
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
@@ -91,6 +93,14 @@ public class Article {
         this.publicDate = publicDate;
     }
 
+    public boolean isFeature() {
+        return isFeature;
+    }
+
+    public void setFeature(boolean feature) {
+        isFeature = feature;
+    }
+
     public boolean isFlag() {
         return isFlag;
     }
@@ -114,4 +124,7 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 }
+
+

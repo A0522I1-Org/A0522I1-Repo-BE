@@ -1,9 +1,7 @@
 package com.example.spring_pawn_app.dto.employee;
-
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -181,5 +179,6 @@ public class EmployeeInforDTO implements Validator {
                 errors.rejectValue("confirmPassword", "", "Không trùng khớp với mật khẩu vừa nhập, vui lòng nhập lại");
             }
         }
+
     }
 }

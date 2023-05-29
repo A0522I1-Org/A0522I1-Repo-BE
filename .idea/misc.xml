@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/spring_pawn_app" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+<<<<<<< HEAD
+=======
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+>>>>>>> origin/NhanNH
+=======
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
 </project>

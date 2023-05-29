@@ -1,5 +1,4 @@
 package com.example.spring_pawn_app.service.article;
-
 import com.example.spring_pawn_app.dto.ArticleDTO;
 import com.example.spring_pawn_app.model.Article;
 import com.example.spring_pawn_app.repository.article.IArticleRepository;
@@ -48,5 +47,6 @@ public class ArticleService implements IArticleService{
     public Page<Article> findArticleByTitle(String name, PageRequest pageable) {
         return articleRepository.searchArticleByTitle(name,pageable);
     }
+
 
 }
