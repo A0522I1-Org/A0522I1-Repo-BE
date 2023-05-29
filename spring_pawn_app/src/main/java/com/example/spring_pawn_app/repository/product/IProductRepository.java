@@ -8,5 +8,6 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
+
 public interface IProductRepository extends JpaRepository<Product, Integer> {
 }

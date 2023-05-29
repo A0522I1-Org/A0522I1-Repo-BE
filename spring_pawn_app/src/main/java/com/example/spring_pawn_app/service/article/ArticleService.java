@@ -13,5 +13,4 @@ public class ArticleService implements IArticleService{
     public void save(Article article) {
         iArticleRepository.save(article);
     }
-
 }

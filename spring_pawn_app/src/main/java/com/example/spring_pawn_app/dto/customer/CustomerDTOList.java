@@ -1,18 +1,20 @@
 package com.example.spring_pawn_app.dto.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+/**
+ * @author Trần Thế Huy
+ * @version 1
+ * @since 28/5/2023
+ */
 @Data
 @SuperBuilder
-@AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTODetail {
+@AllArgsConstructor
+public class CustomerDTOList {
 
     private Integer id;
 
@@ -24,17 +26,9 @@ public class CustomerDTODetail {
 
     private LocalDate dateOfBirth;
 
-    private String identityCard;
-
     private String phone;
 
-    private String email;
-
-    private String address;
-
-    private String avatar;
-
-    private String note;
+    private String identityCard;
 
     private Long contractQuantity;
 }
