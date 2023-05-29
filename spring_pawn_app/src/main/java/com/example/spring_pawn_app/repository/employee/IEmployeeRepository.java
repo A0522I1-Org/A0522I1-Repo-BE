@@ -39,4 +39,5 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @return Null if result null or List<Employee> if result not null
      */
     List<Employee> findByIdCard(String idCard);
+    Employee findEmployeeByEmail(String email);
 }

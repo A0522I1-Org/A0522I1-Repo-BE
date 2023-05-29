@@ -5,9 +5,6 @@ import com.example.spring_pawn_app.model.User;
 import com.example.spring_pawn_app.repository.user.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.spring_pawn_app.model.User;
-import com.example.spring_pawn_app.repository.user.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
@@ -35,5 +32,12 @@ public class UserService implements IUserService {
     public void save(User user) {
         iUserRepository.save(user);
     }
+
+    @Override
+    public Optional<User> findByEmployee(Employee employee) {
+        return iUserRepository.findUserByEmployee(employee);
+    }
+
+
 }
 

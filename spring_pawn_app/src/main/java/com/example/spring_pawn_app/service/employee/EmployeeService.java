@@ -21,7 +21,6 @@ public class EmployeeService implements IEmployeeService {
         return iEmployeeRepository.findEmployeeByUserName(username);
     }
 
-
     @Override
     public Employee finById(Integer id) {
         return iEmployeeRepository.findById(id).orElse(null);
@@ -31,7 +30,7 @@ public class EmployeeService implements IEmployeeService {
     public void save(Employee employee) {
         List<ValidationError> errors = new ArrayList<>();
         Employee employee1 = this.finById(employee.getId());//employee current
-        List<Employee> list1 = this.findByEmail(employee.getEmail());
+        List<Employee> list1 = this.findByEmails(employee.getEmail());
         List<Employee> list2 = this.findByPhone(employee.getPhone());
         List<Employee> list3 = this.findByIdCard(employee.getIdCard());
         if (list1.size() > 0 && !employee1.getEmail().equals(employee.getEmail())) {
@@ -52,11 +51,6 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public List<Employee> findByEmail(String email) {
-        return iEmployeeRepository.findByEmail(email);
-    }
-
-    @Override
     public List<Employee> findByPhone(String phone) {
         return iEmployeeRepository.findByPhone(phone);
     }
@@ -67,4 +61,13 @@ public class EmployeeService implements IEmployeeService {
     }
 
 
+    @Override
+    public Employee findByEmail(String email) {
+        return iEmployeeRepository.findEmployeeByEmail(email);
+    }
+
+    @Override
+    public List<Employee> findByEmails(String email) {
+        return iEmployeeRepository.findByEmail(email);
+    }
 }

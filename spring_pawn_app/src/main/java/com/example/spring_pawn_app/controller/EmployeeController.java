@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -30,10 +31,6 @@ public class EmployeeController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return new ResponseEntity<String>(HttpStatus.OK);
-    }
 
     @GetMapping("/employee/{username}")
     public Employee findEmployeeByUserName(@PathVariable("username") String username) {

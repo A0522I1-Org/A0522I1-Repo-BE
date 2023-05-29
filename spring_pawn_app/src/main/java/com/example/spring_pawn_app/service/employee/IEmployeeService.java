@@ -12,9 +12,11 @@ public interface IEmployeeService {
 
     void save(Employee employee);
 
-    List<Employee> findByEmail(String email);
-
     List<Employee> findByPhone(String phone);
 
     List<Employee> findByIdCard(String idCard);
+
+    Employee findByEmail(String email);
+    List<Employee> findByEmails(String email);
+
 }
