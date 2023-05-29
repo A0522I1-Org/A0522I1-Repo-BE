@@ -20,8 +20,6 @@ public class Article {
 
     private LocalDate publicDate;
 
-
-    @ColumnDefault("0")
     @Column(columnDefinition = "bit")
     private boolean isFeature;
 
@@ -111,15 +109,6 @@ public class Article {
         this.employee = employee;
     }
 
-    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
-        this.id = id;
-        this.title = title;
-        this.img = img;
-        this.content = content;
-        this.publicDate = publicDate;
-        this.isFlag = isFlag;
-        this.employee = employee;
-    }
 }
 
 

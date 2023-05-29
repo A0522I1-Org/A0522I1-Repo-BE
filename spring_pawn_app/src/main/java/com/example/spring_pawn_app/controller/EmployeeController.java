@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
@@ -37,7 +36,8 @@ public class EmployeeController {
         return employeeService.findEmployeeByUserName(username);
     }
 
-    @GetMapping("/employee/{id}")
+
+    @GetMapping("/employee/id/{id}")
     public ResponseEntity<EmployeeInforDTO> findByIdEmployee(@PathVariable Integer id) {
         EmployeeInforDTO employeeInforDTO = new EmployeeInforDTO();
         Employee employee = employeeService.finById(id);
@@ -84,14 +84,18 @@ public class EmployeeController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidDataException.class)
+
     public ResponseEntity<Map<String, String>> handleInvalidDataException(InvalidDataException ex) {
         List<ValidationError> errors1 = ex.getErrors();
         Map<String, String> errors = new HashMap<>();
         errors1.forEach((error) -> {
+
             String fieldName = error.getField();
             String errorMessage = error.getMessage();
             errors.put(fieldName, errorMessage);
         });
+
         return ResponseEntity.badRequest().body(errors);
+
     }
 }
