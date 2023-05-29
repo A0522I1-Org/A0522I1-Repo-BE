@@ -3,12 +3,11 @@ import com.example.spring_pawn_app.dto.ArticleDTO;
 import com.example.spring_pawn_app.model.Article;
 import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.service.article.ArticleService;
-import com.example.spring_pawn_app.service.article.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -40,7 +39,7 @@ public class ArticleController {
 
     @GetMapping("/article-view/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id){
-        return new ResponseEntity<>(this.articleService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.articleService.findArticleById(id), HttpStatus.OK);
     }
 
     @PatchMapping("/delete-article/{id}")
@@ -72,4 +71,15 @@ public class ArticleController {
         articleService.save(article);
         return ResponseEntity.ok("Thêm tin tức thành công");
     }
+
+    @GetMapping("/search-article")
+    public ResponseEntity<Page<Article>> searchArticleByTitle(@RequestParam String name,
+                                                              @RequestParam(defaultValue = "0") int page) {
+        Page<Article> articleList = articleService.findArticleByTitle(name, PageRequest.of(page, 5));
+        if (articleList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(articleList, HttpStatus.OK);
+    }
+
 }

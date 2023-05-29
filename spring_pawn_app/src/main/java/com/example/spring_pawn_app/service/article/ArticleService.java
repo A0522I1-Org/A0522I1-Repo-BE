@@ -6,11 +6,9 @@ import com.example.spring_pawn_app.repository.article.IArticleRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import com.example.spring_pawn_app.model.Article;
-import com.example.spring_pawn_app.repository.article.IArticleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,9 +28,9 @@ public class ArticleService implements IArticleService{
     }
 
     @Override
-    public ArticleDTO findById(int id) {
+    public ArticleDTO findArticleById(int id) {
         ArticleDTO articleDTO = new ArticleDTO();
-        Article article = articleRepository.findById(id).orElse(null);
+        Article article = articleRepository.findArticleById(id).orElse(null);
         BeanUtils.copyProperties(article, articleDTO);
         return articleDTO;
     }
@@ -44,6 +42,11 @@ public class ArticleService implements IArticleService{
     @Override
     public void save(Article article) {
         articleRepository.save(article);
+    }
+
+    @Override
+    public Page<Article> findArticleByTitle(String name, PageRequest pageable) {
+        return articleRepository.searchArticleByTitle(name,pageable);
     }
 
 }
