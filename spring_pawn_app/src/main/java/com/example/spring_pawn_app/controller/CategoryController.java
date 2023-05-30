@@ -1,13 +1,8 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.model.Category;
-import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.category.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

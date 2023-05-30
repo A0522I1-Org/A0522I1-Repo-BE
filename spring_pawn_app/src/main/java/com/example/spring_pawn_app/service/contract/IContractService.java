@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.service.contract;
 
+import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Status;
@@ -16,4 +17,5 @@ public interface IContractService {
 
     Page<Contract> search(String customerName, String productName, String beforeDate,
                           String afterDate, String status, Pageable pageable);
+    void saveContract(ContractCreateDto contractDto);
 }

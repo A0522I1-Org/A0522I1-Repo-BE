@@ -1,21 +1,30 @@
 package com.example.spring_pawn_app.service.contract;
 
+import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.model.Img;
+import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import com.example.spring_pawn_app.repository.product.IProductRepository;
+import com.example.spring_pawn_app.service.customer.ICustomerService;
+import com.example.spring_pawn_app.service.employee.IEmployeeService;
+import com.example.spring_pawn_app.service.img.IImgService;
+import com.example.spring_pawn_app.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
 @Service
-public class ContractService implements IContractService{
+public class ContractService implements IContractService {
     @Autowired
     private IContractRepository iContractRepository;
 
@@ -24,10 +33,19 @@ public class ContractService implements IContractService{
 
     @Autowired
     private IProductRepository iProductRepository;
+    @Autowired
+    IEmployeeService employeeService;
+    @Autowired
+    IProductService productService;
+    @Autowired
+    ICustomerService customerService;
+    @Autowired
+    IImgService imgService;
 
     /**
      * Create by PhongTD
      * Date created: 12/05/2023
+     *
      * @param contractEditDto
      */
     @Override
@@ -41,6 +59,7 @@ public class ContractService implements IContractService{
     /**
      * Create by PhongTD
      * Date created: 12/05/2023
+     *
      * @param id
      * @return ContractEditDto was converted from contract
      */
@@ -64,6 +83,7 @@ public class ContractService implements IContractService{
     /**
      * Create by PhongTD
      * Date created: 12/05/2023
+     *
      * @param id must not be {@literal null}.
      */
     @Override
@@ -74,8 +94,9 @@ public class ContractService implements IContractService{
     /**
      * Create by PhongTD
      * Date created: 12/05/2023
+     *
      * @param pageable the pageable to request a paged result, can be {@link Pageable#unpaged()}, must not be
-     *          {@literal null}.
+     *                 {@literal null}.
      * @return Page<Contract>
      */
     @Override
@@ -86,6 +107,7 @@ public class ContractService implements IContractService{
     /**
      * Create by PhongTD
      * Date created: 20/05/2023
+     *
      * @param customerName
      * @param productName
      * @param beforeDate
@@ -233,6 +255,39 @@ public class ContractService implements IContractService{
             return iContractRepository.findByCustomerAndProductAndBeginDateAndStatus(customerName, productName, bd, ad, status, pageable);
         }
         return iContractRepository.findAll(pageable);
-
     }
-}
+
+        private String generateContractCode () {
+            int codeLength = 4; // Độ dài của mã xác thực
+            String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Các ký tự có thể sử dụng trong mã xác thực
+            SecureRandom random = new SecureRandom();
+            StringBuilder codeBuilder = new StringBuilder(codeLength);
+            for (int i = 0; i < codeLength; i++) {
+                int randomIndex = random.nextInt(characters.length());
+                codeBuilder.append(characters.charAt(randomIndex));
+            }
+            return codeBuilder.toString();
+        }
+
+        @Override
+        public void saveContract (ContractCreateDto contractDto){
+            Contract contract = new Contract();
+            Product product = new Product(contractDto.getNameProduct(), contractDto.getPrice(), contractDto.getCategory());
+            Img img = new Img(contractDto.getImgPath(), product);
+
+            productService.save(product);
+            imgService.saveImg(img);
+
+            Employee employee = employeeService.findEmployeeByUserName(contractDto.getUsername());
+
+            contract.setContractCode("CT-" + this.generateContractCode());
+            contract.setBeginDate(contractDto.getBeginDate());
+            contract.setEndDate(contractDto.getEndDate());
+            contract.setCustomer(customerService.findCustomerById(contractDto.getCustomer().getId()));
+            contract.setInterest(contractDto.getInterest());
+            contract.setStatus(contractDto.getStatus());
+            contract.setProduct(product);
+            contract.setEmployee(employee);
+            iContractRepository.save(contract);
+        }
+    }

@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.service.contract.ContractService;
+import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.mail.MessagingException;
 
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("api/contracts")
@@ -19,6 +22,12 @@ import java.time.LocalDate;
 public class ContractController {
     @Autowired
     private IContractService iContractService;
+
+    @Autowired
+    ContractService contractService;
+
+    @Autowired
+    MailSender mailSender;
 
     /**
      * Create by PhongTD
@@ -85,5 +94,17 @@ public class ContractController {
                                          @RequestParam(name = "status", defaultValue = "") String status,
                                          @PageableDefault(5)Pageable pageable) {
         return iContractService.search(customerName, productName, beforeDate, afterDate, status, pageable);
+
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
+        contractService.saveContract(contractDto);
+        try {
+            mailSender.sendEmailPay(contractDto);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

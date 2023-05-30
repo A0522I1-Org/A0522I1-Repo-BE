@@ -11,6 +11,9 @@ import java.util.Properties;
 
 @SpringBootApplication
 public class SpringPawnAppApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(SpringPawnAppApplication.class, args);
+	}
 	@Value("${spring.mail.host}")
 	private String host;
 
@@ -40,9 +43,4 @@ public class SpringPawnAppApplication {
 
 		return mailSender;
 	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(SpringPawnAppApplication.class, args);
-	}
-
 }

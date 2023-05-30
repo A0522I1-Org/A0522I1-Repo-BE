@@ -7,4 +7,6 @@ import java.util.List;
 public interface IStatusService {
     Status findById(Integer id);
     List<Status> findAll();
+    List<Status> getAllStatus();
+    Status findById(int id);
 }

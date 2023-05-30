@@ -31,4 +31,14 @@ public class StatusService implements IStatusService{
     public List<Status> findAll() {
         return iStatusRepository.findAll();
     }
+
+    @Override
+    public List<Status> getAllStatus() {
+        return iStatusRepository.findAll();
+    }
+
+    @Override
+    public Status findById(int id) {
+        return iStatusRepository.findById(id).get();
+    }
 }

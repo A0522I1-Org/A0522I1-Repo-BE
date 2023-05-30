@@ -1,0 +1,23 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+=======
+=======
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+<<<<<<< HEAD
+/httpRequests/
+>>>>>>> origin/TanNC
+=======
+/httpRequests/
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
