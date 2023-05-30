@@ -23,7 +23,10 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
     @Override
     public void sendOtpByEmail(String email) {
-
+        Employee employee = employeeService.findByEmail(email);
+        if(employee == null){
+            throw new RuntimeException("Email khong tồn tại trong hệ thống");
+        }
         String otp = OtpGenerator.generateOtp();
         // Gửi email
         mailSender.sendOtpMail(email,otp);
