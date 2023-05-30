@@ -23,6 +23,7 @@ public class UserService implements IUserService {
         return iUserRepository.existsByUserName(username);
     }
 
+
     @Override
     public User findByIdEmployee(Integer id) {
         return iUserRepository.findByEmployee(new Employee(id));
@@ -37,6 +38,5 @@ public class UserService implements IUserService {
     public Optional<User> findByEmployee(Employee employee) {
         return iUserRepository.findUserByEmployee(employee);
     }
-
 
 }

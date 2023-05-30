@@ -1,6 +1,8 @@
 package com.example.spring_pawn_app.repository.customer;
 
+
 import com.example.spring_pawn_app.dto.CustomerListDto;
+
 import com.example.spring_pawn_app.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,21 +29,23 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
     @Modifying
     void updateCustomerName(String customerNameEdit, Integer id);
     @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.phone, c.status " +
-                   "from customer as c " +
-                   "where c.id = :id and c.is_flag = 0", nativeQuery = true)
+            "from customer as c " +
+            "where c.id = :id and c.is_flag = 0", nativeQuery = true)
     Customer findCustomerById(@Param("id") int id);
-    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email "+
-                   "from customer as c "+
-                   "where c.customer_name like %:nameCustomer% and c.is_flag = 0",
-            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email "+
-                    "from customer as c "+
+
+    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+            "from customer as c " +
+            "where c.customer_name like %:nameCustomer% and c.is_flag = 0",
+            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+                    "from customer as c " +
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<CustomerListDto> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
+
+    /**
+     * @author Trần Thế Huy
+     * @version 1
+     * @since 28/5/2023
+     */
     @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.phone, c.identityCard, COUNT(con.id) " +
             "FROM Customer c " +
             "LEFT JOIN Contract con ON c.id = con.customer.id " +
