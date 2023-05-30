@@ -11,6 +11,9 @@ import java.util.Properties;
 
 @SpringBootApplication
 public class SpringPawnAppApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(SpringPawnAppApplication.class, args);
+	}
 	@Value("${spring.mail.host}")
 	private String host;
 
@@ -22,11 +25,6 @@ public class SpringPawnAppApplication {
 
 	@Value("${spring.mail.password}")
 	private String password;
-
-	public static void main(String[] args) {
-		SpringApplication.run(SpringPawnAppApplication.class, args);
-	}
-
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -45,5 +43,4 @@ public class SpringPawnAppApplication {
 
 		return mailSender;
 	}
-
 }

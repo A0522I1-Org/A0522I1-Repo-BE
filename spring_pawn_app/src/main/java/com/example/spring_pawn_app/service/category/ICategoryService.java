@@ -5,6 +5,8 @@ import com.example.spring_pawn_app.model.Category;
 import java.util.List;
 
 public interface ICategoryService {
-    List<Category> getAllCategory();
-    Category findById(int id);
+    List<Category> findAll();
+    Category findById(Integer id);
+//    List<Category> getAllCategory();
+//    Category findById(int id);
 }
