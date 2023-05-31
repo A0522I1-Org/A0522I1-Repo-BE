@@ -25,7 +25,7 @@ public class Employee {
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "LONGTEXT")
     private String avatar;
 
     public Employee() {
@@ -42,6 +42,10 @@ public class Employee {
         this.idCard = idCard;
         this.isFlag = isFlag;
         this.avatar = avatar;
+    }
+
+    public Employee(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {

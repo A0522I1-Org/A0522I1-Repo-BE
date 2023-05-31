@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.DTO.FinaceDTO;
+import com.example.spring_pawn_app.dto.FinaceDTO;
 import com.example.spring_pawn_app.service.Finace.IFinaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

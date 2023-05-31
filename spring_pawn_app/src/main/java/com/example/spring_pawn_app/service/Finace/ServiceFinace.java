@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.service.Finace;
 
-import com.example.spring_pawn_app.DTO.FinaceDTO;
+import com.example.spring_pawn_app.dto.FinaceDTO;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;

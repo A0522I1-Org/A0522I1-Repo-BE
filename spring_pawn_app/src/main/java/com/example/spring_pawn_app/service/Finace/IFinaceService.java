@@ -1,9 +1,7 @@
 package com.example.spring_pawn_app.service.Finace;
 
-import com.example.spring_pawn_app.DTO.FinaceDTO;
-import org.springframework.stereotype.Service;
+import com.example.spring_pawn_app.dto.FinaceDTO;
 
-@Service
 public interface IFinaceService {
     FinaceDTO getFinaction();
    Double getAllInterest();

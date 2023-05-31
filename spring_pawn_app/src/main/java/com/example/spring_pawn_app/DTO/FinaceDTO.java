@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.DTO;
+package com.example.spring_pawn_app.dto;
 
 public class FinaceDTO {
     private Double currentFinace;

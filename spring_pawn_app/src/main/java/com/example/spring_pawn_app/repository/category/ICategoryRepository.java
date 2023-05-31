@@ -11,4 +11,24 @@ import java.util.List;
 public interface ICategoryRepository extends JpaRepository<Category, Integer>{
     @Query(value = "select id,name_category from category",nativeQuery = true)
     List<Category> findAllCategory();
+
+
+    /**
+     * Created by: PhongTD
+     * Date created: 12/05/2023
+     * Function: find all category
+     * @return List<Category>
+     */
+    @Query("SELECT category FROM Category category")
+    List<Category> findAll();
+
+    /**
+     * Created by: PhongTD
+     * Date created: 12/05/2023
+     * Function: find category by id
+     * * @param id
+     * @return Category
+     */
+    @Query("SELECT category FROM Category category WHERE category.id = ?1")
+    Category findAllById(Integer id);
 }

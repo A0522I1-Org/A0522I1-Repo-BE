@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.controller;
 
-
+import org.springframework.web.bind.annotation.RestController;
 import com.example.spring_pawn_app.DTO.ContractDTO;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.contract.IContractService;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/")
+
 public class ProductController {
     @Autowired
     private IContractService iContractService;
