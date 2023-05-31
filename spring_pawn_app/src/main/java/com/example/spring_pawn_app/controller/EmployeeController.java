@@ -1,18 +1,18 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.custom_error.InvalidDataException;
-import com.example.spring_pawn_app.dto.custom_error.ValidationError;
-import com.example.spring_pawn_app.dto.employee.EmployeeInforDTO;
 import com.example.spring_pawn_app.model.Employee;
-import com.example.spring_pawn_app.model.User;
 import com.example.spring_pawn_app.service.employee.EmployeeService;
-import com.example.spring_pawn_app.service.user.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.example.spring_pawn_app.dto.custom_error.InvalidDataException;
+import com.example.spring_pawn_app.dto.custom_error.ValidationError;
+import com.example.spring_pawn_app.dto.employee.EmployeeInforDTO;
+import com.example.spring_pawn_app.model.User;
+import com.example.spring_pawn_app.service.user.UserService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -26,16 +26,20 @@ import java.util.Optional;
 public class EmployeeController {
 
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
+
     @Autowired
     private UserService userService;
 
-
-    @GetMapping("/employee/{username}")
-    public Employee findEmployeeByUserName(@PathVariable("username") String username) {
-        return employeeService.findEmployeeByUserName(username);
+    @GetMapping("/test")
+    public ResponseEntity<String> test(){
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
+    @GetMapping("/employee/{username}")
+    public Employee findEmployeeByUserName(@PathVariable("username") String username){
+        return employeeService.findEmployeeByUserName(username);
+    }
 
     @GetMapping("/employee/id/{id}")
     public ResponseEntity<EmployeeInforDTO> findByIdEmployee(@PathVariable Integer id) {

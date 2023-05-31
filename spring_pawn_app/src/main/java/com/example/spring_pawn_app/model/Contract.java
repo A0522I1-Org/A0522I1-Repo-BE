@@ -32,7 +32,7 @@ public class Contract {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @OneToOne
+    @OneToOne   
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -72,9 +72,7 @@ public class Contract {
         this.contractCode = contractCode;
     }
 
-    public LocalDate getBeginDate() {
-        return beginDate;
-    }
+    public LocalDate getBeginDate() {return beginDate; }
 
     public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
@@ -135,4 +133,5 @@ public class Contract {
     public void setFlag(boolean flag) {
         isFlag = flag;
     }
+
 }

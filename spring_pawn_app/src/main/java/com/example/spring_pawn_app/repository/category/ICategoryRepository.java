@@ -9,6 +9,10 @@ import java.util.List;
 
 @Repository
 public interface ICategoryRepository extends JpaRepository<Category, Integer>{
+    @Query(value = "select id,name_category from category",nativeQuery = true)
+    List<Category> findAllCategory();
+
+
     /**
      * Created by: PhongTD
      * Date created: 12/05/2023

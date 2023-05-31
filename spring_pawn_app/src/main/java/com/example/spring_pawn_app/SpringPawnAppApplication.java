@@ -16,7 +16,6 @@ public class SpringPawnAppApplication {
 	}
 	@Value("${spring.mail.host}")
 	private String host;
-
 	@Value("${spring.mail.port}")
 	private int port;
 
@@ -25,6 +24,7 @@ public class SpringPawnAppApplication {
 
 	@Value("${spring.mail.password}")
 	private String password;
+
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -43,4 +43,5 @@ public class SpringPawnAppApplication {
 
 		return mailSender;
 	}
+
 }

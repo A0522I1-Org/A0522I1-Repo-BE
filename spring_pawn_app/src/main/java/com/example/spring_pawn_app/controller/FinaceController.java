@@ -1,34 +1,33 @@
 package com.example.spring_pawn_app.controller;
-import com.example.spring_pawn_app.model.Img;
-import com.example.spring_pawn_app.service.img.IImgService;
+
+import com.example.spring_pawn_app.dto.FinaceDTO;
+import com.example.spring_pawn_app.service.Finace.IFinaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/")
-public class ImgController {
+public class FinaceController {
     @Autowired
-    private IImgService imgService;
+    private IFinaceService iFinaceService;
 
     /**
      * genarate 13May2023
-     *TinPNT
-     * @return List of Image
+     * TinPNT
+     * @return Finance of pawnshop
      */
-    @GetMapping("img")
-    public ResponseEntity<List<Img>> findAllImg() {
-        if (imgService.findAll() == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    @GetMapping("finace")
+    public ResponseEntity<FinaceDTO> getFinaceDTO(){
+        if (iFinaceService.getFinaction()==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Img> imgList = imgService.findAll();
-        return new ResponseEntity<>(imgList, HttpStatus.OK);
+        return new ResponseEntity<FinaceDTO>(iFinaceService.getFinaction(), HttpStatus.OK);
     }
 }

@@ -1,9 +1,6 @@
 package com.example.spring_pawn_app.repository.status;
 
-import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Status;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
