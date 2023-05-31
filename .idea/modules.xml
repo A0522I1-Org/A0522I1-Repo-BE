@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" filepath="$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" />
+=======
+>>>>>>> origin/ThuongVTH
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" />
+>>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+    </modules>
+  </component>
+</project>

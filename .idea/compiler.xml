@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+<<<<<<< HEAD
+<<<<<<< HEAD
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+=======
+          <entry name="$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+>>>>>>> origin/TinPNT
+=======
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+>>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+        </processorPath>
+        <module name="spring_pawn_app.main" />
+      </profile>
+    </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel>
+      <module name="spring_pawn_app" target="1.8" />
+      <module name="spring_pawn_app.main" target="1.8" />
+      <module name="spring_pawn_app.test" target="1.8" />
+    </bytecodeTargetLevel>
+>>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+  </component>
+</project>
