@@ -14,10 +14,19 @@ import java.util.List;
 @Transactional
 public interface IContractRepository extends JpaRepository<Contract, Integer> {
 
-    @Query(value = "  select id ,begin_date,contract_code,end_date,interest,is_flag,customer_id,employee_id,product_id,status_id from contract where status_id =3", nativeQuery = true)
+    /**
+     * genarate 13 may 2023
+     * TinPNT
+     * @return list current Interest in table contract
+     */
+    @Query(value = "  select id ,begin_date,contract_code,end_date,in   terest,is_flag,customer_id,employee_id,product_id,status_id from contract where status_id =3", nativeQuery = true)
     List<Contract> findAllCurrentInterest();
 
-
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return List of contract with status in (1,2) and can find with customer name and category id of product
+     */
     @Query(value = "SELECT con.id,con.begin_date,con.employee_id,con.contract_code,con.end_date,con.interest,con.is_flag, p.name, p.price, p.category_id, con.status_id, con.customer_id, cus.customer_name, s.name, cate.name_category, con.product_id " +
             "FROM contract con " +
             "JOIN product p ON p.id = con.product_id " +
@@ -27,6 +36,11 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "WHERE con.status_id IN (1, 2) and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.id LIKE concat('%',?,'%')", nativeQuery = true)
     Page<Contract> findAllProductNotPay(String nameCustomer, String categoryId, Pageable page);
 
+    /**
+     * genarate 13May2023
+     * TinPNT
+     * @return contract with status in (1,2) by ID of contract
+     */
     @Query(value = "SELECT con.id,con.begin_date,con.employee_id,con.contract_code,con.end_date,con.interest,con.is_flag, p.name, p.price, p.category_id, con.status_id, con.customer_id, cus.customer_name, s.name, cate.name_category, con.product_id\n" +
             "FROM contract con " +
             "JOIN product p ON p.id = con.product_id \n" +

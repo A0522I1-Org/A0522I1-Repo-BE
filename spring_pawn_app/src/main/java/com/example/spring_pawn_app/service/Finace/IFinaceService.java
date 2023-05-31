@@ -5,8 +5,35 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IFinaceService {
+    /**
+     * genarate 13May2023
+     * TinPNT
+     *
+     * @return Finance of pawnshop
+     */
     FinaceDTO getFinaction();
-   Double getAllInterest();
-   Double getAllPrice();
-   Double getExpectedInterest();
+
+    /**
+     * genarate 13May
+     * TinPNT
+     *
+     * @return current Interest of pawn shop
+     */
+    Double getAllInterest();
+
+    /**
+     * genarate 13May
+     * TinPNT
+     *
+     * @return investment of pawn shop
+     */
+    Double getAllPrice();
+
+    /**
+     * genarate 13May
+     * TinPNT
+     *
+     * @return expected interest of pawn shop
+     */
+    Double getExpectedInterest();
 }

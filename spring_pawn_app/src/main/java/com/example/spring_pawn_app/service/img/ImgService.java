@@ -14,6 +14,11 @@ public class ImgService implements IImgService {
 
 
     @Override
+    /**
+     * genarate 13May2023
+     *TinPNT
+     * @return List of Image
+     */
     public List<Img> findAll() {
         return iImgRepository.findAllImg();
     }

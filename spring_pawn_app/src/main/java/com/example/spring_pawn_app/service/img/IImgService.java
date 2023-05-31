@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public interface IImgService {
+    /**
+     * genarate 13May2023
+     * TinPNT
+     *
+     * @return List of Image
+     */
     List<Img> findAll();
 
     void saveImg(Img img);
