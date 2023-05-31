@@ -1,6 +1,7 @@
 package com.example.spring_pawn_app.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+
+
 import com.example.spring_pawn_app.dto.request.SignInForm;
 import com.example.spring_pawn_app.dto.request.SignUpForm;
 import com.example.spring_pawn_app.dto.response.JwtResponse;
@@ -33,7 +34,6 @@ public class UserController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -46,7 +46,6 @@ public class UserController {
         if (userService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("exist account in DB!"), HttpStatus.OK);
         }
-
         User user = new User(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()));
         Set<String> strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();

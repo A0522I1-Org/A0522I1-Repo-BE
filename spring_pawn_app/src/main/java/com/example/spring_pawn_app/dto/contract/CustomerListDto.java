@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.DTO;
+package com.example.spring_pawn_app.dto.contract;
 
 public interface CustomerListDto {
     public Integer getId();

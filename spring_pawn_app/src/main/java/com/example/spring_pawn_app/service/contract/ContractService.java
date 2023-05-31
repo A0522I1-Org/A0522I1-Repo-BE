@@ -2,26 +2,21 @@ package com.example.spring_pawn_app.service.contract;
 
 
 import com.example.spring_pawn_app.model.Contract;
+
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-
-import com.example.spring_pawn_app.dto.ContractCreateDto;
-import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.model.Img;
 import com.example.spring_pawn_app.model.Product;
-import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import com.example.spring_pawn_app.service.customer.CustomerService;
 import com.example.spring_pawn_app.service.employee.EmployeeService;
 import com.example.spring_pawn_app.service.img.ImgService;
 import com.example.spring_pawn_app.service.product.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import java.security.SecureRandom;
 
@@ -31,7 +26,7 @@ public class ContractService implements IContractService {
     @Autowired
     private IContractRepository iContractRepository;
     @Autowired
-    EmployeeService employeeService;
+   private EmployeeService employeeService;
     @Autowired
     ProductService productService;
     @Autowired
@@ -81,6 +76,6 @@ public class ContractService implements IContractService {
 
     @Override
     public Contract findById(int id) {
-        return iContractRepository.findContractByID(id);
+        return iContractRepository.findContractNotPayByID(id);
     }
 }

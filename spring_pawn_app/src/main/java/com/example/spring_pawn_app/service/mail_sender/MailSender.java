@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
-import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;

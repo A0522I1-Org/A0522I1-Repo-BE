@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.service.Finace;
 
-import com.example.spring_pawn_app.DTO.FinaceDTO;
+import com.example.spring_pawn_app.dto.Finace.FinaceDTO;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,7 @@ public class ServiceFinace implements IFinaceService {
     @Autowired
     private IContractRepository iContractRepository;
 
-    /**
-     * genarate 13May2023
-     * TinPNT
-     *
-     * @return Finance of pawnshop
-     */
+
     @Override
     public FinaceDTO getFinaction() {
         Double totalInterest = getAllInterest();
@@ -25,8 +20,6 @@ public class ServiceFinace implements IFinaceService {
         Double totalFinace = currentFinace + totalInvestment;
         Double totalExpectedInterest = getExpectedInterest();
         FinaceDTO finaction = new FinaceDTO();
-        System.out.println(totalInterest);
-        System.out.println(totalInvestment);
         finaction.setTotalFinace(totalFinace);
         finaction.setCurrentFinace(currentFinace);
         finaction.setInvestment(totalInvestment);
@@ -34,12 +27,7 @@ public class ServiceFinace implements IFinaceService {
         return finaction;
     }
 
-    /**
-     * genarate 13May
-     * TinPNT
-     *
-     * @return current Interest of pawn shop
-     */
+
     @Override
     public Double getAllInterest() {
         double totalInterest = 0;
@@ -49,12 +37,7 @@ public class ServiceFinace implements IFinaceService {
         return totalInterest;
     }
 
-    /**
-     * genarate 13May
-     * TinPNT
-     *
-     * @return investment of pawn shop
-     */
+
     @Override
     public Double getAllPrice() {
         double totalPriceProduct = 0;
@@ -66,12 +49,7 @@ public class ServiceFinace implements IFinaceService {
         return totalPriceProduct;
     }
 
-    /**
-     * genarate 13May
-     * TinPNT
-     *
-     * @return expected interest of pawn shop
-     */
+
     @Override
     public Double getExpectedInterest() {
         double totalExpectedInterest = 0;
