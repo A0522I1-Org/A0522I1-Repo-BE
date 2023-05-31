@@ -22,6 +22,12 @@ public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    /**
+     * Created By: HoangVV
+     * Date create: 15/05/2023
+     * @param contract
+     * @throws MessagingException
+     */
     public void sendEmailPay(ContractDto contract) throws MessagingException {
         LocalDate currentDate = LocalDate.now();
         MimeMessage messages = javaMailSender.createMimeMessage();
@@ -45,9 +51,9 @@ public class MailSender {
 
 
         String html = templateEngine.process("addContractSuccess", context);
-        messages.setContent(html, "text/html");
+        messages.setContent(html, "text/html; charset=UTF-8");
         helper.setTo(contract.getCustomer().getEmail());
-        helper.setSubject("Thông báo thêm mới thành công");
+        helper.setSubject("Thông báo thanh toán thành công");
 
         this.javaMailSender.send(messages);
     }

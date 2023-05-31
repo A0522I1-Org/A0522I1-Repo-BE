@@ -1,5 +1,15 @@
 package com.example.spring_pawn_app.service.contract;
 
+
+import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.repository.contract.IContractRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+
 import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
@@ -23,7 +33,7 @@ import java.security.SecureRandom;
 @Service
 public class ContractService implements IContractService {
     @Autowired
-    IContractRepository iContractRepository;
+    private IContractRepository iContractRepository;
     @Autowired
     EmployeeService employeeService;
     @Autowired
@@ -54,7 +64,7 @@ public class ContractService implements IContractService {
 
     @Override
     public void updateContractPayment(Integer id) {
-
+        iContractRepository.updateContractPayment(id);
     }
 
     @Override
@@ -77,9 +87,11 @@ public class ContractService implements IContractService {
         contract.setProduct(product);
         contract.setEmployee(employee);
         iContractRepository.save(contract);
+
     }
 
     @Override
+
     public Page<Contract> findAllContractWithPage(PageRequest pageRequest,String contractCode, String nameCustomer, String nameProduct, String beginDate) {
         Page<Contract> contractPage = null;
         if (!contractCode.equals("") && nameCustomer.equals("") && nameProduct.equals("") && beginDate.equals("") ) {
@@ -132,4 +144,15 @@ public class ContractService implements IContractService {
         }
         return contractPage;
     }
+
+    @Override
+    public Page<Contract> findAllProductNotPay(Pageable page, String nameCustomer, String categoryId) {
+        return iContractRepository.findAllProductNotPay(nameCustomer, categoryId, page);
+    }
+
+    @Override
+    public Contract findContractNotPayById(int id) {
+        return iContractRepository.findContractNotPayByID(id);
+    }
 }
+

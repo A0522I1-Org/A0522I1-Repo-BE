@@ -10,11 +10,12 @@ import java.util.List;
 @Service
 public class CategoryService implements ICategoryService{
     @Autowired
-    ICategoryRepository iCategoryRepository;
+    private ICategoryRepository iCategoryRepository;
     @Override
-    public List<Category> getAllCategory() {
-        return iCategoryRepository.findAll();
-    }
+    public List<Category> findAllCategory() {
+        return iCategoryRepository.findAllCategory();
+
+}
     @Override
     public Category findById(int id) {
         return iCategoryRepository.findById(id).get();
