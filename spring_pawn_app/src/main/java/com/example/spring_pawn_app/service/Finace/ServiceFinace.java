@@ -42,7 +42,7 @@ public class ServiceFinace implements IFinaceService {
     public Double getAllPrice() {
         double totalPriceProduct = 0;
         for (Contract contract : iContractRepository.findAll()) {
-            if (contract.getStatus().getId() == 1 || contract.getStatus().getId() == 2) {
+            if (contract.getStatus().getId() == 1) {
                 totalPriceProduct += contract.getProduct().getPrice();
             }
         }
@@ -54,7 +54,7 @@ public class ServiceFinace implements IFinaceService {
     public Double getExpectedInterest() {
         double totalExpectedInterest = 0;
         for (Contract contract : iContractRepository.findAll()) {
-            if (contract.getStatus().getId() == 1 || contract.getStatus().getId() == 2) {
+            if (contract.getStatus().getId() == 1) {
                 totalExpectedInterest += contract.getInterest();
             }
         }

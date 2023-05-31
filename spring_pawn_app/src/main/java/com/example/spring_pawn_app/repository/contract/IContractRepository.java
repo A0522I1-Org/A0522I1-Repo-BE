@@ -19,7 +19,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * TinPNT
      * @return list current Interest in table contract
      */
-    @Query(value = "  select id ,begin_date,contract_code,end_date,in   terest,is_flag,customer_id,employee_id,product_id,status_id from contract where status_id =3", nativeQuery = true)
+    @Query(value = "  select id ,begin_date,contract_code,end_date , interest,is_flag,customer_id,employee_id,product_id,status_id from contract where status_id =2", nativeQuery = true)
     List<Contract> findAllCurrentInterest();
 
     /**
@@ -33,7 +33,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id " +
             "JOIN status s ON con.status_id = s.id " +
             "JOIN customer cus ON con.customer_id = cus.id " +
-            "WHERE con.status_id IN (1, 2) and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.id LIKE concat('%',?,'%')", nativeQuery = true)
+            "WHERE con.status_id = 1 and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.id LIKE concat('%',?,'%')", nativeQuery = true)
     Page<Contract> findAllProductNotPay(String nameCustomer, String categoryId, Pageable page);
 
     /**
@@ -47,6 +47,6 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id\n" +
             "JOIN status s ON con.status_id = s.id\n" +
             "JOIN customer cus ON con.customer_id = cus.id\n" +
-            "WHERE con.status_id IN (1, 2) and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
+            "WHERE con.status_id = 1 and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
     Contract findContractNotPayByID(int id);
 }
