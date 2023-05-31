@@ -8,17 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ImgService implements IImgService {
+public class ImgService implements IImgService{
     @Autowired
-    private IImgRepository iImgRepository;
-
+    IImgRepository iImgRepository;
 
     @Override
-    /**
-     * genarate 13May2023
-     *TinPNT
-     * @return List of Image
-     */
     public List<Img> findAll() {
         return iImgRepository.findAllImg();
     }
@@ -26,6 +20,6 @@ public class ImgService implements IImgService {
     @Override
     public void saveImg(Img img) {
         iImgRepository.save(img);
-
     }
 }
+

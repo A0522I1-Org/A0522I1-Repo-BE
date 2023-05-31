@@ -1,6 +1,8 @@
 package com.example.spring_pawn_app.controller;
 
 
+
+
 import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
@@ -22,10 +24,11 @@ public class ContractController {
     MailSender mailSender;
 
     @PostMapping("/contract")
-    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractCreateDto){
+    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractCreateDto) throws MessagingException {
         contractService.saveContract(contractCreateDto);
         try {
             mailSender.sendEmailPay(contractCreateDto);
+
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

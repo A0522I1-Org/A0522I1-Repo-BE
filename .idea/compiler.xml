@@ -10,5 +10,10 @@
         <module name="spring_pawn_app.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring_pawn_app" target="1.8" />
+      <module name="spring_pawn_app.main" target="1.8" />
+      <module name="spring_pawn_app.test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

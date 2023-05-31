@@ -13,4 +13,10 @@ public class EmployeeService implements IEmployeeService{
     public Employee findEmployeeByUserName(String username) {
         return iEmployeeRepository.findEmployeeByUserName(username);
     }
+
+    @Override
+    public Employee findByEmail(String email) {
+        return iEmployeeRepository.findEmployeeByEmail(email);
+    }
+
 }

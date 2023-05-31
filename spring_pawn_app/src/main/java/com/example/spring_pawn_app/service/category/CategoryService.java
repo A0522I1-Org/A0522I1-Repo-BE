@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+
 public class CategoryService implements ICategoryService {
     @Autowired
     private ICategoryRepository iCategoryRepository;
@@ -23,7 +24,6 @@ public class CategoryService implements ICategoryService {
         return iCategoryRepository.findAllCategory();
 
     }
-
     @Override
     public Category findById(int id) {
         return iCategoryRepository.findById(id).get();

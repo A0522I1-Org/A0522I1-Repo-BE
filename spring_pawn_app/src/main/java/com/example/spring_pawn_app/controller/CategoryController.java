@@ -8,17 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-import java.util.List;
-
+@RequestMapping("/api")
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/api/")
+@CrossOrigin("*")
 public class CategoryController {
+
     @Autowired
     private ICategoryService iCategoryService;
 
@@ -28,7 +27,7 @@ public class CategoryController {
      *
      * @return List of category
      */
-    @GetMapping("category")
+    @GetMapping("/category")
     public ResponseEntity<List<Category>> findAll() {
         List<Category> categoryList = iCategoryService.findAllCategory();
         if (iCategoryService.findAllCategory() == null) {
@@ -36,5 +35,9 @@ public class CategoryController {
         }
         return new ResponseEntity<List<Category>>(categoryList, HttpStatus.OK);
 
+    }
+    @GetMapping("/category/{id}")
+    public Category findById(@PathVariable("id") int id){
+        return iCategoryService.findById(id);
     }
 }

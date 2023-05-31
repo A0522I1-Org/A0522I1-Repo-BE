@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ICategoryService {
 
+
     /**
      * genarate 13May2023
      * TinPNT

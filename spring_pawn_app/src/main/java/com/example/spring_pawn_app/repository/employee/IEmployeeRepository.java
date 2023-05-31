@@ -12,4 +12,6 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
                    "from employee as e inner join user as u on e.id = u.employee_id " +
                    "where u.user_name = :username", nativeQuery = true)
     Employee findEmployeeByUserName(@Param("username") String username);
+
+    Employee findEmployeeByEmail(String email);
 }

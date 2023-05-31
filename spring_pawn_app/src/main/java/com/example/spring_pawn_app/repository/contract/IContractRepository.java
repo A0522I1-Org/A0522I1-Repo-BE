@@ -25,7 +25,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
     /**
      * genarate 13May2023
      * TinPNT
-     * @return List of contract with status in (1,2) and can find with customer name and category id of product
+     * @return List of contract with status in (1) and can find with customer name and category id of product
      */
     @Query(value = "SELECT con.id,con.begin_date,con.employee_id,con.contract_code,con.end_date,con.interest,con.is_flag, p.name, p.price, p.category_id, con.status_id, con.customer_id, cus.customer_name, s.name, cate.name_category, con.product_id " +
             "FROM contract con " +
@@ -33,8 +33,8 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id " +
             "JOIN status s ON con.status_id = s.id " +
             "JOIN customer cus ON con.customer_id = cus.id " +
-            "WHERE con.status_id = 1 and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.id LIKE concat('%',?,'%')", nativeQuery = true)
-    Page<Contract> findAllProductNotPay(String nameCustomer, String categoryId, Pageable page);
+            "WHERE con.status_id in (1) and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.name_category LIKE concat('%',?,'%') ", nativeQuery = true)
+    Page<Contract> findAllProductNotPay(String nameCustomer, String categoryName, Pageable page);
 
     /**
      * genarate 13May2023
@@ -47,6 +47,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id\n" +
             "JOIN status s ON con.status_id = s.id\n" +
             "JOIN customer cus ON con.customer_id = cus.id\n" +
-            "WHERE con.status_id = 1 and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
+            "WHERE con.status_id in(1) and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
     Contract findContractNotPayByID(int id);
+
 }

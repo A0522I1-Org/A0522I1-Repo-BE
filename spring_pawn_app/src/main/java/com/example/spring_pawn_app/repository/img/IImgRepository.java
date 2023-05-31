@@ -11,10 +11,12 @@ import java.util.List;
 public interface IImgRepository extends JpaRepository<Img, Integer> {
     /**
      * genarate 13May2023
-     *TinPNT
+     * TinPNT
+     *
      * @return List of Image
      */
-    @Query(value = "select id,img,product_id from img",nativeQuery = true)
+    @Query(value = "select id,img,product_id from img", nativeQuery = true)
     List<Img> findAllImg();
+
 
 }

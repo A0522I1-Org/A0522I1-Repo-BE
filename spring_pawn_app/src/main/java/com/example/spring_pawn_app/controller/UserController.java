@@ -1,6 +1,7 @@
 package com.example.spring_pawn_app.controller;
-
-
+import com.example.spring_pawn_app.dto.request.ResetPasswordForm;
+import com.example.spring_pawn_app.service.forgotpassword.ForgotPasswordService;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring_pawn_app.dto.request.SignInForm;
 import com.example.spring_pawn_app.dto.request.SignUpForm;
@@ -34,6 +35,11 @@ public class UserController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private ForgotPasswordService forgotPasswordService;
+
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -67,5 +73,31 @@ public class UserController {
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getAuthorities()));
+    }
+    @GetMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestParam("email") String email) {
+        // Gọi service để gửi mã OTP qua email
+        try {
+            forgotPasswordService.sendOtpByEmail(email);
+            return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
+        }
+        catch (RuntimeException e){
+            return new ResponseEntity<>(new ResponseMessage("Mã otp không tồn tại trong hệ thống"),HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
+        try {
+            // Gọi service để kiểm tra và đổi mật khẩu
+            String newPassword = passwordEncoder.encode(resetPasswordForm.getNewPassword());
+            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), newPassword);
+
+             return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("Mã OTP không hợp lệ");
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body("Có lỗi xảy ra");
+        }
     }
 }
