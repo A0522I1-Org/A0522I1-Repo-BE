@@ -8,9 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService implements ICustomerService{
     @Autowired
-    private ICustomerRepository customerRepository;
+    private ICustomerRepository iCustomerRepository;
+
+    /**
+     * Create by: ManPD
+     * Date create: 21/5/2023
+     *
+     * @param customer
+     */
     @Override
     public Customer createCustomer(Customer customer) {
-        return customerRepository.save(customer);
+        return iCustomerRepository.save(customer);
     }
 }

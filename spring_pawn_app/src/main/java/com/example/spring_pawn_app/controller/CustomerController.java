@@ -19,13 +19,17 @@ public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
 
-    // add new customer by ManPD
-    //        Start
+    /**
+     *Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customerRegisterDTO
+     * @return HttpStatus.CREATED
+     */
     @PostMapping("dangkynhanh")
-    public ResponseEntity<Customer> addNewCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    public ResponseEntity<Customer> addNewCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerRegisterDTO, customer);
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
-    //    End
 }
