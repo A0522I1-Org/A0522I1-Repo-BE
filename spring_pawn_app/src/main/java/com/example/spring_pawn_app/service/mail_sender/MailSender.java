@@ -18,7 +18,7 @@ public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendEmailPay(ContractCreateDto contract) throws MessagingException {
+    public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true, "utf-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();

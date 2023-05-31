@@ -2,19 +2,43 @@ package com.example.spring_pawn_app.dto;
 import com.example.spring_pawn_app.model.Category;
 import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.model.Status;
+import com.example.spring_pawn_app.validate.DateRange;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
+@DateRange()
 public class ContractCreateDto {
+
+    @NotNull(message = "Bắt buộc")
+    @Future(message = "Ngày bắt đầu không được ở quá khứ")
     private LocalDate beginDate;
+
+    @NotNull(message = "Bắt buộc")
     private LocalDate endDate;
+
+    @NotNull(message = "Bắt buộc")
     private Customer customer;
+
+    @Positive(message = "Lãi xuất là số dương")
     private double interest;
+
+    @NotNull(message = "Bắt buộc")
     private String nameProduct;
+
+    @Positive(message = "Giá phải là số dương")
     private double price;
+
+    @NotNull(message = "Bắt buộc")
     private Category category;
+
+    @NotNull(message = "Bắt buộc")
     private Status status;
+
     private String username;
+    @NotNull(message = "Bắt buộc")
     private String imgPath;
     public ContractCreateDto() {
     }
