@@ -78,7 +78,7 @@ public class ContractController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> getContractService(@PathVariable("id") Integer id) throws MessagingException {
         ContractDto contractDto = iContractService.findContractById(id);
-        if (contractDto.getStatus().getId() != 3) {
+        if (contractDto.getStatus().getId() != 2) {
             iContractService.updateContractPayment(id);
             mailSender.sendEmailPay(iContractService.findContractById(id));
         } else {

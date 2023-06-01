@@ -23,7 +23,7 @@ public class CategoryController {
      *
      * @return List of category
      */
-    @GetMapping("categories")
+    @GetMapping("")
     public ResponseEntity<List<Category>> findAll() {
         List<Category> categoryList = iCategoryService.findAllCategory();
         if (iCategoryService.findAllCategory() == null) {
@@ -36,10 +36,10 @@ public class CategoryController {
      * Function: find all category
      * @return List<Category>
      */
-    @GetMapping("")
-    public List<Category> getAllCategory() {
-        return iCategoryService.findAll();
-    }
+//    @GetMapping("")
+//    public List<Category> getAllCategory() {
+//        return iCategoryService.findAll();
+//    }
 
     /**
      * Created by: PhongTD
