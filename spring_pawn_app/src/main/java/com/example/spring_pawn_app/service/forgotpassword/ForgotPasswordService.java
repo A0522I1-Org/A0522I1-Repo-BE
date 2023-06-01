@@ -23,7 +23,10 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
     @Override
     public void sendOtpByEmail(String email) {
-
+        Employee employee = employeeService.findByEmail(email);
+        if(employee == null){
+            throw new RuntimeException("Email khong tồn tại trong hệ thống");
+        }
         String otp = OtpGenerator.generateOtp();
         // Gửi email
         mailSender.sendOtpMail(email,otp);
@@ -38,13 +41,12 @@ public class ForgotPasswordService implements IForgotPasswordService{
     public void resetPassword(String email, String otp, String newPassword) {
         // Lấy OTP từ cache
         Cache otpCache = cacheManager.getCache("otpCache");
-        String cacheOtp = otpCache.get(email,String.class);
+        String cacheOtp = otpCache.get(email, String.class);
         Employee employee = employeeService.findByEmail(email);
         // kiểm tra mã OTP
-        if(cacheOtp == null || !otp.equals(cacheOtp) || employee == null){
+        if (cacheOtp == null || !otp.equals(cacheOtp) || employee == null) {
             throw new RuntimeException("OTP khong hợp lệ");
-        }
-        else {
+        } else {
             // cập nhật mật khẩu mới
             User user = userRepository.findUserByEmployee(employee).get();
             user.setPassword(newPassword);
@@ -54,6 +56,5 @@ public class ForgotPasswordService implements IForgotPasswordService{
             otpCache.evict(email);
 
         }
-
     }
 }

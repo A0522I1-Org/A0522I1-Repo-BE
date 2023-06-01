@@ -1,14 +1,13 @@
 package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.model.Status;
-import com.example.spring_pawn_app.service.status.StatusService;
 import com.example.spring_pawn_app.service.status.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
 @RequestMapping("api/status")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 public class StatusController {

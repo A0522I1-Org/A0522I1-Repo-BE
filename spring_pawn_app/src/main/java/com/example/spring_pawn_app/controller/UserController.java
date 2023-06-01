@@ -76,16 +76,19 @@ public class UserController {
     @GetMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestParam("email") String email) {
         // Gọi service để gửi mã OTP qua email
-
-        forgotPasswordService.sendOtpByEmail(email);
-
-        return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
+        try {
+            forgotPasswordService.sendOtpByEmail(email);
+            return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
+        }
+        catch (RuntimeException e){
+            return new ResponseEntity<>(new ResponseMessage("Mã otp không tồn tại trong hệ thống"),HttpStatus.NOT_ACCEPTABLE);
+        }
     }
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         try {
             // Gọi service để kiểm tra và đổi mật khẩu
-            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), resetPasswordForm.getNewPassword());
+            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), passwordEncoder.encode(resetPasswordForm.getNewPassword()));
 
             return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
         } catch (RuntimeException e) {

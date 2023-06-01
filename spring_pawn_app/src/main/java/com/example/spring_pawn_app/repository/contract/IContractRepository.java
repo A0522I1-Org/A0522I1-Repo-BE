@@ -12,8 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 
 @Repository
@@ -38,7 +36,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * Function: update contract with id
      * @param id
      */
-    @Query(value = "update contract as c set c.status_id = 3 where c.id = :id", countQuery = "update contract as c set c.status_id = 3 where c.id = :id", nativeQuery = true)
+    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id", nativeQuery = true)
     @Modifying
     void updateContractPayment(@Param("id") Integer id);
 
