@@ -7,10 +7,14 @@ import com.example.spring_pawn_app.model.*;
 public class ContractProductDTO {
 
     private Integer id;
+    private String contractCode;
     private Customer customer;
     private Status status;
     private Employee employee;
     private Product product;
+
+    public ContractProductDTO() {
+    }
 
     public Integer getId() {
         return id;
@@ -18,6 +22,14 @@ public class ContractProductDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
     }
 
     public Customer getCustomer() {
@@ -52,14 +64,12 @@ public class ContractProductDTO {
         this.product = product;
     }
 
-    public ContractProductDTO(Integer id, Customer customer, Status status, Employee employee, Product product) {
+    public ContractProductDTO(Integer id, String contractCode, Customer customer, Status status, Employee employee, Product product) {
         this.id = id;
+        this.contractCode = contractCode;
         this.customer = customer;
         this.status = status;
         this.employee = employee;
         this.product = product;
-    }
-
-    public ContractProductDTO() {
     }
 }
