@@ -12,17 +12,20 @@ public class Article {
     private Integer id;
     @Column(columnDefinition = "varchar(50)")
     private String title;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
     private LocalDate publicDate;
-
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
+
+    @ColumnDefault("0")
+    @Column(columnDefinition = "bit")
+    private boolean isFeature;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -31,13 +34,15 @@ public class Article {
     public Article() {
     }
 
-    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, Employee employee) {
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFeature, boolean isFlag, Employee employee) {
+
         this.id = id;
         this.title = title;
         this.img = img;
         this.content = content;
         this.publicDate = publicDate;
         this.isFlag = isFlag;
+        this.isFeature = isFeature;
         this.employee = employee;
     }
 
@@ -89,6 +94,14 @@ public class Article {
         isFlag = flag;
     }
 
+    public boolean isFeature() {
+        return isFeature;
+    }
+
+    public void setFeature(boolean feature) {
+        isFeature = feature;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -96,4 +109,9 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
+
 }
+
+

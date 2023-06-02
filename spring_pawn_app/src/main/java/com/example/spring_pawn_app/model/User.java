@@ -11,25 +11,28 @@ import java.util.Set;
 
 @Entity
 public class User {
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<Role> roles = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotNull
     @Column(columnDefinition = ("varchar(45)"))
     private String userName;
     @NotNull
     @Column(columnDefinition = ("varchar(255)"))
     private String password;
+
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    Set<Role> roles = new HashSet<>();
 
     public User(Integer id, String userName, String password, Employee employee, boolean isFlag, Set<Role> roles) {
         this.id = id;
@@ -50,7 +53,6 @@ public class User {
         this.employee = employee;
         this.isFlag = isFlag;
     }
-
     public User(
             @NotBlank @Size(min = 3, max = 50) String username,
             @NotBlank
