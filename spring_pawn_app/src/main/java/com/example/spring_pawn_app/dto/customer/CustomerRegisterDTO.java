@@ -15,21 +15,24 @@ public class CustomerRegisterDTO {
     @Length(min = 5, message = "Tên bạn quá ngắn")
     @Length(max = 50, message = "Tên bạn quá dài")
     private String customerName;
+    
     @NotBlank(message = "Nhập email của bạn")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z]{2,63}$", message = "Email của bạn không đúng")
     @Length(min = 7, message = "Email quá ngắn")
     @Length(max = 254, message = "Email quá dài")
     private String email;
+    
     @NotBlank(message = "Hay nhap so điện thoại của bạn")
     @Pattern(regexp = "^(0|\\+?84)(\\d){9}$", message = "Số điện thoại không đúng")
     @Size(min = 10,max = 12)
     private String phone;
+    
     @NotBlank(message = "Nhap dia chi cua ban")
     @Pattern(regexp = "^[0-9a-zA-Z\\u00C0-\\u1FFF\\u2C00-\\uD7FF\\uF900-\\uFFFD\\p{Mn}\\s,/-]*$" , message = "Địa chỉ bị sai")
     @Length(min = 30, message = "Tên địa chỉ quá ngắn")
     @Length(max = 50, message = "Tên địa chỉ quá dài")
-
     private String address;
+    
     private String note;
 
     public CustomerRegisterDTO() {
