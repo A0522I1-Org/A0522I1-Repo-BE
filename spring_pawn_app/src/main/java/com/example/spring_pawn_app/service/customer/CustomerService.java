@@ -33,15 +33,20 @@ public class CustomerService implements ICustomerService {
     public Customer findCustomerById(int idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
     }
-
     @Override
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
 
+    /**
+     * Create by: ManPD
+     * Date create: 21/5/2023
+     *
+     * @param customer
+     */
     @Override
-    public Customer create(Customer customer) {
-        return this.iCustomerRepository.save(customer);
+    public Customer createCustomer(Customer customer) {
+        return iCustomerRepository.save(customer);
     }
 
     /**
@@ -57,6 +62,7 @@ public class CustomerService implements ICustomerService {
                 .findFirst()
                 .map(customerMapper::mapToDtoDetail);
     }
+
 
     @Override
     @Transactional(readOnly = true)

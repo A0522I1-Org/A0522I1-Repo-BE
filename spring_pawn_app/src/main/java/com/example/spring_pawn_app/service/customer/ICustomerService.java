@@ -24,7 +24,15 @@ public interface ICustomerService {
 
     Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer);
 
-    Customer create (Customer customer);
+    /**
+     * Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customer
+     * @return customer
+     */
+    Customer createCustomer(Customer customer);
+  
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);
