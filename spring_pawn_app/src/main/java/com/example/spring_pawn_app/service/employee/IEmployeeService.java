@@ -1,6 +1,7 @@
 package com.example.spring_pawn_app.service.employee;
 
 import com.example.spring_pawn_app.model.Employee;
+
 import java.util.List;
 
 public interface IEmployeeService {
@@ -17,7 +18,6 @@ public interface IEmployeeService {
     List<Employee> findByPhones(String phone);
 
     List<Employee> findByIdCards(String idCard);
-
 
     Employee findByEmail(String email);
 

@@ -86,4 +86,5 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     @Transactional
     @Query(value = "UPDATE Customer c SET c.isFlag = FALSE WHERE c.id = ?1 AND c.isFlag = TRUE")
     void restoreCustomerById(Integer id);
+
 }

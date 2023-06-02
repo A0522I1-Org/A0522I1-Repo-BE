@@ -23,11 +23,12 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class CustomerService implements ICustomerService{
+public class CustomerService implements ICustomerService {
     @Autowired
     ICustomerRepository iCustomerRepository;
     @Autowired
     private CustomerMapper customerMapper;
+
     @Override
     public Customer findCustomerById(int idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
@@ -37,18 +38,17 @@ public class CustomerService implements ICustomerService{
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
+
     @Override
     public Customer create(Customer customer) {
-        return this.iCustomerRepository.save(customer);}
+        return this.iCustomerRepository.save(customer);
+    }
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
-
-
-
+    /**
+     * @author Trần Thế Huy
+     * @version 1
+     * @since 28/5/2023
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<CustomerDTODetail> getCustomerById(Integer id) {
