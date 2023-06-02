@@ -18,7 +18,7 @@ import java.util.Optional;
 public interface IArticleRepository extends JpaRepository<Article, Integer>{
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
             "join employee e on a.employee_id = e.id\n" +
-            "where a.is_flag =0", nativeQuery = true  )
+            "where a.is_flag =0 order by a.public_date DESC", nativeQuery = true  )
     Page<Article> findAllWithPage(Pageable pageable);
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
@@ -38,6 +38,6 @@ public interface IArticleRepository extends JpaRepository<Article, Integer>{
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
                     "join employee e on a.employee_id = e.id\n" +
-                    "where a.is_flag =0 and a.title like %?1%", nativeQuery = true)
+                    "where a.is_flag =0 and a.title like %?1% order by a.public_date DESC", nativeQuery = true)
     Page<Article> searchArticleByTitle(String name, Pageable pageable);
 }
