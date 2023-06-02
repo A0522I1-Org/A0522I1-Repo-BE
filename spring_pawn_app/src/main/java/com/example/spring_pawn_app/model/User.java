@@ -30,8 +30,8 @@ public class User {
     @ColumnDefault("0")
     private boolean isFlag;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role",inverseJoinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
     public User(Integer id, String userName, String password, Employee employee, boolean isFlag, Set<Role> roles) {
