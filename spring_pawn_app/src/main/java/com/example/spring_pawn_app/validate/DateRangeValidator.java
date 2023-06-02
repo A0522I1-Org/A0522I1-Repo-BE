@@ -5,6 +5,10 @@ import com.example.spring_pawn_app.dto.ContractCreateDto;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Create by ThuongVTH
+ * Date create: 02/06/2023
+ */
 public class DateRangeValidator implements ConstraintValidator<DateRange, ContractCreateDto> {
     @Override
     public void initialize(DateRange constraintAnnotation) {

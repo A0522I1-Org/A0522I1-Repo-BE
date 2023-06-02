@@ -18,18 +18,30 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param id
+     * @return
+     */
     @GetMapping("/customer/{id}")
     public Customer findCustomerById(@PathVariable("id") Integer id) {
         return customerService.findCustomerById(id);
     }
 
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param page
+     * @param nameCustomer
+     * @return
+     */
     @GetMapping("/customer")
     public Page<CustomerListDto> findAllCustomersByNameWithPage(@RequestParam(value = "page", defaultValue = "0") int page,
                                                                 @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
         Page<CustomerListDto> customerPage = customerService.findAllCustomerWithPage(PageRequest.of(page, 2), nameCustomer);
         return customerPage;
     }
-
 
     @PostMapping("/customer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {

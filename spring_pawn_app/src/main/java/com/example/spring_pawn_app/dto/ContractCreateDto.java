@@ -9,6 +9,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
+/**
+  * Create by ThuongVTH
+  * Date create: 02/06/2023
+ */
 @DateRange()
 public class ContractCreateDto {
 

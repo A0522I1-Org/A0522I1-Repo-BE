@@ -31,7 +31,12 @@ public class EmployeeController {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param username
+     * @return
+     */
     @GetMapping("/employee/{username}")
     public Employee findEmployeeByUserName(@PathVariable("username") String username) {
         return employeeService.findEmployeeByUserName(username);

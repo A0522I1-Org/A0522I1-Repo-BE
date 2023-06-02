@@ -20,10 +20,16 @@ import java.util.List;
 public class ContractController {
     @Autowired
     ContractService contractService;
-
     @Autowired
     MailSender mailSender;
 
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param contractDto
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/contract")
     public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {

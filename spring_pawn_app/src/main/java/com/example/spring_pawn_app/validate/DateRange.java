@@ -8,6 +8,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Create by ThuongVTH
+ * Date create: 02/06/2023
+ */
 @Documented
 @Constraint(validatedBy = DateRangeValidator.class)
 @Target({ ElementType.TYPE })
