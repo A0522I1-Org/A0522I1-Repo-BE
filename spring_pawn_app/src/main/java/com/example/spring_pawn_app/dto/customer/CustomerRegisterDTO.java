@@ -5,6 +5,10 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.*;
 
 public class CustomerRegisterDTO {
+    /**
+     * Create by: ManPD
+     * Date create: 21/5/2023
+     */
     @NotBlank(message = "Không được để trống tên của bạn")
     @Pattern(regexp = "^[a-zA-ZÀ-ỹ]+([ ][a-zA-ZÀ-ỹ]+)*$")
     @Length(min = 5, message = "Tên bạn quá ngắn")
