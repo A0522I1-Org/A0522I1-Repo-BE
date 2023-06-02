@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Service
-public class EmployeeService implements IEmployeeService{
+public class EmployeeService implements IEmployeeService {
     @Autowired
     private IEmployeeRepository iEmployeeRepository;
 

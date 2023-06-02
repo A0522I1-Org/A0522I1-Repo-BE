@@ -8,42 +8,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
-public class CategoryService implements ICategoryService {
+public class CategoryService implements ICategoryService{
     @Autowired
-    private ICategoryRepository iCategoryRepository;
-
-    /**
-     * genarate 13May2023
-     * TinPNT
-     *
-     * @return List of category
-     */
+    ICategoryRepository iCategoryRepository;
     @Override
-    public List<Category> findAllCategory() {
-        return iCategoryRepository.findAllCategory();
-    }
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find all category
-     * @return List<Category>
-     */
-    @Override
-    public List<Category> findAll() {
+    public List<Category> getAllCategory() {
         return iCategoryRepository.findAll();
     }
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find category by id
-     * * @param id
-     * @return Category
-     */
     @Override
-    public Category findById(Integer id) {
-        return iCategoryRepository.findAllById(id);
+    public Category findById(int id) {
+        return iCategoryRepository.findById(id).get();
     }
 }
