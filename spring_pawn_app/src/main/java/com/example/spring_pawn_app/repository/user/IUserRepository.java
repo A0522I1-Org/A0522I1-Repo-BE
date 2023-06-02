@@ -14,15 +14,20 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     Boolean existsByUserName(String username);
 
+
     /**
      * Created by: TanNC
      * Date created: 12/05/2023
      * Function: find by employee
+<<<<<<< HEAD
+=======
      *
+>>>>>>> origin
      * @param employee
      * @return Null if result null or User if result not null
      */
     User findByEmployee(Employee employee);
+
     Optional<User> findUserByEmployee (Employee employee);
 }
 

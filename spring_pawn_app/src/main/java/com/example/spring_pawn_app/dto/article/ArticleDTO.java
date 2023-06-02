@@ -1,5 +1,4 @@
 package com.example.spring_pawn_app.dto.article;
-import com.example.spring_pawn_app.model.Employee;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -22,6 +21,7 @@ public class ArticleDTO implements Validator {
     private boolean isFeature;
     private boolean isFlag;
     private Integer employee;
+
 
     public ArticleDTO() {
     }
@@ -90,7 +90,9 @@ public class ArticleDTO implements Validator {
         this.employee = employee;
     }
 
-    public ArticleDTO(Integer id, String title, String img, String content, LocalDate publicDate, Boolean isFeature, boolean isFlag, Integer employee) {
+
+
+    public ArticleDTO(Integer id, String title, String img, String content, LocalDate publicDate, Boolean isFeature, boolean isFlag) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -98,7 +100,6 @@ public class ArticleDTO implements Validator {
         this.publicDate = publicDate;
         this.isFeature = isFeature;
         this.isFlag = isFlag;
-        this.employee = employee;
     }
 
     @Override

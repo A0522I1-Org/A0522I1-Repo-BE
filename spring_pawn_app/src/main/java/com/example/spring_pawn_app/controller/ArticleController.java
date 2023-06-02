@@ -2,7 +2,9 @@ package com.example.spring_pawn_app.controller;
 import com.example.spring_pawn_app.dto.ArticleDTO;
 import com.example.spring_pawn_app.model.Article;
 import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.security.userprincal.UserPrinciple;
 import com.example.spring_pawn_app.service.article.ArticleService;
+import com.example.spring_pawn_app.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -20,6 +23,8 @@ import java.util.Map;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
 public class ArticleController {
+    @Autowired
+    EmployeeService employeeService;
     @Autowired
     private ArticleService articleService;
 //    @Autowired
@@ -49,8 +54,9 @@ public class ArticleController {
         System.out.println(list);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
     @PostMapping("/article/save")
-    public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO, BindingResult bindingResult){
+    public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO, BindingResult bindingResult,@AuthenticationPrincipal UserPrinciple userPrinciple){
         new ArticleDTO().validate(articleDTO,bindingResult);
         if(bindingResult.hasErrors()){
             Map<String, String> errors = new HashMap<>();
@@ -62,9 +68,10 @@ public class ArticleController {
                     });
             return  ResponseEntity.badRequest().body(errors);
         }
-        Article article=new Article(null,articleDTO.getTitle(),articleDTO.getImg(),articleDTO.getContent(), LocalDate.now(),articleDTO.isFeature(),false,new Employee(articleDTO.getEmployee().getId()));
+        Integer idEmployeeCurrent=employeeService.findEmployeeByUserName(userPrinciple.getName()).getId();
+        Article article=new Article(null,articleDTO.getTitle(),articleDTO.getImg(),articleDTO.getContent(), LocalDate.now(),articleDTO.isFeature(),false,new Employee(idEmployeeCurrent));
         articleService.save(article);
-        return ResponseEntity.ok("Thêm tin tức thành công");
+            return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/search-article")

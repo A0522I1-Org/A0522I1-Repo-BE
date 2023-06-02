@@ -1,7 +1,5 @@
 package com.example.spring_pawn_app.config;
 
-
-
 import com.example.spring_pawn_app.security.jwt.JwtEntryPoint;
 import com.example.spring_pawn_app.security.jwt.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +51,7 @@ public class WebSecurityConfig {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+                .authorizeRequests().antMatchers("/api/auth/**","/api/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();

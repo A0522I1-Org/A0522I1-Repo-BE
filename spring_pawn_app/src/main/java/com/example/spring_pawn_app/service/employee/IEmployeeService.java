@@ -2,6 +2,7 @@ package com.example.spring_pawn_app.service.employee;
 import com.example.spring_pawn_app.model.Employee;
 import java.util.List;
 
+
 public interface IEmployeeService {
     Employee findEmployeeByUserName(String username);
 
@@ -10,11 +11,16 @@ public interface IEmployeeService {
 
     void save(Employee employee);
 
-    List<Employee> findByPhone(String phone);
 
-    List<Employee> findByIdCard(String idCard);
+    List<Employee> findByEmails(String email);
+
+
+    List<Employee> findByPhones(String phone);
+
+    List<Employee> findByIdCards(String idCard);
+
 
     Employee findByEmail(String email);
-    List<Employee> findByEmails(String email);
+
 
 }

@@ -53,6 +53,7 @@ public class Article {
         this.employee = employee;
     }
 
+
     public Integer getId() {
         return id;
     }
@@ -124,6 +125,9 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
+
 
 }
 

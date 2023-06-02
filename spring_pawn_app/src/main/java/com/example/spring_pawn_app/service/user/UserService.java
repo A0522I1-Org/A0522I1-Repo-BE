@@ -1,5 +1,4 @@
 package com.example.spring_pawn_app.service.user;
-
 import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.model.User;
 import com.example.spring_pawn_app.repository.user.IUserRepository;
@@ -37,6 +36,5 @@ public class UserService implements IUserService {
     public Optional<User> findByEmployee(Employee employee) {
         return iUserRepository.findUserByEmployee(employee);
     }
-
 
 }
