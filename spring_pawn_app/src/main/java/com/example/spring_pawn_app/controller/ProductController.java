@@ -1,7 +1,7 @@
 package com.example.spring_pawn_app.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.example.spring_pawn_app.DTO.ContractDTO;
+import com.example.spring_pawn_app.dto.contract.ContractProductDTO;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import org.springframework.beans.BeanUtils;
@@ -28,10 +28,10 @@ public class ProductController {
     @GetMapping("products")
     public ResponseEntity<Page<Contract>> findAllContractNotPay(
             @RequestParam(value = "namecustomer", defaultValue = "") String nameCustomer,
-            @RequestParam(value = "categoryid", defaultValue = "") String categoryId,
+            @RequestParam(value = "categoryname", defaultValue = "") String categoryName,
             @RequestParam(defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page, 5);
-        Page<Contract> contractPage = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryId);
+        Page<Contract> contractPage = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryName);
         if (contractPage.getContent() == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -45,9 +45,9 @@ public class ProductController {
      * @return contract with status in (1,2) by ID of contract
      */
     @GetMapping("products/{id}")
-    public ResponseEntity<ContractDTO> getProduct(@PathVariable("id") int id) {
+    public ResponseEntity<ContractProductDTO> getProduct(@PathVariable("id") int id) {
         Contract contract = iContractService.findContractNotPayById(id);
-        ContractDTO contractDTO = new ContractDTO();
+        ContractProductDTO contractDTO = new ContractProductDTO();
         BeanUtils.copyProperties(contract, contractDTO);
         if (contractDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -10,10 +10,10 @@ import java.util.List;
 
 @Service
 
-public class ImgService implements IImgService {
+
+public class ImgService implements IImgService{
     @Autowired
     private IImgRepository iImgRepository;
-
 
     @Override
     public List<Img> findAll() {
@@ -23,7 +23,6 @@ public class ImgService implements IImgService {
     @Override
     public void saveImg(Img img) {
         iImgRepository.save(img);
-
     }
-
 }
+

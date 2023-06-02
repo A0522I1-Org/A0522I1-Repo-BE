@@ -41,6 +41,8 @@ public class UserService implements IUserService{
 
     @Override
     public Optional<User> findByEmployee(Employee employee) {
-        return iUserRepository.findUserByEmployee(employee);
+        return userRepository.findUserByEmployee(employee);
     }
+
+
 }

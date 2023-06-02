@@ -1,8 +1,8 @@
 package com.example.spring_pawn_app.controller;
-
 import com.example.spring_pawn_app.dto.request.ResetPasswordForm;
 import com.example.spring_pawn_app.service.forgotpassword.ForgotPasswordService;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.spring_pawn_app.dto.request.SignInForm;
 import com.example.spring_pawn_app.dto.request.SignUpForm;
 import com.example.spring_pawn_app.dto.response.JwtResponse;
@@ -37,7 +37,6 @@ public class UserController {
     private IRoleService roleService;
     @Autowired
     private ForgotPasswordService forgotPasswordService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -50,7 +49,6 @@ public class UserController {
         if (userService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("exist account in DB!"), HttpStatus.OK);
         }
-
         User user = new User(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()));
         Set<String> strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();
@@ -89,7 +87,6 @@ public class UserController {
         try {
             // Gọi service để kiểm tra và đổi mật khẩu
             forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), passwordEncoder.encode(resetPasswordForm.getNewPassword()));
-
             return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("Mã OTP không hợp lệ");

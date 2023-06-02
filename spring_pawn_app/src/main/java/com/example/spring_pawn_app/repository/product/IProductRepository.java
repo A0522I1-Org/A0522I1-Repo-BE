@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 
-
 @Repository
 @Transactional
 public interface IProductRepository extends JpaRepository<Product, Integer> {

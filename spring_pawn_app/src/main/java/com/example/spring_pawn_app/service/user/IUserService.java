@@ -1,7 +1,7 @@
 package com.example.spring_pawn_app.service.user;
 
-import com.example.spring_pawn_app.model.User;
 import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.model.User;
 import java.util.Optional;
 
 public interface IUserService {
@@ -12,4 +12,5 @@ public interface IUserService {
     void save(User user);
     Optional<User> findByEmployee(Employee employee);
 
+//    User save(User user);
 }
