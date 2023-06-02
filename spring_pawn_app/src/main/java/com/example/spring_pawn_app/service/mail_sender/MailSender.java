@@ -33,6 +33,7 @@ public class MailSender {
     private IContractRepository iContractRepository;
 
     /**
+<<<<<<< HEAD
      * Created By: HoangVV
      * Date create: 15/05/2023
      * @param contract
@@ -120,12 +121,11 @@ public class MailSender {
         }
         System.out.println("End");
     }
-    public void sendOtpMail(String email, String otp) {
+    public void sendOtpMail(String email,String otp){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Xác thực đổi mật khẩu");
         message.setText("Mã OTP của bạn là " + otp);
         javaMailSender.send(message);
     }
-
 }

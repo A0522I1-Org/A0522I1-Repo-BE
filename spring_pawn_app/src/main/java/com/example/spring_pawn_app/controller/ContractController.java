@@ -13,10 +13,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/contracts")
@@ -24,7 +28,6 @@ import java.util.Optional;
 public class ContractController {
     @Autowired
     private IContractService iContractService;
-
     @Autowired
      private MailSender mailSender;
 
@@ -32,7 +35,6 @@ public class ContractController {
      * Created by: HoangVV,
      * Date create: 20/05/2023
      * Function: get all contract and search contract with contractCode, nameCustomer, nameProduct, beginDate
-     *
      * @param page
      * @param contractCode
      * @param nameCustomer
@@ -154,15 +156,34 @@ public class ContractController {
 
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
-        iContractService.saveContract(contractDto);
-        try {
-            mailSender.sendEmailCreate(contractDto);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
+//    @PostMapping("")
+//    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
+//        iContractService.saveContract(contractDto);
+//        try {
+//            mailSender.sendEmailCreate(contractDto);
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
+//     /** Create by ThuongVTH
+//     * Date create: 02/06/2023
+//     * @param contractDto
+//     * @param bindingResult
+//     * @return
+//     */
+    @PostMapping("/contract")
+    public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            List<ObjectError> errors = bindingResult.getAllErrors();
+            // Xử lí thông tin lỗi và truyền cho Angular
+            return ResponseEntity.badRequest().body(errors);
+        } else {
+            iContractService.saveContract(contractDto);
+            try {
+                mailSender.sendEmailCreate(contractDto);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 
