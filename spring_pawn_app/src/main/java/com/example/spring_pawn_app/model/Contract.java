@@ -32,7 +32,9 @@ public class Contract {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @OneToOne   
+
+
+    @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 

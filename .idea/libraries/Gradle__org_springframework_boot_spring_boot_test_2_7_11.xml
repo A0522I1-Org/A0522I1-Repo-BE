@@ -1,11 +1,19 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework.boot:spring-boot-test:2.7.11">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.7.11/f009b2b14988a4fa265f025e9dd2cb89740dbf84/spring-boot-test-2.7.11.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.7.11/c9bc66d646813c062996c7119e1fa0991228f6e3/spring-boot-test-2.7.11-sources.jar!/" />
+=======
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.7.11/f009b2b14988a4fa265f025e9dd2cb89740dbf84/spring-boot-test-2.7.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.7.11/c9bc66d646813c062996c7119e1fa0991228f6e3/spring-boot-test-2.7.11-sources.jar!/" />
+>>>>>>> origin/TinPNT
     </SOURCES>
   </library>
 </component>

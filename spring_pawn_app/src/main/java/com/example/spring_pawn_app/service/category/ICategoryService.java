@@ -6,7 +6,16 @@ import java.util.List;
 
 public interface ICategoryService {
 
+
+    /**
+     * genarate 13May2023
+     * TinPNT
+     *
+     * @return List of category
+     */
     List<Category> findAllCategory();
     List<Category> findAll();
     Category findById(Integer id);
+
+
 }

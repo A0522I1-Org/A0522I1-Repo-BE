@@ -1,6 +1,5 @@
 package com.example.spring_pawn_app.service.contract;
 
-import com.example.spring_pawn_app.dto.ContractCreateDto;
 import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
@@ -12,15 +11,17 @@ import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import com.example.spring_pawn_app.repository.product.IProductRepository;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
 import com.example.spring_pawn_app.service.employee.IEmployeeService;
-import com.example.spring_pawn_app.service.img.ImgService;
 import com.example.spring_pawn_app.service.product.IProductService;
 import org.springframework.beans.BeanUtils;
+
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
+
+import com.example.spring_pawn_app.service.img.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,20 +29,24 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 public class ContractService implements IContractService {
-    @Autowired
-    IEmployeeService iEmployeeService;
-    @Autowired
-    IProductService productService;
+
+
     @Autowired
     ICustomerService customerService;
     @Autowired
     private IProductRepository iProductRepository;
     @Autowired
     private IContractRepository iContractRepository;
-    @Autowired
-    ImgService imgService;
+
     @Autowired
     private ICustomerRepository iCustomerRepository;
+    @Autowired
+    private IEmployeeService iEmployeeService;
+
+    @Autowired
+    private IProductService productService;
+    @Autowired
+    private IImgService imgService;
 
     private String generateContractCode() {
         int codeLength = 4; // Độ dài của mã xác thực
@@ -79,6 +84,7 @@ public class ContractService implements IContractService {
         Employee employee = iEmployeeService.findEmployeeByUserName(contractDto.getUsername());
 
         contract.setContractCode("CT-" + this.generateContractCode());
+        contract.setContractCode("HD-" + this.generateContractCode());
         contract.setBeginDate(contractDto.getBeginDate());
         contract.setEndDate(contractDto.getEndDate());
         contract.setCustomer(customerService.findCustomerById(contractDto.getCustomer().getId()));
@@ -142,11 +148,12 @@ public class ContractService implements IContractService {
             contractPage = iContractRepository.findAllContractWithPage(pageRequest, contractCode, nameCustomer, nameProduct, beginDate);
         }
         return contractPage;
+
     }
 
     @Override
-    public Page<Contract> findAllProductNotPay(Pageable page, String nameCustomer, String categoryId) {
-        return iContractRepository.findAllProductNotPay(nameCustomer, categoryId, page);
+    public Page<Contract> findAllProductNotPay(Pageable page, String nameCustomer, String categoryName) {
+        return iContractRepository.findAllProductNotPay(nameCustomer, categoryName, page);
     }
 
     @Override
@@ -383,5 +390,10 @@ public class ContractService implements IContractService {
 //        }
 //        return codeBuilder.toString();
 //    }
+
+    public Contract findById(int id) {
+        return iContractRepository.findContractNotPayByID(id);
+    }
 }
+
 

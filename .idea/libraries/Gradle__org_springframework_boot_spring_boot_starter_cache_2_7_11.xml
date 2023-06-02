@@ -1,11 +1,19 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework.boot:spring-boot-starter-cache:2.7.11">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/2.7.11/92297b07a0f9708e53ff5802d1bcb7c24defd33b/spring-boot-starter-cache-2.7.11.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/2.7.11/9534ac68152cdd53a70a4f323a608e3af16ac027/spring-boot-starter-cache-2.7.11-sources.jar!/" />
+=======
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/2.7.11/92297b07a0f9708e53ff5802d1bcb7c24defd33b/spring-boot-starter-cache-2.7.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/2.7.11/9534ac68152cdd53a70a4f323a608e3af16ac027/spring-boot-starter-cache-2.7.11-sources.jar!/" />
+>>>>>>> origin/TinPNT
     </SOURCES>
   </library>
 </component>

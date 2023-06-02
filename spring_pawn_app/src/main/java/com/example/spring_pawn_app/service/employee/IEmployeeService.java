@@ -21,5 +21,4 @@ public interface IEmployeeService {
 
     Employee findByEmail(String email);
 
-
 }

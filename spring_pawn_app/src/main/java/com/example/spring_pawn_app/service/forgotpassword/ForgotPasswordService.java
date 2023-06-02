@@ -10,30 +10,32 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
-public class ForgotPasswordService implements IForgotPasswordService{
+public class ForgotPasswordService implements IForgotPasswordService {
 
-    @Autowired private IEmployeeService employeeService;
-    @Autowired private IUserRepository userRepository;
+    @Autowired
+    private IEmployeeService employeeService;
+    @Autowired
+    private IUserRepository userRepository;
     @Autowired
     private CacheManager cacheManager;
-    @Autowired private MailSender mailSender;
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public void sendOtpByEmail(String email) {
         Employee employee = employeeService.findByEmail(email);
-        if(employee == null){
+        if (employee == null) {
             throw new RuntimeException("Email khong tồn tại trong hệ thống");
         }
         String otp = OtpGenerator.generateOtp();
         // Gửi email
-        mailSender.sendOtpMail(email,otp);
+        mailSender.sendOtpMail(email, otp);
 
         // Lưu OTP vào cache
         Cache otpCache = cacheManager.getCache("otpCache");
-        otpCache.put(email,otp);
+        otpCache.put(email, otp);
 
     }
 
@@ -47,14 +49,19 @@ public class ForgotPasswordService implements IForgotPasswordService{
         if (cacheOtp == null || !otp.equals(cacheOtp) || employee == null) {
             throw new RuntimeException("OTP khong hợp lệ");
         } else {
-            // cập nhật mật khẩu mới
-            User user = userRepository.findUserByEmployee(employee).get();
-            user.setPassword(newPassword);
-            userRepository.save(user);
+            // kiểm tra mã OTP
+            if (cacheOtp == null || !otp.equals(cacheOtp) || employee == null) {
+                throw new RuntimeException("OTP khong hợp lệ");
+            } else {
+                // cập nhật mật khẩu mới
+                User user = userRepository.findUserByEmployee(employee).get();
+                user.setPassword(newPassword);
+                userRepository.save(user);
 
-            //Xoa OTP ra khoi cache
-            otpCache.evict(email);
+                //Xoa OTP ra khoi cache
+                otpCache.evict(email);
 
+            }
         }
     }
 }

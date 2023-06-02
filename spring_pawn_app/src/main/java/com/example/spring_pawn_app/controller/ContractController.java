@@ -3,7 +3,7 @@ package com.example.spring_pawn_app.controller;
 import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
-import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
