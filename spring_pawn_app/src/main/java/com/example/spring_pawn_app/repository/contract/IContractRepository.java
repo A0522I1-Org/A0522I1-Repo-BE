@@ -19,7 +19,6 @@ import java.time.LocalDate;
 public interface IContractRepository extends JpaRepository<Contract, Integer> {
 
     /**
-<<<<<<< HEAD
      * Created by: HoangVV
      * Date create: 15/05/2023
      * Function : get contract with id
