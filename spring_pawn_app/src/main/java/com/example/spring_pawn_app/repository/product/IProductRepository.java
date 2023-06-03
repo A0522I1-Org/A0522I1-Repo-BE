@@ -14,6 +14,12 @@ import java.util.List;
 @Repository
 @Transactional
 public interface IProductRepository extends JpaRepository<Product, Integer> {
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * Function: search product
+     //   * @param name,price,categoryName
+     */
     @Query(value = "SELECT product FROM Product product WHERE product.name = ?1 AND product.price = ?2 AND product.category.nameCategory = ?3")
     List<Product> findByProduct(String name, Double price, String categoryName);
 

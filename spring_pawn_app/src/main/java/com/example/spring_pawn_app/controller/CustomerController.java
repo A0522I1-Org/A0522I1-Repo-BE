@@ -17,6 +17,11 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @GetMapping("/customers")
     public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name",defaultValue = "") String customer_name,
                                                  @RequestParam(defaultValue = "0") int page) {
@@ -26,6 +31,11 @@ public class CustomerController {
         }
         return new ResponseEntity<Page<Customer>>( customerPage,HttpStatus.OK);
     }
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @GetMapping("/customers/{id}")
     public Customer findById(@PathVariable("id") int id){
        return iCustomerService.findCustomerById( id );

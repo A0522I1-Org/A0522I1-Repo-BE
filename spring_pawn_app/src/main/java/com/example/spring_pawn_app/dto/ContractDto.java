@@ -9,6 +9,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 public class ContractDto {
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     private Integer id;
     private String contractCode;
     private LocalDate beginDate;

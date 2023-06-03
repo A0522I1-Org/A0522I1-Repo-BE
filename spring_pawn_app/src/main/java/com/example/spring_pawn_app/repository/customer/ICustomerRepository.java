@@ -12,9 +12,19 @@ import java.awt.print.Pageable;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
+
+  /**
+   * Created by: NamHV
+   * Date create: 3/6/2023
+   * Function: search customer
+//   * @param id
+   */
   @Query(value = "select id,address,avatar,customer_code,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status from customer where customer_name like %?% and is_flag = 0 ",nativeQuery = true)
   Page<Customer> findByCustomer(String customer_name, PageRequest page);
-
+/**
+ * Created by: NamHV
+ * Date create: 3/6/2023
+ * */
   @Query(value = "select id,address,avatar,customer_code,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status from customer where id like %?% and is_flag = 0",nativeQuery = true  )
   Customer findCustomerById(Integer id);
 }

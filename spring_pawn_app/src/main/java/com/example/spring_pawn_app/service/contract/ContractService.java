@@ -19,19 +19,21 @@ public class ContractService implements IContractService{
     @Autowired
     private ICustomerRepository iCustomerRepository;
 
-    @Override
-    public ContractDto findContractById(Integer id) {
-        ContractDto contractDto = new ContractDto();
-        Contract contract = iContractRepository.findContractById(id);
-        BeanUtils.copyProperties(contract,contractDto);
-        return contractDto;
-    }
 
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public void updateContractLiquidation(Integer id) {
             iContractRepository.updateContractLiquidation(id);
     }
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public List<Contract> findContractByCustomerId(Integer id) {
         Customer customer = iCustomerRepository.findCustomerById(id);

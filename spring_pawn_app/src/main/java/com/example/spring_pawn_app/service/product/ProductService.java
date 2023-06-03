@@ -23,6 +23,10 @@ public class ProductService implements IProductService {
     private IContractRepository iContractRepository;
 
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public List<Product> findAllByCustomer(Integer id) {
         Customer customer = iCustomerRepository.findCustomerById( id );
@@ -35,6 +39,10 @@ public class ProductService implements IProductService {
         return products;
     }
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public List<Product> findByProduct(String name, Double price, String nameCategory) {
         List<Product> listProduct = new ArrayList<>();

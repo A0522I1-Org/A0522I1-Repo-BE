@@ -14,11 +14,20 @@ public class CustomerService implements ICustomerService{
 
    @Autowired
    ICustomerRepository iCustomerRepository;
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public Page<Customer> findByCustomer(String customer_name, PageRequest page) {
         return iCustomerRepository.findByCustomer(customer_name, page );
     }
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @Override
     public Customer findCustomerById(Integer id) {
         return iCustomerRepository.findCustomerById( id );

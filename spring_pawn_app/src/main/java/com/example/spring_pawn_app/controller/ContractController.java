@@ -24,11 +24,11 @@ public class ContractController {
     @Autowired
     private IContractService iContractService;
 
-    @GetMapping("/contracts/{id}")
-    public ContractDto findContractById(@PathVariable("id") Integer id) throws MessagingException {
-       iContractService.findContractById(id);
-        return iContractService.findContractById(id);
-    }
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
 
     @PutMapping("/contract/{id}")
     public ResponseEntity<?> updateContract(@PathVariable Integer id){

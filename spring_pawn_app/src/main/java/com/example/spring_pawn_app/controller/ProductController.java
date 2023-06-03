@@ -14,11 +14,19 @@ public class ProductController {
     @Autowired
     private IProductService iProdcutService;
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     @GetMapping("products/customer/{id}")
     public List<Product> findProductByCustomer(@PathVariable("id") Integer id) {
         return iProdcutService.findAllByCustomer( id );
     }
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
 
     @GetMapping("products")
     public List<Product> findProduct(@RequestParam(value = "name",defaultValue = "") String name,

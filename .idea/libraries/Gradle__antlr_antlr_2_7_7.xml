@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: antlr:antlr:2.7.7">
+    <CLASSES>
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar!/" />
+=======
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar!/" />
+>>>>>>> origin/TinPNT
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

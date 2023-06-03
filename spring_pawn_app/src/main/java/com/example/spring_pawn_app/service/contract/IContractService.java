@@ -7,9 +7,17 @@ import java.util.List;
 
 public interface IContractService {
 
-    ContractDto findContractById(Integer id);
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     void updateContractLiquidation(Integer id);
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
     List<Contract> findContractByCustomerId(Integer id);
 
 
