@@ -60,6 +60,11 @@ public class ContractService implements IContractService {
         return codeBuilder.toString();
     }
 
+    /**
+     * Created By: HoangVV
+     * @param id
+     * @return
+     */
     @Override
     public ContractDto findContractById(Integer id) {
         ContractDto contractDto = new ContractDto();
@@ -67,6 +72,10 @@ public class ContractService implements IContractService {
         return contractDto;
     }
 
+    /**
+     * Created By: HoangVV
+     * @param id
+     */
     @Override
     public void updateContractPayment(Integer id) {
         iContractRepository.updateContractPayment(id);
@@ -95,8 +104,16 @@ public class ContractService implements IContractService {
         iContractRepository.save(contract);
     }
 
+    /**
+     * Created By:HoangVV
+     * @param pageRequest
+     * @param contractCode
+     * @param nameCustomer
+     * @param nameProduct
+     * @param beginDate
+     * @return
+     */
     @Override
-
     public Page<Contract> findAllContractWithPage(PageRequest pageRequest, String contractCode, String nameCustomer, String nameProduct, String beginDate) {
         Page<Contract> contractPage = null;
         if (!contractCode.equals("") && nameCustomer.equals("") && nameProduct.equals("") && beginDate.equals("")) {
@@ -148,7 +165,6 @@ public class ContractService implements IContractService {
             contractPage = iContractRepository.findAllContractWithPage(pageRequest, contractCode, nameCustomer, nameProduct, beginDate);
         }
         return contractPage;
-
     }
 
     @Override
@@ -160,9 +176,6 @@ public class ContractService implements IContractService {
     public Contract findContractNotPayById(int id) {
         return iContractRepository.findContractNotPayByID(id);
     }
-
-
-
 
     /**
      * Create by PhongTD
@@ -378,18 +391,6 @@ public class ContractService implements IContractService {
         }
         return iContractRepository.findAll(pageable);
     }
-
-//    private String generateContractCode() {
-//        int codeLength = 4; // Độ dài của mã xác thực
-//        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Các ký tự có thể sử dụng trong mã xác thực
-//        SecureRandom random = new SecureRandom();
-//        StringBuilder codeBuilder = new StringBuilder(codeLength);
-//        for (int i = 0; i < codeLength; i++) {
-//            int randomIndex = random.nextInt(characters.length());
-//            codeBuilder.append(characters.charAt(randomIndex));
-//        }
-//        return codeBuilder.toString();
-//    }
 
     public Contract findById(int id) {
         return iContractRepository.findContractNotPayByID(id);

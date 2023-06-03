@@ -56,7 +56,6 @@ public class ContractController {
      * Created by: HoangVV,
      * Date create: 15/05/2023
      * Function: get contract with id
-     *
      * @param id
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
@@ -72,7 +71,6 @@ public class ContractController {
      * Created by: HoangVV
      * Date create: 15/05/2023
      * Function: update contract with id
-     *
      * @param id
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      * @throws MessagingException
