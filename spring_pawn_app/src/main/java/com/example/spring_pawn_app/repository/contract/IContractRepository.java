@@ -2,6 +2,7 @@ package com.example.spring_pawn_app.repository.contract;
 
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.model.Status;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -24,10 +25,12 @@ public interface IContractRepository extends JpaRepository<Contract, Integer>{
             nativeQuery = true)
     Contract findContractById(@Param("id") Integer id);
 
-    @Query(value = "select id,contract_code, customer_id, begin_date, end_date, interest, product_id,employee_id, status_id, is_flag from contract where customer_id = ? and is_flag = 0 ",nativeQuery = true)
-    Page<Contract> findContractByCustomerId(PageRequest pageRequest,Integer id);
+    @Query("select  contract FROM Contract contract WHERE contract.customer.id = ?1  AND contract.isFlag = false AND contract.status.id = 1 ")
+    List<Contract> findContractByCustomerId(Integer id);
 
-    @Query(value = "update contract as c set c.status_id = 3 where c.id = :id", countQuery = "update contract as c set c.status_id = 3 where c.id = :id", nativeQuery = true)
+
+
+    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
     @Modifying
     void updateContractLiquidation(@Param("id") Integer id);
 

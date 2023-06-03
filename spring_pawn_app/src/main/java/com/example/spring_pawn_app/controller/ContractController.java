@@ -15,34 +15,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class ContractController {
     @Autowired
-    IContractService iContractService;
+    private IContractService iContractService;
 
     @GetMapping("/contracts/{id}")
     public ContractDto findContractById(@PathVariable("id") Integer id) throws MessagingException {
        iContractService.findContractById(id);
         return iContractService.findContractById(id);
     }
-    ///// customer có nhìu món đồ
-    @GetMapping("/contracts")
-    public ResponseEntity<Page<Contract>> findAll(@RequestParam(value = "customer_id",defaultValue = "") Integer customer_id,
-                                                  @RequestParam(defaultValue = "0") int page) {
-        Page<Contract> contractPage = iContractService.findContractByCustomerId( PageRequest.of( page,5 ),customer_id );
-        if (contractPage == null){
-            return  new ResponseEntity<>( HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<Page<Contract>>( contractPage,HttpStatus.OK);
-    }
 
-    //// thay đổi trạng thái status
-    @PutMapping("/contracts/{id}")
-    public ResponseEntity<?> getiContractService(@PathVariable("id")Integer id){
-        iContractService.updateContractLiquidation(id);
+    @PutMapping("/contract/{id}")
+    public ResponseEntity<?> updateContract(@PathVariable Integer id){
+        iContractService.updateContractLiquidation( id );
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

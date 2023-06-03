@@ -4,18 +4,20 @@ import com.example.spring_pawn_app.dto.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
+import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+import java.util.List;
 
 @Service
 public class ContractService implements IContractService{
     @Autowired
     IContractRepository iContractRepository;
+
+    @Autowired
+    private ICustomerRepository iCustomerRepository;
 
     @Override
     public ContractDto findContractById(Integer id) {
@@ -27,12 +29,13 @@ public class ContractService implements IContractService{
 
     @Override
     public void updateContractLiquidation(Integer id) {
-        iContractRepository.updateContractLiquidation( id );
+            iContractRepository.updateContractLiquidation(id);
     }
 
     @Override
-    public Page<Contract> findContractByCustomerId(PageRequest page, Integer id) {
-        return iContractRepository.findContractByCustomerId( page, id );
+    public List<Contract> findContractByCustomerId(Integer id) {
+        Customer customer = iCustomerRepository.findCustomerById(id);
+        return iContractRepository.findContractByCustomerId(id );
     }
 
 
