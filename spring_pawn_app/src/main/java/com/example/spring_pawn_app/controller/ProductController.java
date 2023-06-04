@@ -5,7 +5,6 @@ import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.product.IProductService;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
