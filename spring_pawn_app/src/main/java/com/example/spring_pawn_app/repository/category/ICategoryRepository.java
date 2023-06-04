@@ -18,14 +18,14 @@ public interface ICategoryRepository extends JpaRepository<Category, Integer> {
     List<Category> findAllCategory();
 
 
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find all category
-     * @return List<Category>
-     */
-    @Query("SELECT category FROM Category category")
-    List<Category> findAll();
+//    /**
+//     * Created by: PhongTD
+//     * Date created: 12/05/2023
+//     * Function: find all category
+//     * @return List<Category>
+//     */
+//    @Query("SELECT category FROM Category category")
+//    List<Category> findAll();
 
     /**
      * Created by: PhongTD

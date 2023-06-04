@@ -36,11 +36,11 @@ public class CategoryController {
         }
         return new ResponseEntity<List<Category>>(categoryList, HttpStatus.OK);
     }
-     /** Created by: PhongTD
-     * Date created: 20/05/2023
-     * Function: find all category
-     * @return List<Category>
-     */
+//     /** Created by: PhongTD
+//     * Date created: 20/05/2023
+//     * Function: find all category
+//     * @return List<Category>
+//     */
 //    @GetMapping("")
 //    public List<Category> getAllCategory() {
 //        return iCategoryService.findAll();
