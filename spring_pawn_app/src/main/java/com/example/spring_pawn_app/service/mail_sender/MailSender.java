@@ -1,6 +1,8 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
 import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,6 +21,8 @@ import java.util.Date;
 public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private ICustomerService iCustomerService;
 
     /**
      * Create by ThuongVTH
@@ -28,6 +32,7 @@ public class MailSender {
      */
     public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
         LocalDate localDate = LocalDate.now();
+        Customer customer = iCustomerService.findCustomerById(contract.getCustomer().getId());
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true, "utf-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -39,7 +44,8 @@ public class MailSender {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        context.setVariable("nameCustomer", contract.getCustomer().getName());
+        context.setVariable("name_customer", customer.getName());
+        System.out.println(contract.getCustomer());
         context.setVariable("phone", contract.getCustomer().getPhone());
         context.setVariable("beginDate", contract.getBeginDate());
         context.setVariable("endDate", contract.getEndDate());
@@ -48,8 +54,8 @@ public class MailSender {
         context.setVariable("interest", contract.getInterest());
         context.setVariable("time", localDate);
 
-        String html = templateEngine.process("addContractSuccess", context);
-        messages.setContent(html, "text/html");
+        String html = templateEngine.process("createContractSuccess", context);
+        messages.setContent(html, "text/html; charset=UTF-8");
         helper.setTo(contract.getCustomer().getEmail());
         helper.setSubject("Thông báo thêm mới thành công");
 
