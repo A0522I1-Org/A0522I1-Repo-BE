@@ -24,16 +24,16 @@ public class CategoryService implements ICategoryService {
         return iCategoryRepository.findAllCategory();
     }
 
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find all category
-     * @return List<Category>
-     */
-    @Override
-    public List<Category> findAll() {
-        return iCategoryRepository.findAll();
-    }
+//    /**
+//     * Created by: PhongTD
+//     * Date created: 12/05/2023
+//     * Function: find all category
+//     * @return List<Category>
+//     */
+//    @Override
+//    public List<Category> findAll() {
+//        return iCategoryRepository.findAll();
+//    }
 
     /**
      * Created by: PhongTD

@@ -14,7 +14,7 @@ public interface ICategoryService {
      * @return List of category
      */
     List<Category> findAllCategory();
-    List<Category> findAll();
+//    List<Category> findAll();
     Category findById(Integer id);
 
 
