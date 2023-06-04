@@ -13,19 +13,19 @@ public class Employee {
     @Column(columnDefinition = "varchar(150)")
     private String name;
     private LocalDate dateOfBirth;
-    @Column(columnDefinition = ("varchar(15)"))
+    @Column(columnDefinition = ("varchar(20)"))
     private String phone;
     @Column(columnDefinition = ("varchar(256)"))
     private String email;
     private Integer gender;
-    @Column(columnDefinition = ("varchar(255)"))
+    @Column(columnDefinition = ("varchar(200)"))
     private String address;
-    @Column(columnDefinition = ("varchar(25)"))
+    @Column(columnDefinition = ("varchar(20)"))
     private String idCard;
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "LONGTEXT")
     private String avatar;
 
     public Employee() {
@@ -42,6 +42,10 @@ public class Employee {
         this.idCard = idCard;
         this.isFlag = isFlag;
         this.avatar = avatar;
+    }
+
+    public Employee(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {

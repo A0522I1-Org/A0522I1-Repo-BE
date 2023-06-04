@@ -11,7 +11,7 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( name = "contract_code", columnDefinition = ("varchar(25)"))
+    @Column( name = "contract_code", columnDefinition = ("varchar(45)"))
     private String contractCode;
 
     private LocalDate beginDate;
@@ -22,7 +22,7 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "status_id", columnDefinition = "varchar(200)")
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @Column(columnDefinition = "double DEFAULT 0.0")
@@ -31,6 +31,8 @@ public class Contract {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+
 
     @OneToOne
     @JoinColumn(name = "product_id")
@@ -72,9 +74,7 @@ public class Contract {
         this.contractCode = contractCode;
     }
 
-    public LocalDate getBeginDate() {
-        return beginDate;
-    }
+    public LocalDate getBeginDate() {return beginDate; }
 
     public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
@@ -135,4 +135,5 @@ public class Contract {
     public void setFlag(boolean flag) {
         isFlag = flag;
     }
+
 }
