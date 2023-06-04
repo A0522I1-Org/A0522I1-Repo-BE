@@ -20,7 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
+@CrossOrigin("*")
 public class ArticleController {
     @Autowired
     EmployeeService employeeService;
@@ -35,7 +35,7 @@ public class ArticleController {
      * @param bindingResult
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @PostMapping("/article/save")
+    @PostMapping("/articles/save")
     public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO, BindingResult bindingResult,@AuthenticationPrincipal UserPrinciple userPrinciple){
         new ArticleDTO().validate(articleDTO,bindingResult);
         if(bindingResult.hasErrors()){

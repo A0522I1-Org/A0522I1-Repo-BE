@@ -20,7 +20,6 @@ public interface IEmployeeService {
 
     List<Employee> findByIdCards(String idCard);
 
-
     Employee findByEmail(String email);
 
 

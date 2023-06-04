@@ -16,7 +16,6 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     private IEmployeeRepository iEmployeeRepository;
 
-
     @Override
     public Employee findEmployeeByUserName(String username) {
         return iEmployeeRepository.findEmployeeByUserName(username);
@@ -46,30 +45,30 @@ public class EmployeeService implements IEmployeeService {
         if (!errors.isEmpty()) {
             throw new InvalidDataException(errors);
         }
-        if (errors.isEmpty()){
-
+        if (errors.isEmpty()) {
             iEmployeeRepository.save(employee);
         }
-    }
-
-    @Override
-
-    public List<Employee> findByEmails(String email) {
-        return iEmployeeRepository.findByEmail(email);
     }
 
     @Override
     public List<Employee> findByPhones(String phone) {
         return iEmployeeRepository.findByPhone(phone);
     }
+
     @Override
     public List<Employee> findByIdCards(String idCard) {
         return iEmployeeRepository.findByIdCard(idCard);
     }
+
 
     @Override
     public Employee findByEmail(String email) {
         return iEmployeeRepository.findEmployeeByEmail(email);
     }
 
+    @Override
+    public List<Employee> findByEmails(String email) {
+        return iEmployeeRepository.findByEmail(email);
+    }
 }
+

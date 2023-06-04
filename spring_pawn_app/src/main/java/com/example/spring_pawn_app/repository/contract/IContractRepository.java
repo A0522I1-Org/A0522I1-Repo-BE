@@ -19,7 +19,10 @@ import java.util.List;
 public interface IContractRepository extends JpaRepository<Contract, Integer>{
 
     /**
+<<<<<<< HEAD
      <<<<<<< HEAD
+=======
+>>>>>>> b55b15b9ee3dce10c0c48e71192a3a0a419d94f4
      * Created by: HoangVV
      * Date create: 15/05/2023
      * Function : get contract with id

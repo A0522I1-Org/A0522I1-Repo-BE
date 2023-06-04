@@ -12,7 +12,6 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
-
     @Override
     public Optional<User> findByUsername(String username) {
         return iUserRepository.findByUserName(username);
@@ -23,6 +22,10 @@ public class UserService implements IUserService {
         return iUserRepository.existsByUserName(username);
     }
 
+//    @Override
+//    public User save(User user) {
+//        return iUserRepository.existsByUserName(username);
+//    }
 
     @Override
     public User findByIdEmployee(Integer id) {
@@ -40,3 +43,4 @@ public class UserService implements IUserService {
     }
 
 }
+

@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.dto;
+package com.example.spring_pawn_app.dto.contract;
 
 import javax.validation.constraints.*;
 
