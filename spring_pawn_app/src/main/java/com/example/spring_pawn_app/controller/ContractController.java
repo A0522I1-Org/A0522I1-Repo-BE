@@ -1,9 +1,9 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.ContractEditDto;
-import com.example.spring_pawn_app.dto.contract.ContractDto;
-import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
+import com.example.spring_pawn_app.dto.contract.ContractEditDto;
+import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ContractController {
     @Autowired
     private IContractService iContractService;
     @Autowired
-     private MailSender mailSender;
+    private MailSender mailSender;
 
     /**
      * Created by: HoangVV,
@@ -89,7 +89,7 @@ public class ContractController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-     /** Create by PhongTD
+    /** Create by PhongTD
      * Date created: 20/05/2023
      * @param pageable
      * @return page<Contract>
@@ -156,7 +156,7 @@ public class ContractController {
 
     }
 
-//    @PostMapping("")
+    //    @PostMapping("")
 //    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
 //        iContractService.saveContract(contractDto);
 //        try {
@@ -186,4 +186,3 @@ public class ContractController {
         }
     }
 }
-

@@ -1,11 +1,9 @@
 package com.example.spring_pawn_app.mapper;
 
-
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
 import org.modelmapper.ModelMapper;
-
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
