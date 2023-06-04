@@ -3,12 +3,12 @@ import com.example.spring_pawn_app.model.Contract;
 import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
+
+import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.repository.product.IProductRepository;
-import com.example.spring_pawn_app.service.contract.IContractService;
-import com.example.spring_pawn_app.service.customer.ICustomerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.spring_pawn_app.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,17 +5,6 @@ import com.example.spring_pawn_app.model.Category;
 import java.util.List;
 
 public interface ICategoryService {
-
-
-    /**
-     * genarate 13May2023
-     * TinPNT
-     *
-     * @return List of category
-     */
-    List<Category> findAllCategory();
-    List<Category> findAll();
-    Category findById(Integer id);
-
-
+    List<Category> getAllCategory();
+    Category findById(int id);
 }

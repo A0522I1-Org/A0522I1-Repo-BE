@@ -1,12 +1,11 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.model.Product;
-import com.example.spring_pawn_app.service.product.IProductService;
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.springframework.web.bind.annotation.RestController;
 import com.example.spring_pawn_app.dto.contract.ContractProductDTO;
 import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.service.contract.IContractService;
+import com.example.spring_pawn_app.service.product.IProductService;
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,9 +26,11 @@ public class ProductController {
 
     @Autowired
     private IProductService iProductService;
+
     /**
      * genarate 13May2023
      * TinPNT
+     *
      * @return List of contract with status in (1,2) and can find with customer name and category id of product
      */
     @GetMapping("")
@@ -39,16 +40,17 @@ public class ProductController {
             @RequestParam(defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Contract> contractPage = iContractService.findAllProductNotPay(pageable, nameCustomer, categoryName);
-        if (contractPage.getContent() == null){
+        if (contractPage.getContent() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-       return new ResponseEntity<>(contractPage,HttpStatus.OK);
+        return new ResponseEntity<>(contractPage, HttpStatus.OK);
     }
 
 
     /**
      * genarate 13May2023
      * TinPNT
+     *
      * @return contract with status in (1,2) by ID of contract
      */
     @GetMapping("/{id}")
@@ -65,10 +67,9 @@ public class ProductController {
     /**
      * Created by: NamHV
      * Date create: 3/6/2023
-     * */
+     */
     @GetMapping("/customer/{id}")
     public List<Product> findProductByCustomer(@PathVariable("id") Integer id) {
-        return iProductService.findAllByCustomer( id );
+        return iProductService.findAllByCustomer(id);
     }
-
 }
