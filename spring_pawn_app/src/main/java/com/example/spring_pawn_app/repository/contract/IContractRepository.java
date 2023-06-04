@@ -66,7 +66,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * @return page contract
      */
     @Query(value = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id, c.employee_id, c.status_id, c.is_flag from contract as c inner join product as p on p.id = c.product_id " +
-            "inner join customer as cus on cus.id = c.customer_id where cus.customer_name like %:nameCustomer% and c.is_flag = 0 and c.status_id = 1",
+            "inner join customer as cus on cus.id = c.customer_id where cus.customer_name like %:nameCustomer% or '%' and c.is_flag = 0 and c.status_id = 1",
             countQuery = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id, c.employee_id, c.status_id, c.is_flag from contract as c inner join product as p on p.id = c.product_id " +
                     "inner join customer as cus on cus.id = c.customer_id where cus.customer_name like %:nameCustomer% and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
     Page<Contract> findAllContractByNameCustomerWithPage(Pageable pageable,@Param("nameCustomer")String nameCustomer);
