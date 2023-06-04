@@ -24,7 +24,7 @@ public class CustomerController {
      * @param id
      * @return
      */
-    @GetMapping("/customer/{id}")
+    @GetMapping("/customers/{id}")
     public Customer findCustomerById(@PathVariable("id") Integer id) {
         return customerService.findCustomerById(id);
     }
@@ -36,14 +36,14 @@ public class CustomerController {
      * @param nameCustomer
      * @return
      */
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     public Page<CustomerListDto> findAllCustomersByNameWithPage(@RequestParam(value = "page", defaultValue = "0") int page,
                                                                 @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
         Page<CustomerListDto> customerPage = customerService.findAllCustomerWithPage(PageRequest.of(page, 2), nameCustomer);
         return customerPage;
     }
 
-    @PostMapping("/customer")
+    @PostMapping("/customers")
     public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
         customer.setAddress(customerRegisterDTO.getAddress());

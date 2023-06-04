@@ -37,12 +37,12 @@ public class EmployeeController {
      * @param username
      * @return
      */
-    @GetMapping("/employee/{username}")
+    @GetMapping("/employees/{username}")
     public Employee findEmployeeByUserName(@PathVariable("username") String username) {
         return employeeService.findEmployeeByUserName(username);
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employees/{id}")
     public ResponseEntity<EmployeeInforDTO> findByIdEmployee(@PathVariable Integer id) {
         EmployeeInforDTO employeeInforDTO = new EmployeeInforDTO();
         Employee employee = employeeService.finById(id);
@@ -65,7 +65,7 @@ public class EmployeeController {
      * @param bindingResult
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @PutMapping(value = "/employee/save")
+    @PutMapping(value = "/employees/save")
     public ResponseEntity<?> updateEmployeeInfor(@Valid @RequestBody EmployeeInforDTO
                                                          employeeInforDTO, BindingResult bindingResult) {
         new EmployeeInforDTO().validate(employeeInforDTO, bindingResult);

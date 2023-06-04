@@ -12,6 +12,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Component
 public class MailSender {
@@ -25,6 +27,7 @@ public class MailSender {
      * @throws MessagingException
      */
     public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
+        LocalDate localDate = LocalDate.now();
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true, "utf-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -36,11 +39,14 @@ public class MailSender {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        context.setVariable("name", contract.getCustomer().getName());
-        context.setVariable("dateOfBirth", contract.getCustomer().getDateOfBirth());
-        context.setVariable("gender", contract.getCustomer().getGender());
-        context.setVariable("address", contract.getCustomer().getAddress());
+        context.setVariable("nameCustomer", contract.getCustomer().getName());
         context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("beginDate", contract.getBeginDate());
+        context.setVariable("endDate", contract.getEndDate());
+        context.setVariable("nameProduct", contract.getNameProduct());
+        context.setVariable("price", contract.getPrice());
+        context.setVariable("interest", contract.getInterest());
+        context.setVariable("time", localDate);
 
         String html = templateEngine.process("addContractSuccess", context);
         messages.setContent(html, "text/html");

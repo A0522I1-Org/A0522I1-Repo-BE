@@ -15,11 +15,11 @@ public class StatusController{
     @Autowired
     StatusService statusService;
 
-    @GetMapping("/status")
+    @GetMapping("/statuses")
     public List<Status> getStatus(){
         return statusService.getAllStatus();
     }
-    @GetMapping("/status/{id}")
+    @GetMapping("/statuses/{id}")
     public Status findById(@PathVariable("id") int id){
         return statusService.findById(id);
     }

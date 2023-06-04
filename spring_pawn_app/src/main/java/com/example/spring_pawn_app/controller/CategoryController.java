@@ -13,11 +13,11 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
-    @GetMapping("/category")
+    @GetMapping("/categories")
     public List<Category> getAllCategory(){
         return categoryService.getAllCategory();
     }
-    @GetMapping("/category/{id}")
+    @GetMapping("/categories/{id}")
     public Category findById(@PathVariable("id") int id){
         return categoryService.findById(id);
     }
