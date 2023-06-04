@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c40c4b41-3303-4173-992a-544b0f6d6b32" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/FinaceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/Finace/FinaceDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractProductDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/customer/CustomerRegisterDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/Finace/IFinaceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/Finace/ServiceFinace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/validate/DateRange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/validate/DateRangeValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/resources/static/LOGO-01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_12.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_12.xml" afterDir="false" />
@@ -194,54 +182,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_unbescape_unbescape_1_1_6_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_9_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_9_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_30.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/SpringPawnAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/SpringPawnAppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ContractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/StatusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/StatusController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/ContractCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractCreateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/ContractEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/CustomerListDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/CustomerListDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/CustomerRegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/CustomerRegisterDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/article/ArticleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/employee/EmployeeInforDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/employee/EmployeeInforDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/category/ICategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/category/ICategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/contract/IContractRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/contract/IContractRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/customer/ICustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/customer/ICustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/employee/IEmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/employee/IEmployeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/product/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/status/IStatusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/status/IStatusRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/user/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/user/IUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/article/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/article/ArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/category/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/category/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/category/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/category/ICategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/contract/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/contract/ContractService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/contract/IContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/contract/IContractService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/customer/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/customer/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/customer/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/customer/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/employee/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/employee/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/employee/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/employee/IEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/mail_sender/MailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/mail_sender/MailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/product/IProdcutService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/product/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/product/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/status/IStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/status/IStatusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/status/StatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/status/StatusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,6 +198,23 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring_pawn_app" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -262,6 +224,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -280,7 +245,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/CODEGYM/Codegym-Module6/A0522I1-Repo-BE/spring_pawn_app",
+    "last_opened_file_path": "D:/Codegym/Module6_BE/A0522I1_BE/A0522I1-Repo-BE",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -312,6 +277,7 @@
       <workItem from="1685775413908" duration="69000" />
       <workItem from="1685864217458" duration="108000" />
       <workItem from="1685864344815" duration="123000" />
+      <workItem from="1685884678044" duration="866000" />
     </task>
     <servers />
   </component>
