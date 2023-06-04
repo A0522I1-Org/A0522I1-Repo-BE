@@ -6,6 +6,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+<<<<<<< HEAD
+=======
+
+          <entry name="$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+
+>>>>>>> ed4feb539ab9e609b74322b04970e4ca84632d27
         </processorPath>
         <module name="spring_pawn_app.main" />
       </profile>

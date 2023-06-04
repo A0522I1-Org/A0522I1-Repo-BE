@@ -6,6 +6,14 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.3.27/658a5998b3e0e292eafd474f27dfb3b6b5681974/spring-test-5.3.27-sources.jar!/" />
+<<<<<<< HEAD
+=======
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.3.27/84e2e80189abd5b74f2b07abde8d179a404a5b71/spring-test-5.3.27.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.3.27/658a5998b3e0e292eafd474f27dfb3b6b5681974/spring-test-5.3.27-sources.jar!/" />
+>>>>>>> ed4feb539ab9e609b74322b04970e4ca84632d27
     </SOURCES>
   </library>
 </component>
