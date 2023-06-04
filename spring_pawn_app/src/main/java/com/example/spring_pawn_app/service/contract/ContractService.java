@@ -2,10 +2,7 @@ package com.example.spring_pawn_app.service.contract;
 
 import com.example.spring_pawn_app.dto.ContractEditDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
-import com.example.spring_pawn_app.model.Contract;
-import com.example.spring_pawn_app.model.Employee;
-import com.example.spring_pawn_app.model.Img;
-import com.example.spring_pawn_app.model.Product;
+import com.example.spring_pawn_app.model.*;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import com.example.spring_pawn_app.repository.product.IProductRepository;
@@ -25,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @Service
@@ -48,6 +46,25 @@ public class ContractService implements IContractService {
     @Autowired
     private IImgService imgService;
 
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+//    @Override
+//    public void updateContractLiquidation(Integer id) {
+//            iContractRepository.updateContractLiquidation(id);
+//    }
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    @Override
+    public List<Contract> findContractByCustomerId(Integer id) {
+        Customer customer = iCustomerRepository.findCustomerById( id );
+        return iContractRepository.findContractByCustomerId( id );
+    }
     private String generateContractCode() {
         int codeLength = 4; // Độ dài của mã xác thực
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Các ký tự có thể sử dụng trong mã xác thực

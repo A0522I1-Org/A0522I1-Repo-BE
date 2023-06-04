@@ -30,7 +30,12 @@ public class CustomerService implements ICustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public Customer findCustomerById(int idCustomer) {
+    public Page<Customer> findByCustomer(String customer_name, PageRequest page) {
+        return iCustomerRepository.findByCustomer(customer_name, page );
+    }
+
+    @Override
+    public Customer findCustomerById(Integer idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
     }
 
