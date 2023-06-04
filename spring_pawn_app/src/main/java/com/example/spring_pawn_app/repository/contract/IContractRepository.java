@@ -29,10 +29,23 @@ public interface IContractRepository extends JpaRepository<Contract, Integer>{
      * @param id
      * @return contract
      */
+//    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
+//    @Modifying
+//    void updateContractLiquidation(@Param("id") Integer id);
+//=======
     @Query(value = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id, c.employee_id, c.status_id, c.is_flag from contract as c where c.id = :id and c.is_flag = 0",
             countQuery = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id from contract as c where c.id = :id and c.is_flag = 0",
             nativeQuery = true)
     Contract findContractById(@Param("id") Integer id);
+    /**
+     * Created by: NamHV
+     * Date create 3/06/2023
+     * Function : get contract customer
+     //     * @param id
+     //     * @return contract
+     */
+    @Query("select  contract FROM Contract contract WHERE contract.customer.id = ?1  AND contract.isFlag = false AND contract.status.id = 1 ")
+    List<Contract> findContractByCustomerId(Integer id);
 
     /**
      * Created by: HoangVV
@@ -711,5 +724,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer>{
             "WHERE contract.customer.name LIKE %?1% AND contract.product.name LIKE %?2% AND (contract.beginDate " +
             "BETWEEN ?3 AND ?4) AND contract.status.name = ?5 AND contract.isFlag = false")
     Page<Contract> findByCustomerAndProductAndBeginDateAndStatus(String customerName, String productName, LocalDate beforeDate, LocalDate afterDate, String status, Pageable pageable);
+
+
 
 }

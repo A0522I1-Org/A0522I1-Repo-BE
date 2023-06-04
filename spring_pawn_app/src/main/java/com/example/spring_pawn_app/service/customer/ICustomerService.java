@@ -20,19 +20,16 @@ import java.time.LocalDate;
  * @since 28/5/2023
  */
 public interface ICustomerService {
-    Customer findCustomerById(int idCustomer);
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    Page<Customer> findByCustomer(String customer_name, PageRequest page);
+    Customer findCustomerById(Integer idCustomer);
 
     Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer);
 
-    /**
-     * Create by: ManPD
-     *Date create: 21/5/2023
-     *
-     * @param customer
-     * @return customer
-     */
-    Customer createCustomer(Customer customer);
-  
+    Customer create (Customer customer);
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);

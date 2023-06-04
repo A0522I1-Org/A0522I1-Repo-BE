@@ -125,8 +125,6 @@ public class EmployeeController {
             String errorMessage = error.getMessage();
             errors.put(fieldName, errorMessage);
         });
-
         return ResponseEntity.badRequest().body(errors);
-
     }
 }

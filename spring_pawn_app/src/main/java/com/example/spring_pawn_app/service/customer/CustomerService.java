@@ -30,23 +30,23 @@ public class CustomerService implements ICustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public Customer findCustomerById(int idCustomer) {
+    public Page<Customer> findByCustomer(String customer_name, PageRequest page) {
+        return iCustomerRepository.findByCustomer(customer_name, page );
+    }
+
+    @Override
+    public Customer findCustomerById(Integer idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
     }
+
     @Override
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
 
-    /**
-     * Create by: ManPD
-     * Date create: 21/5/2023
-     *
-     * @param customer
-     */
     @Override
-    public Customer createCustomer(Customer customer) {
-        return iCustomerRepository.save(customer);
+    public Customer create(Customer customer) {
+        return this.iCustomerRepository.save(customer);
     }
 
     /**
@@ -62,7 +62,6 @@ public class CustomerService implements ICustomerService {
                 .findFirst()
                 .map(customerMapper::mapToDtoDetail);
     }
-
 
     @Override
     @Transactional(readOnly = true)

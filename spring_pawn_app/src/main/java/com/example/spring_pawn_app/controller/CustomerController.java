@@ -7,8 +7,8 @@ import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
 import com.example.spring_pawn_app.dto.customer.HttpResponse;
 import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.service.customer.CustomerService;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +29,7 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
+
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
@@ -54,21 +55,22 @@ public class CustomerController {
         return customerPage;
     }
 
-    /**
-     *Create by: ManPD
-     *Date create: 21/5/2023
-     *
-     * @param customerRegisterDTO
-     * @return HttpStatus.CREATED
-     */
-    @PostMapping("dangkynhanh")
-    public ResponseEntity<Customer> addNewCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    @PostMapping("/customer")
+    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerRegisterDTO, customer);
-        return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
+        customer.setAddress(customerRegisterDTO.getAddress());
+        customer.setEmail(customerRegisterDTO.getEmailCustomer());
+        customer.setName(customerRegisterDTO.getNameCustomer());
+        customer.setPhone(customerRegisterDTO.getPhoneCustomer());
+        customer.setNote(customerRegisterDTO.getNote());
+        return new ResponseEntity<>(iCustomerService.create(customer), HttpStatus.CREATED);
     }
 
-
+    /**
+     * @author Trần Thế Huy
+     * @version 1
+     * @since 28/5/2023
+     */
     @GetMapping()
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
@@ -169,6 +171,19 @@ public class CustomerController {
         // khôi phục customer lại database
         iCustomerService.restoreCustomerById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    @GetMapping("/customers")
+    public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name",defaultValue = "") String customer_name,
+                                                  @RequestParam(defaultValue = "0") int page) {
+        Page<Customer> customerPage = iCustomerService.findByCustomer(customer_name,PageRequest.of( page,5 ) );
+        if (customerPage == null){
+            return  new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Page<Customer>>( customerPage,HttpStatus.OK);
     }
 }
 

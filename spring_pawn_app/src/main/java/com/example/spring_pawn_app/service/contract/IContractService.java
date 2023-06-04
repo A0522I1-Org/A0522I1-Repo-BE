@@ -8,10 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface IContractService {
     void saveContract(ContractCreateDto contractDto);
     ContractDto findContractById(Integer id);
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+//    void updateContractLiquidation(Integer id);
     void updateContractPayment(Integer id);
 
     public Page<Contract> findAllContractWithPage(PageRequest pageRequest, String contractCode, String nameCustomer, String nameProduct, String beginDate);
@@ -30,4 +37,5 @@ public interface IContractService {
     Page<Contract> findAllProductNotPay(Pageable page, String nameCustomer, String categoryName);
     Contract findById(int id);
 
+    List<Contract> findContractByCustomerId(Integer id);
 }
