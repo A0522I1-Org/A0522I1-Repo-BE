@@ -56,15 +56,22 @@ public class CustomerController {
         return customerPage;
     }
 
-    @PostMapping("/customer")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    /**
+     *Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customerRegisterDTO
+     * @return HttpStatus.CREATED
+     */
+    @PostMapping("dangkynhanh")
+    public ResponseEntity<Customer> addNewCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
+        customer.setName(customerRegisterDTO.getCustomerName());
+        customer.setEmail(customerRegisterDTO.getEmail());
+        customer.setPhone(customerRegisterDTO.getPhone());
         customer.setAddress(customerRegisterDTO.getAddress());
-        customer.setEmail(customerRegisterDTO.getEmailCustomer());
-        customer.setName(customerRegisterDTO.getNameCustomer());
-        customer.setPhone(customerRegisterDTO.getPhoneCustomer());
         customer.setNote(customerRegisterDTO.getNote());
-        return new ResponseEntity<>(iCustomerService.create(customer), HttpStatus.CREATED);
+        return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
     /**
@@ -102,7 +109,6 @@ public class CustomerController {
     public ResponseEntity<HttpResponse> getAllCustomerRestore(@RequestParam Optional<String> valueReceived,
                                                               @RequestParam Optional<Integer> page,
                                                               @RequestParam Optional<Integer> size) {
-
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
         Page<CustomerDTORestore> customerRestores = iCustomerService.getAllWithRequirementInRestore(valueReceived.orElse(""), pageable);
 
@@ -186,6 +192,7 @@ public class CustomerController {
         }
         return new ResponseEntity<Page<Customer>>( customerPage,HttpStatus.OK);
     }
+
 }
 
 

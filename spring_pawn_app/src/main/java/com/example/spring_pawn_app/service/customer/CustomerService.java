@@ -1,17 +1,17 @@
 package com.example.spring_pawn_app.service.customer;
 
 
+import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
 import com.example.spring_pawn_app.mapper.CustomerMapper;
-import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.model.Customer;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +31,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<Customer> findByCustomer(String customer_name, PageRequest page) {
-        return iCustomerRepository.findByCustomer(customer_name, page );
+        return iCustomerRepository.findByCustomer(customer_name, page);
     }
 
     @Override
@@ -44,9 +44,15 @@ public class CustomerService implements ICustomerService {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
 
+    /**
+     * Create by: ManPD
+     * Date create: 21/5/2023
+     *
+     * @param customer
+     */
     @Override
-    public Customer create(Customer customer) {
-        return this.iCustomerRepository.save(customer);
+    public Customer createCustomer(Customer customer) {
+        return iCustomerRepository.save(customer);
     }
 
     /**
