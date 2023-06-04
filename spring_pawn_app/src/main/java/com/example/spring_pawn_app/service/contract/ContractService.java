@@ -25,10 +25,10 @@ public class ContractService implements IContractService{
      * Created by: NamHV
      * Date create: 3/6/2023
      * */
-//    @Override
-//    public void updateContractLiquidation(Integer id) {
-//            iContractRepository.updateContractLiquidation(id);
-//    }
+    @Override
+    public void updateContractLiquidation(Integer id) {
+            iContractRepository.updateContractLiquidation(id);
+    }
 
     /**
      * Created by: NamHV

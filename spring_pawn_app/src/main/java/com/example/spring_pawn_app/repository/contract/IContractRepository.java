@@ -42,8 +42,8 @@ public interface IContractRepository extends JpaRepository<Contract, Integer>{
      * Function: update contract
 //     * @param id
      */
-//    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
-//    @Modifying
-//    void updateContractLiquidation(@Param("id") Integer id);
+    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
+    @Modifying
+    void updateContractLiquidation(@Param("id") Integer id);
 
 }

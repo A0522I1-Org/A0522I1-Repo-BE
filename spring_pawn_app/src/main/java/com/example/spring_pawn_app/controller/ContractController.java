@@ -30,9 +30,9 @@ public class ContractController {
      * Date create: 3/6/2023
      * */
 //
-//    @PutMapping("/contract/{id}")
-//    public ResponseEntity<?> updateContract(@PathVariable Integer id){
-//        iContractService.updateContractLiquidation( id );
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @PutMapping("/contract/{id}")
+    public ResponseEntity<?> updateContract(@PathVariable Integer id){
+        iContractService.updateContractLiquidation( id );
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
