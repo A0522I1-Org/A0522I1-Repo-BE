@@ -2,7 +2,9 @@ package com.example.spring_pawn_app.dto.customer;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class CustomerRegisterDTO {
     /**
@@ -21,10 +23,10 @@ public class CustomerRegisterDTO {
     private String email;
     @NotBlank(message = "Hay nhap so điện thoại của bạn")
     @Pattern(regexp = "^(0|\\+?84)(\\d){9}$", message = "Số điện thoại không đúng")
-    @Size(min = 10,max = 12)
+    @Size(min = 10, max = 12)
     private String phone;
     @NotBlank(message = "Nhap dia chi cua ban")
-    @Pattern(regexp = "^[0-9a-zA-Z\\u00C0-\\u1FFF\\u2C00-\\uD7FF\\uF900-\\uFFFD\\p{Mn}\\s,/-]*$" , message = "Địa chỉ bị sai")
+    @Pattern(regexp = "^[0-9a-zA-Z\\u00C0-\\u1FFF\\u2C00-\\uD7FF\\uF900-\\uFFFD\\p{Mn}\\s,/-]*$", message = "Địa chỉ bị sai")
     @Length(min = 30, message = "Tên địa chỉ quá ngắn")
     @Length(max = 50, message = "Tên địa chỉ quá dài")
     private String address;
