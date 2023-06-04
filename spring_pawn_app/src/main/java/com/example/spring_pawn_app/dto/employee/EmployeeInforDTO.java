@@ -36,9 +36,11 @@ public class EmployeeInforDTO implements Validator {
     private String idCard;
     private String avatar;
     private String userName;
+    @NotBlank(message = "Vui lòng nhập mật khẩu")
     @Length(min = 10,max = 30,message = "Mật khẩu phải chứa ít nhất 10 kí tự và tối đa 30 kí tự")
     @Pattern(regexp ="^(?=.*[A-Z])(?=.*\\d)(?=.*[a-zA-Z0-9])[\\w!@#$%^&*()-=_+<>?'\"{}`~/|]*\\d?$",message = "Mật khẩu phải chứa kí tự viết hoa, số và kí tự đặt biệt")
     private String password;
+    @NotBlank(message = "Vui lòng nhập lại mật khẩu")
     private String confirmPassword;
     public EmployeeInforDTO() {
     }

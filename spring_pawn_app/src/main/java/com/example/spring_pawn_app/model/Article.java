@@ -19,7 +19,6 @@ public class Article {
     private String content;
 
     private LocalDate publicDate;
-
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;

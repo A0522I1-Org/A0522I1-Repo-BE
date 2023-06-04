@@ -1,13 +1,13 @@
 package com.example.spring_pawn_app.service.mail_sender;
 
-import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.dto.contract.ContractDto;
-import com.example.spring_pawn_app.model.Contract;
-import com.example.spring_pawn_app.repository.contract.IContractRepository;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,12 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 @Component
 @EnableScheduling

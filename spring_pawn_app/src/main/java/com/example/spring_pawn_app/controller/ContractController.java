@@ -1,9 +1,9 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
-import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.dto.contract.ContractEditDto;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ContractController {
     @Autowired
     private IContractService iContractService;
     @Autowired
-    private MailSender mailSender;
+     private MailSender mailSender;
 
     /**
      * Created by: NamHV
@@ -96,7 +96,7 @@ public class ContractController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /** Create by PhongTD
+     /** Create by PhongTD
      * Date created: 20/05/2023
      * @param pageable
      * @return page<Contract>
@@ -162,21 +162,6 @@ public class ContractController {
         return iContractService.search(customerName, productName, beforeDate, afterDate, status, pageable);
 
     }
-
-
-    //    @PostMapping("")
-//    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
-//        iContractService.saveContract(contractDto);
-//        try {
-//            mailSender.sendEmailCreate(contractDto);
-//        } catch (MessagingException e) {
-//            throw new RuntimeException(e);
-//     /** Create by ThuongVTH
-//     * Date create: 02/06/2023
-//     * @param contractDto
-//     * @param bindingResult
-//     * @return
-//     */
     @PostMapping("")
     public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -194,3 +179,4 @@ public class ContractController {
         }
     }
 }
+
