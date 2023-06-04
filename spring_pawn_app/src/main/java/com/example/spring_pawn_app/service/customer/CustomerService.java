@@ -33,7 +33,6 @@ public class CustomerService implements ICustomerService {
     public Customer findCustomerById(int idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
     }
-
     @Override
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
@@ -63,6 +62,7 @@ public class CustomerService implements ICustomerService {
                 .findFirst()
                 .map(customerMapper::mapToDtoDetail);
     }
+
 
     @Override
     @Transactional(readOnly = true)

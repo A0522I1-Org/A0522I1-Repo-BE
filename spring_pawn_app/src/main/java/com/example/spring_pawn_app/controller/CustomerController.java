@@ -30,7 +30,6 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
-
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
@@ -70,7 +69,6 @@ public class CustomerController {
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
-
     @GetMapping()
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
@@ -101,7 +99,6 @@ public class CustomerController {
     public ResponseEntity<HttpResponse> getAllCustomerRestore(@RequestParam Optional<String> valueReceived,
                                                               @RequestParam Optional<Integer> page,
                                                               @RequestParam Optional<Integer> size) {
-
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
         Page<CustomerDTORestore> customerRestores = iCustomerService.getAllWithRequirementInRestore(valueReceived.orElse(""), pageable);
 

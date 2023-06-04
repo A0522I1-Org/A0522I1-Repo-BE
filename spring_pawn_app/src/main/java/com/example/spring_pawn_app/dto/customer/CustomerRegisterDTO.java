@@ -1,5 +1,6 @@
 package com.example.spring_pawn_app.dto.customer;
 
+
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
@@ -29,6 +30,7 @@ public class CustomerRegisterDTO {
     @Pattern(regexp = "^[0-9a-zA-Z\\u00C0-\\u1FFF\\u2C00-\\uD7FF\\uF900-\\uFFFD\\p{Mn}\\s,/-]*$", message = "Địa chỉ bị sai")
     @Length(min = 30, message = "Tên địa chỉ quá ngắn")
     @Length(max = 50, message = "Tên địa chỉ quá dài")
+
     private String address;
     private String note;
 
@@ -42,6 +44,7 @@ public class CustomerRegisterDTO {
         this.address = address;
         this.note = note;
     }
+
 
     public String getCustomerName() {
         return customerName;
