@@ -1,6 +1,5 @@
 package com.example.spring_pawn_app.dto.customer;
 
-
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
