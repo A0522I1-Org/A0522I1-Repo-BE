@@ -3,6 +3,7 @@ package com.example.spring_pawn_app.repository.customer;
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.model.Customer;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.phone, c.status " +
+    @Query(value = "select c.id, c.customer_code, c.delete_time, c.phone_number,c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.phone, c.status " +
             "from customer as c " +
             "where c.id = :id and c.is_flag = 0", nativeQuery = true)
     Customer findCustomerById(@Param("id") int id);
@@ -86,5 +87,14 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     @Transactional
     @Query(value = "UPDATE Customer c SET c.isFlag = FALSE WHERE c.id = ?1 AND c.isFlag = TRUE")
     void restoreCustomerById(Integer id);
+
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * Function: search customer
+     //   * @param id
+     */
+    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ",nativeQuery = true)
+    Page<Customer> findByCustomer(String customer_name, PageRequest page);
 
 }

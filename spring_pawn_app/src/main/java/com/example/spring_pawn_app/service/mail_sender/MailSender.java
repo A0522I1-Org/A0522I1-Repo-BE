@@ -33,7 +33,6 @@ public class MailSender {
     private IContractRepository iContractRepository;
 
     /**
-<<<<<<< HEAD
      * Created By: HoangVV
      * Date create: 15/05/2023
      * @param contract

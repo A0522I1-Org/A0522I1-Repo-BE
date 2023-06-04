@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.controller;
 
+import com.example.spring_pawn_app.model.Product;
+import com.example.spring_pawn_app.service.product.IProductService;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.spring_pawn_app.dto.contract.ContractProductDTO;
 import com.example.spring_pawn_app.model.Contract;
@@ -13,19 +15,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/")
-
+@RequestMapping("/api/products")
 public class ProductController {
     @Autowired
     private IContractService iContractService;
+
+    @Autowired
+    private IProductService iProductService;
     /**
      * genarate 13May2023
      * TinPNT
      * @return List of contract with status in (1,2) and can find with customer name and category id of product
      */
-    @GetMapping("products")
+    @GetMapping("")
     public ResponseEntity<Page<Contract>> findAllContractNotPay(
             @RequestParam(value = "namecustomer", defaultValue = "") String nameCustomer,
             @RequestParam(value = "categoryname", defaultValue = "") String categoryName,
@@ -44,7 +50,7 @@ public class ProductController {
      * TinPNT
      * @return contract with status in (1,2) by ID of contract
      */
-    @GetMapping("products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ContractProductDTO> getProduct(@PathVariable("id") int id) {
         Contract contract = iContractService.findContractNotPayById(id);
         ContractProductDTO contractDTO = new ContractProductDTO();
@@ -55,5 +61,13 @@ public class ProductController {
         return new ResponseEntity<>(contractDTO, HttpStatus.OK);
     }
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    @GetMapping("/customer/{id}")
+    public List<Product> findProductByCustomer(@PathVariable("id") Integer id) {
+        return iProductService.findAllByCustomer( id );
+    }
 
 }

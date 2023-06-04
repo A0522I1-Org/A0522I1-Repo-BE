@@ -8,8 +8,8 @@ import com.example.spring_pawn_app.dto.customer.HttpResponse;
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.customer.CustomerRegisterDTO;
 import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.service.customer.CustomerService;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +30,7 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
+
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
@@ -73,6 +74,11 @@ public class CustomerController {
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
+    /**
+     * @author Trần Thế Huy
+     * @version 1
+     * @since 28/5/2023
+     */
     @GetMapping()
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
@@ -173,6 +179,20 @@ public class CustomerController {
         iCustomerService.restoreCustomerById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    @GetMapping("/customers")
+    public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name",defaultValue = "") String customer_name,
+                                                  @RequestParam(defaultValue = "0") int page) {
+        Page<Customer> customerPage = iCustomerService.findByCustomer(customer_name,PageRequest.of( page,5 ) );
+        if (customerPage == null){
+            return  new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Page<Customer>>( customerPage,HttpStatus.OK);
+    }
+
 }
 
 

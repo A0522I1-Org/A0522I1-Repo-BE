@@ -1,14 +1,11 @@
-package com.example.spring_pawn_app.dto;
+package com.example.spring_pawn_app.dto.contract;
 
 import com.example.spring_pawn_app.model.Category;
 import com.example.spring_pawn_app.model.Status;
 
 import java.time.LocalDate;
 
-/**
- * Create by PhongTD
- * Date created: 20/05/2023
- */
+
 public class ContractEditDto {
     private Integer id;
     private String contractCode;
