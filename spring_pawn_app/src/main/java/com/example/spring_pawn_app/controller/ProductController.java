@@ -2,7 +2,6 @@ package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.model.Product;
 import com.example.spring_pawn_app.service.product.IProductService;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.spring_pawn_app.dto.contract.ContractProductDTO;
 import com.example.spring_pawn_app.model.Contract;
