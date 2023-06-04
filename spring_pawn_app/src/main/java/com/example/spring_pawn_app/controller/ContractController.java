@@ -167,7 +167,7 @@ public class ContractController {
 //     * @param bindingResult
 //     * @return
 //     */
-    @PostMapping("/contract")
+    @PostMapping("")
     public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             List<ObjectError> errors = bindingResult.getAllErrors();
