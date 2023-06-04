@@ -1,7 +1,5 @@
 package com.example.spring_pawn_app.config;
 
-
-
 import com.example.spring_pawn_app.security.jwt.JwtEntryPoint;
 import com.example.spring_pawn_app.security.jwt.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +54,8 @@ public class WebSecurityConfig {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/api/**/**").permitAll()
+                .antMatchers("/api/auth/**","/api/**").permitAll()
+//                .antMatchers("/api/test/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.authenticationProvider(authenticationProvider());
         httpSecurity.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);

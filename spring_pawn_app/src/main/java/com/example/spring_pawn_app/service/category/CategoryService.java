@@ -10,37 +10,13 @@ import java.util.List;
 @Service
 public class CategoryService implements ICategoryService{
     @Autowired
-    private ICategoryRepository iCategoryRepository;
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find all category
-     * @return List<Category>
-     */
+    ICategoryRepository iCategoryRepository;
     @Override
-    public List<Category> findAll() {
+    public List<Category> getAllCategory() {
         return iCategoryRepository.findAll();
     }
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * Function: find category by id
-     * * @param id
-     * @return Category
-     */
     @Override
-    public Category findById(Integer id) {
-        return iCategoryRepository.findAllById(id);
-//    ICategoryRepository iCategoryRepository;
-//    @Override
-//    public List<Category> getAllCategory() {
-//        return iCategoryRepository.findAll();
-//    }
-//    @Override
-//    public Category findById(int id) {
-//        return iCategoryRepository.findById(id).get();
-//    }
+    public Category findById(int id) {
+        return iCategoryRepository.findById(id).get();
     }
 }

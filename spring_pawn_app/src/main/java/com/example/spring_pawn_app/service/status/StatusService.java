@@ -9,28 +9,9 @@ import java.util.List;
 
 @Service
 public class StatusService implements IStatusService{
+
     @Autowired
-    private IStatusRepository iStatusRepository;
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * @param id
-     * @return Status was found by id
-     */
-    public Status findById(Integer id) {
-        return iStatusRepository.findAllById(id);
-    }
-
-    /**
-     * Created by: PhongTD
-     * Date created: 12/05/2023
-     * @return List status was found by id
-     */
-    @Override
-    public List<Status> findAll() {
-        return iStatusRepository.findAll();
-    }
+    IStatusRepository iStatusRepository;
 
     @Override
     public List<Status> getAllStatus() {
