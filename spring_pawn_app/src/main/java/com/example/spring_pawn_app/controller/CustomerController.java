@@ -65,7 +65,11 @@ public class CustomerController {
     @PostMapping("dangkynhanh")
     public ResponseEntity<Customer> addNewCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
-        BeanUtils.copyProperties(customerRegisterDTO, customer);
+        customer.setName(customerRegisterDTO.getCustomerName());
+        customer.setEmail(customerRegisterDTO.getEmail());
+        customer.setPhone(customerRegisterDTO.getPhone());
+        customer.setAddress(customerRegisterDTO.getAddress());
+        customer.setNote(customerRegisterDTO.getNote());
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
