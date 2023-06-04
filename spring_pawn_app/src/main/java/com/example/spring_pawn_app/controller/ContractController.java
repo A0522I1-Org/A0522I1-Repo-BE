@@ -162,21 +162,7 @@ public class ContractController {
         return iContractService.search(customerName, productName, beforeDate, afterDate, status, pageable);
 
     }
-
-//    @PostMapping("")
-//    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
-//        iContractService.saveContract(contractDto);
-//        try {
-//            mailSender.sendEmailCreate(contractDto);
-//        } catch (MessagingException e) {
-//            throw new RuntimeException(e);
-//     /** Create by ThuongVTH
-//     * Date create: 02/06/2023
-//     * @param contractDto
-//     * @param bindingResult
-//     * @return
-//     */
-    @PostMapping("/contract")
+    @PostMapping("")
     public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             List<ObjectError> errors = bindingResult.getAllErrors();
