@@ -37,6 +37,21 @@ public interface ICustomerService {
      */
     Customer createCustomer(Customer customer);
 
+    /**
+     * Create by: ManPD
+     * Date create: 6/6/2023
+     *
+     * @return String
+     */
+    String createCustomerCode ();
+    /**
+     * Create by: ManPD
+     * Date create: 6/6/2023
+     *
+     * @return customer
+     */
+    Customer getCustomerByCustomerCode(String customerCode);
+
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);

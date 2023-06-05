@@ -30,9 +30,11 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
                     "from customer as c " +
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<CustomerListDto> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
+
     /**
      * Created by: PhongTD
      * Date created: 16/05/2023
+     *
      * @param customerNameEdit
      * @param id
      */
@@ -92,9 +94,20 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
      * Created by: NamHV
      * Date create: 3/6/2023
      * Function: search customer
-     //   * @param id
+     * //   * @param id
      */
-    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ",nativeQuery = true)
+    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ", nativeQuery = true)
     Page<Customer> findByCustomer(String customer_name, PageRequest page);
+
+    /**
+     * Created by: ManPD
+     * Date create: 6/6/2023
+     *
+     * @param customerCode
+     * @return customer
+     */
+    @Query(value = "select c.id, c.customer_name, c.customer_code, c.id_card, c.address, c.note, c.is_flag, c.email, c.phone_number from customer c where c.customer_code like ?1 and c.is_flag = 0", nativeQuery = true)
+    Customer findCustomerByCustomerCode(String customerCode);
+
 
 }
