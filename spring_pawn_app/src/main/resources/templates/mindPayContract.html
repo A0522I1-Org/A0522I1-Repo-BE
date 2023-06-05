@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .image {
+            text-align: center;
+        }
+
+        .image img {
+            width: 200px;
+            height: auto;
+        }
+
+        .my-btn-3 {
+            background-image: linear-gradient(#EE4D2D, #FF7337);
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            /*box-shadow: 0px 0px 10px #aaa;*/
+            width: 200px !important;
+            margin: 0 180px;
+        }
+    </style>
+</head>
+<body>
+<div class="image">
+    <img src="https://firebasestorage.googleapis.com/v0/b/demofirebase-bd2d9.appspot.com/o/LOGO-01.png?alt=media&token=d55810bb-aedb-4643-967b-059d4da64745" alt="null">
+</div>
+<h1 style="margin-top: 0px !important;"><b>NHẮC NHỞ THANH TOÁN HỢP ĐỒNG</b></h1>
+<div class="container">
+    <b><p style="color: #EE4D2D">Cảm ơn quý khách đã sử dụng dịch vụ</p>
+        <p><span style="color: #EE4D2D">DANA88</span> xin thông báo quý khách có một hợp đồng sắp đến hạn thanh toán vào ngày mai như sau:
+        </p></b>
+    <div style="margin: 0 40px">
+        <p>Họ và tên: <span style="font-weight: bold" th:text="${name}"></span></p>
+        <p>Địa chỉ: <span style="font-weight: bold" th:text="${address}"></span></p>
+        <p>Số điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+        <p>Mã hợp đồng: <span style="font-weight: bold" th:text="${contractCode}"></span></p>
+        <p>Ngày làm hợp đồng: <span style="font-weight: bold" th:text="${beginDate}"></span></p>
+        <p>Đồ cầm: <span style="font-weight: bold" th:text="${productName}"></span></p>
+        <p>Số tiền lãi cần thanh toán: <span style="font-weight: bold" th:text="${interest}"></span></p>
+        <p>Bạn cần thánh toán vào trước ngày: <span style="font-weight: bold" th:text="${endDate}"></span></p>
+        <p>Bạn vui lòng tới văn phòng DANA88 tại địa chỉ <b>số 181 Trần Hưng Đạo, quận Sơn Trà, Đà Nẵng</b> để hoàn tất thủ tục thanh toán.</span></p>
+    </div>
+
+    <div class="d-flex flex-column ">
+        <b><p class="text-center">Để thanh toán trực tuyến vui lòng nhấp vào</p></b>
+        <button class="my-btn-3">Nhấp chuột tại đây</button>
+    </div>
+</div>
+</body>
+</html>

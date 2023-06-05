@@ -99,26 +99,41 @@ public class MailSender {
      * Date created: 28/05/2023
      * Function: Send email reminding customers to pay the contract
      */
-    @Scheduled(cron = "0 00 10 * * ?")
-    public void sendEmailMindToPay() {
+    @Scheduled(cron = "0 23 19 * * ?")
+    public void sendEmailMindToPay() throws MessagingException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         LocalDate expiryDate = LocalDate.now();
-        List<String> listMail = new ArrayList<>();
         List<Contract> contracts = iContractRepository.findAll();
         for (Contract contract : contracts) {
             if (contract.getEndDate().getYear() == expiryDate.getYear()
                     && contract.getEndDate().getMonthValue() == expiryDate.getMonthValue()
-                    && contract.getEndDate().getDayOfMonth() + 1 == expiryDate.getDayOfMonth()) {
-                SimpleMailMessage message = new SimpleMailMessage();
-                message.setTo(contract.getCustomer().getEmail());
-                message.setSubject("Nhắc nhở lịch thanh toán hợp đồng ");
-                message.setText("Hệ thống DANA88 xin thông báo tới khách hàng " + contract.getCustomer().getName() +
-                        "có hợp đồng số " + contract.getContractCode() + "cần thanh toán vào ngày mai "
-                        + contract.getEndDate() + ". Quý khách vui lòng thanh toán đúng hạn!");
-                this.javaMailSender.send(message);
+                    && contract.getEndDate().getDayOfMonth() - 1 == expiryDate.getDayOfMonth()) {
+                ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+                templateResolver.setPrefix("/templates/");
+                templateResolver.setSuffix(".html");
+                templateResolver.setTemplateMode("HTML");
+                SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+                templateEngine.setTemplateResolver(templateResolver);
+                System.out.println(contract.getEndDate().getDayOfMonth());
+                MimeMessage messages = javaMailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(messages, true, "UTF-8");
+                Context context = new Context();
+                context.setVariable("name", contract.getCustomer().getName());
+                context.setVariable("contractCode", contract.getContractCode());
+                context.setVariable("productName", contract.getProduct().getName());
+                context.setVariable("beginDate", contract.getBeginDate().format(formatter));
+                context.setVariable("endDate", contract.getEndDate().format(formatter));
+                context.setVariable("interest", contract.getInterest());
+                context.setVariable("address", contract.getCustomer().getAddress());
+                context.setVariable("phone", contract.getCustomer().getPhone());
+
+                String html = templateEngine.process("mindPayContract", context);
+                messages.setContent(html, "text/html; charset=UTF-8");
+                helper.setTo(contract.getCustomer().getEmail());
+                helper.setSubject("Nhắc nhở thanh toán hợp đồng");
+                this.javaMailSender.send(messages);
             }
         }
-        System.out.println("End");
     }
     public void sendOtpMail(String email,String otp){
         SimpleMailMessage message = new SimpleMailMessage();
