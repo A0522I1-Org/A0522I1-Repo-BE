@@ -55,7 +55,6 @@ public class WebSecurityConfig {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/api/**/**").permitAll()
                 .antMatchers("/api/auth/**","/api/**").permitAll()
-//                .antMatchers("/api/test/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.authenticationProvider(authenticationProvider());
         httpSecurity.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
