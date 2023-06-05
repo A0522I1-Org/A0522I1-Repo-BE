@@ -12,11 +12,6 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.util.Optional;
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
 public interface ICustomerService {
     /**
      * Created by: NamHV
