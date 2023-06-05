@@ -2,6 +2,8 @@ package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.dto.request.ResetPasswordForm;
 import com.example.spring_pawn_app.service.forgotpassword.ForgotPasswordService;
+import com.example.spring_pawn_app.service.forgotpassword.OtpGenerator;
+import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring_pawn_app.dto.request.SignInForm;
@@ -25,6 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +35,8 @@ import java.util.Set;
 @RestController
 @RequestMapping("api/auth")
 public class UserController {
+    @Autowired
+    private MailSender mailSender;
     @Autowired
     private IUserService userService;
     @Autowired
@@ -70,7 +75,8 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getAuthorities()));
+        LocalDateTime now = LocalDateTime.now();
+        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getAuthorities(),now));
     }
     @GetMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestParam("email") String email) {
@@ -87,8 +93,10 @@ public class UserController {
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         try {
             // Gọi service để kiểm tra và đổi mật khẩu
-            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), passwordEncoder.encode(resetPasswordForm.getNewPassword()));
-            return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
+            mailSender.sendPassword(resetPasswordForm.getEmail(),resetPasswordForm.getNewPassword());
+            String newPassword = passwordEncoder.encode(resetPasswordForm.getNewPassword());
+            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), newPassword);
+             return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("Mã OTP không hợp lệ");
         }

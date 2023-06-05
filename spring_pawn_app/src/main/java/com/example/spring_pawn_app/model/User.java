@@ -3,9 +3,7 @@ package com.example.spring_pawn_app.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,13 +11,16 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @NotNull
     @Column(columnDefinition = ("varchar(45)"))
+    @Size(min = 4,max = 45)
     private String userName;
     @NotNull
     @Column(columnDefinition = ("varchar(255)"))
+    @Size(min = 4,max = 100)
     private String password;
 
     @OneToOne

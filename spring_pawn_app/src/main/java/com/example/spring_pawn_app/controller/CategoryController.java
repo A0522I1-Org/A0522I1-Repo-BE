@@ -57,12 +57,12 @@ public class CategoryController {
         return iCategoryService.findById(id);
     }
 
-    @GetMapping("")
-    public List<Category> getAllCategory(){
-        return iCategoryService.findAllCategory();
-    }
-    @GetMapping("{id}")
-    public Category findById(@PathVariable("id") int id){
-        return iCategoryService.findById(id);
-    }
+//    @GetMapping("")
+//    public List<Category> getAllCategory(){
+//        return iCategoryService.findAllCategory();
+//    }
+//    @GetMapping("{id}")
+//    public Category findById(@PathVariable("id") int id){
+//        return iCategoryService.findById(id);
+//    }
 }

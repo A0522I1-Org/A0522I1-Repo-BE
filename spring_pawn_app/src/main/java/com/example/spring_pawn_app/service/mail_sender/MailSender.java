@@ -127,4 +127,11 @@ public class MailSender {
         message.setText("Mã OTP của bạn là " + otp);
         javaMailSender.send(message);
     }
+    public void sendPassword(String email,String newPassword){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Thay đổi mật khẩu");
+        message.setText("Mật khẩu mới của bạn là " + newPassword);
+        javaMailSender.send(message);
+    }
 }
