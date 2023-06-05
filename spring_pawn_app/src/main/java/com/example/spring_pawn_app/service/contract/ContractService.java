@@ -51,7 +51,7 @@ public class ContractService implements IContractService {
 
         Employee employee = employeeService.findEmployeeByUserName(contractDto.getUsername());
 
-        contract.setContractCode("CT-"+this.generateContractCode());
+        contract.setContractCode("HD-"+this.generateContractCode());
         contract.setBeginDate(contractDto.getBeginDate());
         contract.setEndDate(contractDto.getEndDate());
         contract.setCustomer(customerService.findCustomerById(contractDto.getCustomer().getId()));
