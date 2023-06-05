@@ -8,9 +8,13 @@ import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class ForgotPasswordService implements IForgotPasswordService{
@@ -35,6 +39,9 @@ public class ForgotPasswordService implements IForgotPasswordService{
         Cache otpCache = cacheManager.getCache("otpCache");
         otpCache.put(email,otp);
 
+        evictAllcachesAtIntervals();
+        System.out.println("bat dong bo");
+
     }
 
     @Override
@@ -52,11 +59,28 @@ public class ForgotPasswordService implements IForgotPasswordService{
             User user = userRepository.findUserByEmployee(employee).get();
             user.setPassword(newPassword);
             userRepository.save(user);
-
             //Xoa OTP ra khoi cache
             otpCache.evict(email);
 
         }
+    }
+    public void evictAllCaches() {
+        cacheManager.getCacheNames().stream()
+                .forEach(cacheName -> cacheManager.getCache(cacheName).clear());
+    }
 
+    public void evictAllcachesAtIntervals() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            // Giả lập thực hiện một tác vụ bất đồng bộ
+            try {
+                Thread.sleep(1000 * 5 * 60  );
+                evictAllCaches();
+                System.out.println("da xoa cache");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Tác vụ bất đồng bộ đã hoàn thành");
+        });
     }
 }
