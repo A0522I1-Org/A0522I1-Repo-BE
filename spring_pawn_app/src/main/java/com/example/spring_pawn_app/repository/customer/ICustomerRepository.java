@@ -96,7 +96,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
      * Function: search customer
      * //   * @param id
      */
-    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ", nativeQuery = true)
+    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ",nativeQuery = true)
     Page<Customer> findByCustomer(String customer_name, PageRequest page);
 
     /**
