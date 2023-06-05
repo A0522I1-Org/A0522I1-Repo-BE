@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/categories")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
-
 public class CategoryController {
 
     @Autowired
@@ -57,7 +56,12 @@ public class CategoryController {
     public Category getCategoryById(@PathVariable("id") Integer id) {
         return iCategoryService.findById(id);
     }
-    @GetMapping("/category/{id}")
+
+    @GetMapping("")
+    public List<Category> getAllCategory(){
+        return iCategoryService.findAllCategory();
+    }
+    @GetMapping("{id}")
     public Category findById(@PathVariable("id") int id){
         return iCategoryService.findById(id);
     }

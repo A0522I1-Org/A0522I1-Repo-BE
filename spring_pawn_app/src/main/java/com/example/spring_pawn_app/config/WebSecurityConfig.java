@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configurable
 @EnableWebSecurity
@@ -58,6 +57,8 @@ public class WebSecurityConfig {
 //                .antMatchers("/api/**/**").permitAll()
 //                .antMatchers("/api/auth/**","/api/**").permitAll()
 //                .antMatchers("/api/test/**").permitAll()
+                .antMatchers("/api/**/**").permitAll()
+                .antMatchers("/api/auth/**","/api/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.authenticationProvider(authenticationProvider());
         httpSecurity.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
@@ -65,3 +66,4 @@ public class WebSecurityConfig {
     }
 
 }
+
