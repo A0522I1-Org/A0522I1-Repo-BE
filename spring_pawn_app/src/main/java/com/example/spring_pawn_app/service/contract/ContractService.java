@@ -5,7 +5,7 @@ import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.*;
 import com.example.spring_pawn_app.repository.contract.IContractRepository;
 import com.example.spring_pawn_app.repository.customer.ICustomerRepository;
-import com.example.spring_pawn_app.repository.product.IProductRepository;
+import com.example.spring_pawn_app.repository.role.product.IProductRepository;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
 import com.example.spring_pawn_app.service.employee.IEmployeeService;
 import com.example.spring_pawn_app.service.product.IProductService;
@@ -30,7 +30,7 @@ public class ContractService implements IContractService {
 
 
     @Autowired
-    ICustomerService customerService;
+    private ICustomerService customerService;
     @Autowired
     private IProductRepository iProductRepository;
     @Autowired

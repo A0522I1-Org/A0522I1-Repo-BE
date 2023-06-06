@@ -4,11 +4,9 @@ import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
 import com.example.spring_pawn_app.dto.customer.HttpResponse;
-
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.customer.CustomerRegisterDTO;
 import com.example.spring_pawn_app.model.Customer;
-import com.example.spring_pawn_app.service.customer.CustomerService;
 import com.example.spring_pawn_app.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

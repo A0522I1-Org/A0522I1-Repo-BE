@@ -6,26 +6,32 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "article")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+// main
     @Column(columnDefinition = "varchar(50)")
     private String title;
-    @Column(columnDefinition = "LONGTEXT")
+
+    @Column(columnDefinition = "varchar(200)")
     private String img;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(name = "content",columnDefinition = "LONGTEXT")
     private String content;
 
     private LocalDate publicDate;
-    @Column(columnDefinition = "bit")
-    @ColumnDefault("0")
-    private boolean isFlag;
 
     @ColumnDefault("0")
     @Column(columnDefinition = "bit")
     private boolean isFeature;
+
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
+    private boolean isFlag;
+
+
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -90,15 +96,16 @@ public class Article {
         return isFlag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setIsFlag(boolean flag) {
         isFlag = flag;
     }
 
-    public boolean isFeature() {
+
+    public Boolean getFeature() {
         return isFeature;
     }
 
-    public void setFeature(boolean feature) {
+    public void setIsFeature(Boolean feature) {
         isFeature = feature;
     }
 

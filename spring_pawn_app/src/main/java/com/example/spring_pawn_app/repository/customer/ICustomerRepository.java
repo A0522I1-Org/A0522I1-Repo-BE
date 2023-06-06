@@ -1,5 +1,4 @@
 package com.example.spring_pawn_app.repository.customer;
-
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.model.Customer;
 import org.springframework.data.domain.Page;
@@ -17,6 +16,7 @@ import java.util.List;
 
 @Repository
 @Transactional
+
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value = "select c.id, c.customer_code, c.delete_time, c.phone_number,c.customer_name, c.gender, c.phone, c.id_card, c.address, c.avatar, c.date_of_birth, c.email, c.is_flag, c.note, c.phone, c.status " +
             "from customer as c " +
