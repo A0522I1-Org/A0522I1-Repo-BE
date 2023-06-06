@@ -27,8 +27,7 @@ public class ArticleController {
     EmployeeService employeeService;
     @Autowired
     private ArticleService articleService;
-//    @Autowired
-//    private Employee employee;
+
 
     @GetMapping("/article-list")
     public ResponseEntity<Page<Article>> getList(@RequestParam(defaultValue = "0") int page){

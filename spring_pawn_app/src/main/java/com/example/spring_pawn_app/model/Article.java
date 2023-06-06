@@ -31,9 +31,6 @@ public class Article {
     @ColumnDefault("0")
     private boolean isFlag;
 
-//    @Column(columnDefinition = "bit")
-//    @ColumnDefault("0")
-//    private Boolean isFeature;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
