@@ -86,16 +86,16 @@ public class UserController {
             return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
         }
         catch (RuntimeException e){
-            return new ResponseEntity<>(new ResponseMessage("Mã otp không tồn tại trong hệ thống"),HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(new ResponseMessage("Email không tồn tại trong hệ thống."),HttpStatus.NOT_ACCEPTABLE);
         }
     }
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         try {
             // Gọi service để kiểm tra và đổi mật khẩu
-            mailSender.sendPassword(resetPasswordForm.getEmail(),resetPasswordForm.getNewPassword());
             String newPassword = passwordEncoder.encode(resetPasswordForm.getNewPassword());
             forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), newPassword);
+            mailSender.sendPassword(resetPasswordForm.getEmail(),resetPasswordForm.getNewPassword());
              return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("Mã OTP không hợp lệ");
