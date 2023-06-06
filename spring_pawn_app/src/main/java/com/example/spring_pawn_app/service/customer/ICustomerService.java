@@ -3,7 +3,7 @@ import com.example.spring_pawn_app.model.Customer;
 
 import java.util.Optional;
 
-import com.example.spring_pawn_app.dto.CustomerListDto;
+import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -24,7 +24,15 @@ public interface ICustomerService {
 
     Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer);
 
-    Customer create (Customer customer);
+    /**
+     * Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customer
+     * @return customer
+     */
+    Customer createCustomer(Customer customer);
+  
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);

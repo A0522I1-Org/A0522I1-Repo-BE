@@ -1,7 +1,7 @@
 package com.example.spring_pawn_app.service.customer;
 
 
-import com.example.spring_pawn_app.dto.CustomerListDto;
+import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
@@ -23,32 +23,37 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class CustomerService implements ICustomerService{
+public class CustomerService implements ICustomerService {
     @Autowired
     ICustomerRepository iCustomerRepository;
     @Autowired
     private CustomerMapper customerMapper;
+
     @Override
     public Customer findCustomerById(int idCustomer) {
         return iCustomerRepository.findCustomerById(idCustomer);
     }
-
     @Override
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
+
+    /**
+     * Create by: ManPD
+     * Date create: 21/5/2023
+     *
+     * @param customer
+     */
     @Override
-    public Customer create(Customer customer) {
-        return this.iCustomerRepository.save(customer);}
+    public Customer createCustomer(Customer customer) {
+        return iCustomerRepository.save(customer);
+    }
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
-
-
-
+    /**
+     * @author Trần Thế Huy
+     * @version 1
+     * @since 28/5/2023
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<CustomerDTODetail> getCustomerById(Integer id) {
@@ -57,6 +62,7 @@ public class CustomerService implements ICustomerService{
                 .findFirst()
                 .map(customerMapper::mapToDtoDetail);
     }
+
 
     @Override
     @Transactional(readOnly = true)

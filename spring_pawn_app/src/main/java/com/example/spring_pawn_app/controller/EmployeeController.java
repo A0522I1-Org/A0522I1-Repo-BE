@@ -1,44 +1,53 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.custom_error.InvalidDataException;
-import com.example.spring_pawn_app.dto.custom_error.ValidationError;
-import com.example.spring_pawn_app.dto.employee.EmployeeInforDTO;
 import com.example.spring_pawn_app.model.Employee;
-import com.example.spring_pawn_app.model.Role;
-import com.example.spring_pawn_app.model.User;
-import com.example.spring_pawn_app.security.userprincal.UserPrinciple;
-import com.example.spring_pawn_app.service.employee.EmployeeService;
-import com.example.spring_pawn_app.service.role.IRoleService;
-import com.example.spring_pawn_app.service.user.UserService;
-import org.springframework.beans.BeanUtils;
+import com.example.spring_pawn_app.service.employee.IEmployeeService;
+import com.example.spring_pawn_app.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.example.spring_pawn_app.dto.custom_error.InvalidDataException;
+import com.example.spring_pawn_app.dto.custom_error.ValidationError;
+import com.example.spring_pawn_app.dto.employee.EmployeeInforDTO;
+import com.example.spring_pawn_app.model.Role;
+import com.example.spring_pawn_app.model.User;
+import com.example.spring_pawn_app.security.userprincal.UserPrinciple;
+import com.example.spring_pawn_app.service.role.IRoleService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
+
 
 import javax.validation.Valid;
 import java.util.*;
+
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api")
 public class EmployeeController {
-
-    @Autowired
-    EmployeeService employeeService;
-    @Autowired
-    private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private IEmployeeService iEmployeeService;
 
-    @GetMapping("/employee/{username}")
+    @Autowired
+    private IUserService iUserService;
+
+
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param username
+     * @return
+     */
+    @GetMapping("/employees/{username}")
     public Employee findEmployeeByUserName(@PathVariable("username") String username) {
-        return employeeService.findEmployeeByUserName(username);
+        return iEmployeeService.findEmployeeByUserName(username);
     }
 
     /**
@@ -49,13 +58,13 @@ public class EmployeeController {
      * @param userPrinciple
      * @return EmployeeInforDTO
      */
-    @GetMapping("/employee/id")
+    @GetMapping("/employees/id")
     public ResponseEntity<EmployeeInforDTO> findByIdEmployee(@AuthenticationPrincipal UserPrinciple userPrinciple) {
         //tìm thông tin employee thông qua username đang đăng nhập
-        Integer idEmployeeCurrent = employeeService.findEmployeeByUserName(userPrinciple.getName()).getId();
+        Integer idEmployeeCurrent = iEmployeeService.findEmployeeByUserName(userPrinciple.getName()).getId();
         EmployeeInforDTO employeeInforDTO = new EmployeeInforDTO();
-        Employee employee = employeeService.finById(idEmployeeCurrent);
-        User user = userService.findByIdEmployee(idEmployeeCurrent);
+        Employee employee = iEmployeeService.finById(idEmployeeCurrent);
+        User user = iUserService.findByIdEmployee(idEmployeeCurrent);
         BeanUtils.copyProperties(employee, employeeInforDTO);
         employeeInforDTO.setDateOfBirth(employee.getDateOfBirth());
         employeeInforDTO.setUserName(user.getUserName());
@@ -74,7 +83,7 @@ public class EmployeeController {
      * @param bindingResult
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @PutMapping(value = "/employee/save")
+    @PutMapping(value = "/employees/save")
     public ResponseEntity<?> updateEmployeeInfor(@Valid @RequestBody EmployeeInforDTO
                                                          employeeInforDTO, BindingResult bindingResult, @AuthenticationPrincipal UserPrinciple userPrinciple) {
         new EmployeeInforDTO().validate(employeeInforDTO, bindingResult);
@@ -90,7 +99,7 @@ public class EmployeeController {
         }
 
         if (employeeInforDTO.getPassword()!=null) {
-            User user = userService.findByIdEmployee(employeeInforDTO.getId());
+            User user = iUserService.findByIdEmployee(employeeInforDTO.getId());
             user = new User(user.getId(), employeeInforDTO.getUserName(), passwordEncoder.encode(employeeInforDTO.getPassword()), user.getEmployee(), user.isFlag());
             Set<Role> roles = new HashSet<>();
             userPrinciple.getAuthorities().forEach(role -> {
@@ -98,9 +107,10 @@ public class EmployeeController {
                 roles.add(userRole);
             });
             user.setRoles(roles);
-            userService.save(user);
+            iUserService.save(user);
+            iEmployeeService.save(new Employee(employeeInforDTO.getId(), employeeInforDTO.getName(), employeeInforDTO.getDateOfBirth(), employeeInforDTO.getPhone(), employeeInforDTO.getEmail(), employeeInforDTO.getGender(), employeeInforDTO.getAddress(), employeeInforDTO.getIdCard(), false, employeeInforDTO.getAvatar()));
         } else {
-            employeeService.save(new Employee(employeeInforDTO.getId(), employeeInforDTO.getName(), employeeInforDTO.getDateOfBirth(), employeeInforDTO.getPhone(), employeeInforDTO.getEmail(), employeeInforDTO.getGender(), employeeInforDTO.getAddress(), employeeInforDTO.getIdCard(), false, employeeInforDTO.getAvatar()));
+            iEmployeeService.save(new Employee(employeeInforDTO.getId(), employeeInforDTO.getName(), employeeInforDTO.getDateOfBirth(), employeeInforDTO.getPhone(), employeeInforDTO.getEmail(), employeeInforDTO.getGender(), employeeInforDTO.getAddress(), employeeInforDTO.getIdCard(), false, employeeInforDTO.getAvatar()));
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

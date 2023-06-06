@@ -1,12 +1,13 @@
 package com.example.spring_pawn_app.controller;
-import com.example.spring_pawn_app.dto.CustomerListDto;
-import com.example.spring_pawn_app.dto.CustomerRegisterDTO;
+import com.example.spring_pawn_app.dto.contract.CustomerListDto;
+import com.example.spring_pawn_app.dto.contract.CustomerRegisterDTO;
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
 import com.example.spring_pawn_app.dto.customer.HttpResponse;
 import com.example.spring_pawn_app.model.Customer;
-import com.example.spring_pawn_app.service.customer.CustomerService;
+import com.example.spring_pawn_app.service.customer.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,31 +27,46 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class CustomerController {
     @Autowired
-    private CustomerService customerService;
-
+    private ICustomerService iCustomerService;
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param id
+     * @return
+     */
     @GetMapping("/customer/{id}")
     public Customer findCustomerById(@PathVariable("id") Integer id) {
-        return customerService.findCustomerById(id);
+        return iCustomerService.findCustomerById(id);
     }
 
+    /**
+     * Create by ThuongVTH
+     * Date create: 02/06/2023
+     * @param page
+     * @param nameCustomer
+     * @return
+     */
     @GetMapping("/customer")
     public Page<CustomerListDto> findAllCustomersByNameWithPage(@RequestParam(value = "page", defaultValue = "0") int page,
                                                                 @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
-        Page<CustomerListDto> customerPage = customerService.findAllCustomerWithPage(PageRequest.of(page, 2), nameCustomer);
+        Page<CustomerListDto> customerPage = iCustomerService.findAllCustomerWithPage(PageRequest.of(page, 5), nameCustomer);
         return customerPage;
     }
 
-
-    @PostMapping("/customer")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    /**
+     *Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customerRegisterDTO
+     * @return HttpStatus.CREATED
+     */
+    @PostMapping("dangkynhanh")
+    public ResponseEntity<Customer> addNewCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
-        customer.setAddress(customerRegisterDTO.getAddress());
-        customer.setEmail(customerRegisterDTO.getEmailCustomer());
-        customer.setName(customerRegisterDTO.getNameCustomer());
-        customer.setPhone(customerRegisterDTO.getPhoneCustomer());
-        customer.setNote(customerRegisterDTO.getNote());
-        return new ResponseEntity<>(customerService.create(customer), HttpStatus.CREATED);
+        BeanUtils.copyProperties(customerRegisterDTO, customer);
+        return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
+
 
     @GetMapping()
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
@@ -60,7 +76,7 @@ public class CustomerController {
                                                        @RequestParam Optional<Integer> size) {
 
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
-        Page<CustomerDTOList> customers = customerService.getAllWithRequirement(
+        Page<CustomerDTOList> customers = iCustomerService.getAllWithRequirement(
                 valueReceived.orElse(""), searchDateOfBirth.orElse(null), searchGender.orElse(null), pageable
         );
 
@@ -84,7 +100,7 @@ public class CustomerController {
                                                               @RequestParam Optional<Integer> size) {
 
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
-        Page<CustomerDTORestore> customerRestores = customerService.getAllWithRequirementInRestore(valueReceived.orElse(""), pageable);
+        Page<CustomerDTORestore> customerRestores = iCustomerService.getAllWithRequirementInRestore(valueReceived.orElse(""), pageable);
 
         if (customerRestores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -106,7 +122,7 @@ public class CustomerController {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Optional<CustomerDTODetail> optionalCustomer = customerService.getCustomerById(id);
+        Optional<CustomerDTODetail> optionalCustomer = iCustomerService.getCustomerById(id);
         if (optionalCustomer.isPresent()) {
             CustomerDTODetail customerDtoDetail = optionalCustomer.get();
             return ResponseEntity.ok().body(
@@ -129,12 +145,12 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
-        Optional<CustomerDTODetail> customer = customerService.getCustomerById(id);
+        Optional<CustomerDTODetail> customer = iCustomerService.getCustomerById(id);
         if (!customer.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // Xóa customer khỏi database
-        customerService.deleteCustomerById(id);
+        iCustomerService.deleteCustomerById(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -145,12 +161,12 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
-        Optional<CustomerDTODetail> customer = customerService.getCustomerByIdInRestore(id);
+        Optional<CustomerDTODetail> customer = iCustomerService.getCustomerByIdInRestore(id);
         if (!customer.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // khôi phục customer lại database
-        customerService.restoreCustomerById(id);
+        iCustomerService.restoreCustomerById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -40,4 +40,5 @@ public interface IArticleRepository extends JpaRepository<Article, Integer>{
                     "join employee e on a.employee_id = e.id\n" +
                     "where a.is_flag =0 and a.title like %?1% order by a.public_date DESC", nativeQuery = true)
     Page<Article> searchArticleByTitle(String name, Pageable pageable);
+
 }
