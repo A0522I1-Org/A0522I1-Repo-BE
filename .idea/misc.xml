@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> ed4feb539ab9e609b74322b04970e4ca84632d27
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
+>>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+=======
+>>>>>>> origin/TinPNT
+=======
+>>>>>>> origin/ThuongVTH
+=======
+>>>>>>> origin/TuanVD
+>>>>>>> origin/ThuongVTH
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/spring_pawn_app" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+<<<<<<< HEAD
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>
+=======
+<<<<<<< HEAD
+
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+
+</project>
+>>>>>>> ed4feb539ab9e609b74322b04970e4ca84632d27
+=======
+>>>>>>> ef2ed82afb60b4140a41f766547cecda93da3ff1
+>>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+=======
+>>>>>>> origin/TinPNT
+=======
+>>>>>>> origin/ThuongVTH
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+>>>>>>> origin/TuanVD
+</project>
+>>>>>>> origin/ThuongVTH

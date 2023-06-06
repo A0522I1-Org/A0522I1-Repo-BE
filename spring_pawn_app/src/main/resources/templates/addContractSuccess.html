@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .image {
+            text-align: center;
+        }
+
+        .image img {
+            width: 200px;
+            height: auto;
+        }
+
+        .my-btn-3 {
+            background-image: linear-gradient(#EE4D2D, #FF7337);
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            /*box-shadow: 0px 0px 10px #aaa;*/
+            width: 200px !important;
+            margin: 0 180px;
+        }
+    </style>
+</head>
+<body>
+<div class="image">
+    <img src="https://firebasestorage.googleapis.com/v0/b/demofirebase-bd2d9.appspot.com/o/LOGO-01.png?alt=media&token=d55810bb-aedb-4643-967b-059d4da64745" alt="null">
+</div>
+<h1 style="margin-top: 0px !important;"><b>THANH TOÁN THÀNH CÔNG</b></h1>
+<div class="container">
+    <b><p style="color: #EE4D2D">Cảm ơn quý khách đã sử dụng dịch vụ</p>
+        <p><span style="color: #EE4D2D">DANA88</span> xin thông báo giao dịch của Quý khách đã được thực hiện như sau:
+        </p></b>
+    <div style="margin: 0 40px">
+        <p>Họ và tên: <span style="font-weight: bold" th:text="${name}"></span></p>
+        <p>Sinh nhật: <span style="font-weight: bold" th:text="${dateOfBirth}"></span></p>
+        <p>Giới tính: <span style="font-weight: bold" th:text="${gender == 1 ? 'Nam' : 'Nữ'}"></span></p>
+        <p>Địa chỉ: <span style="font-weight: bold" th:text="${address}"></span></p>
+        <p>Số điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+        <p>Bạn đã hoàn thành thanh toán vào thời gian: <span style="font-weight: bold" th:text="${time}"></span></p>
+    </div>
+
+    <div class="d-flex flex-column ">
+        <b><p class="text-center">Để tiếp tục với giao dịch vui lòng Nhấp vào</p></b>
+        <button class="my-btn-3">Nhấp chuột tại đây</button>
+    </div>
+</div>
+</body>
+</html>

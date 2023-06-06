@@ -6,27 +6,32 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "article")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+// main
     @Column(columnDefinition = "varchar(50)")
     private String title;
+
     @Column(columnDefinition = "varchar(200)")
     private String img;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(name = "content",columnDefinition = "LONGTEXT")
     private String content;
 
     private LocalDate publicDate;
+
+    @ColumnDefault("0")
+    @Column(columnDefinition = "bit")
+    private boolean isFeature;
 
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
 
-    @ColumnDefault("0")
-    @Column(columnDefinition = "bit")
-    private boolean isFeature;
+
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -35,7 +40,8 @@ public class Article {
     public Article() {
     }
 
-    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFlag, boolean isFeature, Employee employee) {
+    public Article(Integer id, String title, String img, String content, LocalDate publicDate, boolean isFeature, boolean isFlag, Employee employee) {
+
         this.id = id;
         this.title = title;
         this.img = img;
@@ -90,15 +96,16 @@ public class Article {
         return isFlag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setIsFlag(boolean flag) {
         isFlag = flag;
     }
 
-    public boolean isFeature() {
+
+    public Boolean getFeature() {
         return isFeature;
     }
 
-    public void setFeature(boolean feature) {
+    public void setIsFeature(Boolean feature) {
         isFeature = feature;
     }
 
@@ -109,4 +116,9 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
+
 }
+
+
