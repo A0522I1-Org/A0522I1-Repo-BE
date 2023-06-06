@@ -17,11 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
 @Service
 public class CustomerService implements ICustomerService {
     @Autowired
@@ -30,6 +25,11 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerMapper customerMapper;
 
+    /**
+     * @author Trần Thế Huy
+     * @version 2
+     * @since 6/6/2023
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<CustomerDTODetail> getCustomerById(Integer id) {

@@ -19,11 +19,6 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
 @RestController
 @RequestMapping("/api/customers")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
@@ -31,6 +26,11 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
+    /**
+     * @author Trần Thế Huy
+     * @version 2
+     * @since 6/6/2023
+     */
     @GetMapping()
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
@@ -86,7 +86,8 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Optional<CustomerDTODetail> optionalCustomer = customerService.getCustomerById(id);
-        if (optionalCustomer.isPresent()) {
+        System.out.println(optionalCustomer);
+        if (optionalCustomer.get().getCustomerCode() != null) {
             CustomerDTODetail customerDtoDetail = optionalCustomer.get();
             return ResponseEntity.ok().body(
                     HttpResponse.builder()
@@ -109,7 +110,8 @@ public class CustomerController {
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
         Optional<CustomerDTODetail> customer = customerService.getCustomerById(id);
-        if (!customer.isPresent()) {
+        System.out.println(customer);
+        if (customer.get().getId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // Xóa customer khỏi database
@@ -125,7 +127,8 @@ public class CustomerController {
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
         Optional<CustomerDTODetail> customer = customerService.getCustomerByIdInRestore(id);
-        if (!customer.isPresent()) {
+        System.out.println(customer);
+        if (customer.get().getId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // khôi phục customer lại database

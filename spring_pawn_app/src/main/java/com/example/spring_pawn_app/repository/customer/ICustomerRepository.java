@@ -11,12 +11,13 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
+
+    /**
+     * @author Trần Thế Huy
+     * @version 2
+     * @since 6/6/2023
+     */
     @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.phone, c.identityCard, COUNT(con.id) " +
             "FROM Customer c " +
             "LEFT JOIN Contract con ON c.id = con.customer.id " +

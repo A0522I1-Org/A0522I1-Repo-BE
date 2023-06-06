@@ -9,12 +9,13 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.util.Optional;
 
-/**
- * @author Trần Thế Huy
- * @version 1
- * @since 28/5/2023
- */
+
 public interface ICustomerService {
+    /**
+     * @author Trần Thế Huy
+     * @version 6
+     * @since 6/6/2023
+     */
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);
