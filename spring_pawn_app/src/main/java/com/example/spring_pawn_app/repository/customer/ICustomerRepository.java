@@ -3,6 +3,7 @@ package com.example.spring_pawn_app.repository.customer;
 
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 
+import com.example.spring_pawn_app.dto.customer.CustomerDTO;
 import com.example.spring_pawn_app.model.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+
 
 @Repository
 @Transactional
@@ -32,9 +34,11 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
                     "from customer as c " +
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<CustomerListDto> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
+
     /**
      * Created by: PhongTD
      * Date created: 16/05/2023
+     *
      * @param customerNameEdit
      * @param id
      */
@@ -65,12 +69,19 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             "GROUP BY c.id")
     Page<Object[]> getAllWithRequirementInRestore(String valueReceived, Pageable pageable);
 
-    @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.identityCard, c.phone, c.email, " +
-            "c.address, c.avatar, c.note, COUNT(con.id) " +
-            "FROM Customer c " +
-            "LEFT JOIN Contract con ON con.customer.id = c.id " +
-            "WHERE c.id = ?1 AND c.isFlag = FALSE")
-    List<Object[]> getCustomerById(Integer id);
+
+            /**
+             * @author TuanVD
+             * @version 1
+             * @since 06/06/2023
+             */
+            @Query(value = "SELECT c.customerCode, c.name, c.gender, c.dateOfBirth, c.identityCard, c.phone, c.email, " +
+                    "c.address, c.avatar, c.note, COUNT(con.id) " +
+                            "FROM Customer c " +
+                            "LEFT JOIN Contract con ON con.customer.id = c.id " +
+                            "WHERE c.id = ?1 AND c.isFlag = FALSE")
+            List<Object[]> getCustomerById(Integer id);
+
 
     @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.identityCard, c.phone, " +
             "c.email, c.address, c.avatar, c.note, " +
@@ -78,7 +89,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             "FROM Customer c " +
             "LEFT JOIN Contract con ON con.customer.id = c.id " +
             "WHERE c.id = ?1 AND c.isFlag = TRUE")
-    List<Object[]> getCustomerByIdInRestore(Integer id);
+            List<Object[]> getCustomerByIdInRestore(Integer id);
 
     @Modifying
     @Transactional
@@ -94,9 +105,74 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
      * Created by: NamHV
      * Date create: 3/6/2023
      * Function: search customer
-     //   * @param id
+     * //   * @param id
      */
-    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ",nativeQuery = true)
+    @Query(value = "select id,address,avatar,customer_code,phone_number,date_of_birth,email,gender,id_card,is_flag, customer_name,note,phone,status, delete_time from customer where customer_name like %?% and is_flag = 0 ", nativeQuery = true)
     Page<Customer> findByCustomer(String customer_name, PageRequest page);
 
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO customer (customer_code, name, gender, date_of_birth," +
+            "id_card, phone, email, address, avatar) " +
+            "VALUES (:#{#customerDTO.customerCode}, :#{#customerDTO.name}, :#{#customerDTO.gender}, " +
+            ":#{#customerDTO.dateOfBirth}, :#{#customerDTO.identityCard}, :#{#customerDTO.phone}, " +
+            ":#{#customerDTO.email}, :#{#customerDTO.address}, :#{#customerDTO.avatar})", nativeQuery = true)
+    void createCustomer(@Param("customerDTO") CustomerDTO customerDTO);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE customer " +
+            "SET customer_code = :#{#customerDTO.customerCode}, " +
+            "name = :#{#customerDTO.name}, " +
+            "gender = :#{#customerDTO.gender}, " +
+            "date_of_birth = :#{#customerDTO.dateOfBirth}, " +
+            "id_card = :#{#customerDTO.identityCard}, " +
+            "phone = :#{#customerDTO.phone}, " +
+            "email = :#{#customerDTO.email}, " +
+            "address = :#{#customerDTO.address}, " +
+            "avatar = :#{#customerDTO.avatar} " +
+            "WHERE id = :#{#customerDTO.id}", nativeQuery = true)
+    void updateCustomer(@Param("customerDTO") CustomerDTO customerDTO);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Query(value = "select email from customer where email = ?1", nativeQuery = true)
+    String existsByCustomerEmail(String email);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Query(value = "select phone from customer where phone = ?1", nativeQuery = true)
+    String existsByCustomerPhone(String phoneNumber);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Query(value = "select id_card from customer where id_card = ?1", nativeQuery = true)
+    String existsByCustomerIdentityCard(String idCard);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @Query(value = "select customer_code from customer where customer_code = ?1", nativeQuery = true)
+    String existsByCustomerCode(String code);
 }

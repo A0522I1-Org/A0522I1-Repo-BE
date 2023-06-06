@@ -53,15 +53,4 @@ public class CustomerMapper {
                 .contractQuantity((Long) row[11])
                 .build();
     }
-
-    public CustomerDTORestore mapToDtoRestore(Object[] row) {
-        return CustomerDTORestore.builder()
-                .id((Integer) row[0])
-                .customerCode((String) row[1])
-                .name((String) row[2])
-                .phone((String) row[3])
-                .identityCard((String) row[4])
-                .deleteTime((LocalDateTime) row[5])
-                .build();
-    }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/products")
+
 public class ProductController {
     @Autowired
     private IContractService iContractService;

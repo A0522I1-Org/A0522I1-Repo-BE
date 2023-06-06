@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.service.customer;
+import com.example.spring_pawn_app.dto.customer.CustomerDTO;
 import com.example.spring_pawn_app.model.Customer;
-
 import java.util.Optional;
 
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
@@ -30,7 +30,6 @@ public interface ICustomerService {
     Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer);
 
     Customer create (Customer customer);
-    Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);
 
@@ -41,4 +40,48 @@ public interface ICustomerService {
     Page<CustomerDTOList> getAllWithRequirement(String valueReceived, LocalDate searchDateOfBirth, Integer searchGender, Pageable pageable);
 
     Page<CustomerDTORestore> getAllWithRequirementInRestore(String valueReceived, Pageable pageable);
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    Optional<CustomerDTODetail> getCustomerById(Integer id);
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    CustomerDTO addNewCustomer(CustomerDTO customer);
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    void updateCustomer(CustomerDTO customer);
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    String existsByCustomerEmail(String email);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    String existsByCustomerPhone(String phone);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    String existsByCustomerIdentityCard(String idCard);
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    String existsByCustomerCode(String code);
 }

@@ -1,22 +1,24 @@
 package com.example.spring_pawn_app.controller;
 
+import com.example.spring_pawn_app.dto.customer.CustomerDTO;
+import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
+import com.example.spring_pawn_app.service.customer.ICustomerService;
+import com.google.api.client.http.HttpResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.contract.CustomerRegisterDTO;
-import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
-import com.example.spring_pawn_app.dto.customer.HttpResponse;
+
 import com.example.spring_pawn_app.model.Customer;
-import com.example.spring_pawn_app.service.customer.CustomerService;
-import com.example.spring_pawn_app.service.customer.ICustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,6 +35,7 @@ public class CustomerController {
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
+     *
      * @param id
      * @return
      */
@@ -44,6 +47,7 @@ public class CustomerController {
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
+     *
      * @param page
      * @param nameCustomer
      * @return
@@ -72,11 +76,11 @@ public class CustomerController {
      * @since 28/5/2023
      */
     @GetMapping()
-    public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
-                                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
-                                                       @RequestParam Optional<Integer> searchGender,
-                                                       @RequestParam Optional<Integer> page,
-                                                       @RequestParam Optional<Integer> size) {
+    public ResponseEntity<?> getAllCustomer(@RequestParam Optional<String> valueReceived,
+                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
+                                            @RequestParam Optional<Integer> searchGender,
+                                            @RequestParam Optional<Integer> page,
+                                            @RequestParam Optional<Integer> size) {
 
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
         Page<CustomerDTOList> customers = iCustomerService.getAllWithRequirement(
@@ -86,21 +90,13 @@ public class CustomerController {
         if (customers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return ResponseEntity.ok().body(
-                HttpResponse.builder()
-                        .timeStamp(LocalDateTime.now().toString())
-                        .data(Collections.singletonMap("page", customers))
-                        .message("Customers Retrieved")
-                        .status(HttpStatus.OK)
-                        .statusCode(HttpStatus.OK.value())
-                        .build()
-        );
+        return (ResponseEntity<?>) ResponseEntity.ok();
     }
 
     @GetMapping("restore")
-    public ResponseEntity<HttpResponse> getAllCustomerRestore(@RequestParam Optional<String> valueReceived,
-                                                              @RequestParam Optional<Integer> page,
-                                                              @RequestParam Optional<Integer> size) {
+    public ResponseEntity<?> getAllCustomerRestore(@RequestParam Optional<String> valueReceived,
+                                                   @RequestParam Optional<Integer> page,
+                                                   @RequestParam Optional<Integer> size) {
 
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(5));
         Page<CustomerDTORestore> customerRestores = iCustomerService.getAllWithRequirementInRestore(valueReceived.orElse(""), pageable);
@@ -109,34 +105,106 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        return ResponseEntity.ok().body(
-                HttpResponse.builder()
-                        .timeStamp(LocalDateTime.now().toString())
-                        .data(Collections.singletonMap("page", customerRestores))
-                        .message("Customer Restores Retrieved")
-                        .status(HttpStatus.OK)
-                        .statusCode(HttpStatus.OK.value())
-                        .build()
-        );
+        return (ResponseEntity<?>) ResponseEntity.ok();
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<HttpResponse> getCustomerById(@PathVariable Integer id) {
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @PostMapping("add")
+    public ResponseEntity<?> addNewCustomer(@RequestBody CustomerDTO customer) {
+        String customerCode = customer.getCustomerCode();
+        String email = customer.getEmail();
+        String phone = customer.getPhone();
+        String idCard = customer.getIdentityCard();
+
+        // Kiểm tra customer code tồn tại
+        if (iCustomerService.existsByCustomerCode(customerCode) != null) {
+            return ResponseEntity.badRequest().body("Mã khách hàng đã tồn tại.");
+        }
+
+        // Kiểm tra email tồn tại
+        if (iCustomerService.existsByCustomerEmail(email) != null) {
+            return ResponseEntity.badRequest().body("Email đã tồn tại.");
+        }
+
+        // Kiểm tra số điện thoại tồn tại
+        if (iCustomerService.existsByCustomerPhone(phone) != null) {
+            return ResponseEntity.badRequest().body("Số điện thoại đã tồn tại.");
+        }
+
+        // Kiểm tra số CMND tồn tại
+        if (iCustomerService.existsByCustomerIdentityCard(idCard) != null) {
+            return ResponseEntity.badRequest().body("CMND hoặc Hộ chiếu đã tồn tại.");
+        }
+
+        // Thêm khách hàng mới
+        CustomerDTO addedCustomer = iCustomerService.addNewCustomer(customer);
+        return ResponseEntity.ok(addedCustomer);
+    }
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @PutMapping("update/{id}")
+    public ResponseEntity<?> updateCustomer(@PathVariable Integer id, @RequestBody CustomerDTO customer) {
+        if (id == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        // Kiểm tra xem khách hàng có tồn tại trong cơ sở dữ liệu hay không
+        Optional<CustomerDTODetail> existingCustomer = iCustomerService.getCustomerById(id);
+        if (existingCustomer.isPresent()) {
+            // Lấy thông tin khách hàng hiện tại
+            CustomerDTODetail currentCustomer = existingCustomer.get();
+
+            // Kiểm tra customer code tồn tại
+            if (!customer.getCustomerCode().equals(currentCustomer.getCustomerCode()) && iCustomerService.existsByCustomerCode(customer.getCustomerCode()) != null) {
+                return ResponseEntity.badRequest().body("Mã khách hàng đã tồn tại.");
+            }
+
+            // Kiểm tra email tồn tại
+            if (!customer.getEmail().equals(currentCustomer.getEmail()) && iCustomerService.existsByCustomerEmail(customer.getEmail()) != null) {
+                return ResponseEntity.badRequest().body("Email đã tồn tại.");
+            }
+
+            // Kiểm tra số điện thoại tồn tại
+            if (!customer.getPhone().equals(currentCustomer.getPhone()) && iCustomerService.existsByCustomerPhone(customer.getPhone()) != null) {
+                return ResponseEntity.badRequest().body("Số điện thoại đã tồn tại.");
+            }
+
+            // Kiểm tra số CMND tồn tại
+            if (!customer.getIdentityCard().equals(currentCustomer.getIdentityCard()) && iCustomerService.existsByCustomerIdentityCard(customer.getIdentityCard()) != null) {
+                return ResponseEntity.badRequest().body("CMND hoặc Hộ chiếu đã tồn tại.");
+            }
+
+            // Cập nhật thông tin khách hàng
+            customer.setId(id);
+            iCustomerService.updateCustomer(customer);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.ok().body("Customer not found");
+        }
+    }
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDTODetail> getCustomerById(@PathVariable Integer id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Optional<CustomerDTODetail> optionalCustomer = iCustomerService.getCustomerById(id);
         if (optionalCustomer.isPresent()) {
-            CustomerDTODetail customerDtoDetail = optionalCustomer.get();
-            return ResponseEntity.ok().body(
-                    HttpResponse.builder()
-                            .timeStamp(LocalDateTime.now().toString())
-                            .data(Collections.singletonMap("content", customerDtoDetail))
-                            .message("Customer Restores Retrieved")
-                            .status(HttpStatus.OK)
-                            .statusCode(HttpStatus.OK.value())
-                            .build()
-            );
+            CustomerDTODetail customerDto = optionalCustomer.get();
+            return new ResponseEntity<>(customerDto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -172,19 +240,18 @@ public class CustomerController {
         iCustomerService.restoreCustomerById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     /**
      * Created by: NamHV
      * Date create: 3/6/2023
-     * */
+     */
     @GetMapping("/customers/liquidation")
-    public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name",defaultValue = "") String customer_name,
+    public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name", defaultValue = "") String customer_name,
                                                   @RequestParam(defaultValue = "0") int page) {
-        Page<Customer> customerPage = iCustomerService.findByCustomer(customer_name,PageRequest.of( page,5 ) );
-        if (customerPage == null){
-            return  new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        Page<Customer> customerPage = iCustomerService.findByCustomer(customer_name, PageRequest.of(page, 5));
+        if (customerPage == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Page<Customer>>( customerPage,HttpStatus.OK);
+        return new ResponseEntity<Page<Customer>>(customerPage, HttpStatus.OK);
     }
 }
-
-
