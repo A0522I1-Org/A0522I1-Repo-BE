@@ -1,5 +1,7 @@
 package com.example.spring_pawn_app.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,26 +10,28 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(150)")
     private String name;
-
     private LocalDate dateOfBirth;
-    @Column(columnDefinition = ("varchar(10)"))
+    @Column(columnDefinition = ("varchar(20)"))
     private String phone;
     @Column(columnDefinition = ("varchar(256)"))
     private String email;
     private Integer gender;
-    @Column(columnDefinition = ("varchar(255)"))
+    @Column(columnDefinition = ("varchar(200)"))
     private String address;
-    @Column(columnDefinition = ("varchar(255)"))
-    private String id_cart;
-    @Column(columnDefinition = "bit(1)")
+    @Column(columnDefinition = ("varchar(20)"))
+    private String idCard;
+    @Column(columnDefinition = "bit")
+    @ColumnDefault("0")
     private boolean isFlag;
-    private String avt;
+    @Column(columnDefinition = "varchar(200)")
+    private String avatar;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String name, LocalDate dateOfBirth, String phone, String email, Integer gender, String address, String id_cart, boolean isFlag, String avt) {
+    public Employee(Integer id, String name, LocalDate dateOfBirth, String phone, String email, Integer gender, String address, String idCard, boolean isFlag, String avatar) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -35,9 +39,9 @@ public class Employee {
         this.email = email;
         this.gender = gender;
         this.address = address;
-        this.id_cart = id_cart;
+        this.idCard = idCard;
         this.isFlag = isFlag;
-        this.avt = avt;
+        this.avatar = avatar;
     }
 
     public Integer getId() {
@@ -96,12 +100,12 @@ public class Employee {
         this.address = address;
     }
 
-    public String getId_cart() {
-        return id_cart;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setId_cart(String id_cart) {
-        this.id_cart = id_cart;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public boolean isFlag() {
@@ -112,11 +116,11 @@ public class Employee {
         isFlag = flag;
     }
 
-    public String getAvt() {
-        return avt;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvt(String avt) {
-        this.avt = avt;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

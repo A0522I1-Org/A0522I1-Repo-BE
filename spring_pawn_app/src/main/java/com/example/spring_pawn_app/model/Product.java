@@ -7,24 +7,22 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(45)")
     private String name;
-    private double price;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @Column(columnDefinition = "bit(1)")
-    private boolean isFlag;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, double price, Category category, boolean isFlag) {
+    public Product(Integer id, String name, Double price, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
-        this.isFlag = isFlag;
     }
 
     public Integer getId() {
@@ -43,11 +41,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -57,13 +55,5 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public boolean isFlag() {
-        return isFlag;
-    }
-
-    public void setFlag(boolean flag) {
-        isFlag = flag;
     }
 }
