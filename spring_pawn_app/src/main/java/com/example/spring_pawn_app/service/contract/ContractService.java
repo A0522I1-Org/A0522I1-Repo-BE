@@ -42,8 +42,9 @@ public class ContractService implements IContractService {
 
     @Override
     public void saveContract(ContractCreateDto contractDto) {
+
         Contract contract = new Contract();
-        Product product = new Product(contractDto.getNameProduct(), contractDto.getPrice(), contractDto.getCategory());
+        Product product = new Product(contractDto.getNameProduct().trim(), contractDto.getPrice(), contractDto.getCategory());
         Img img = new Img(contractDto.getImgPath(), product);
 
         productService.save(product);
