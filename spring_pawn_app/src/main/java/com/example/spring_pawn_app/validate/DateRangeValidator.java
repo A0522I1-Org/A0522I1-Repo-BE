@@ -1,6 +1,6 @@
 package com.example.spring_pawn_app.validate;
 
-import com.example.spring_pawn_app.dto.ContractCreateDto;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

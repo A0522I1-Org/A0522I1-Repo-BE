@@ -20,12 +20,13 @@ public class Article {
 
     private LocalDate publicDate;
 
-    @ColumnDefault("0")
-    @Column(columnDefinition = "bit")
-    private boolean isFeature;
     @Column(columnDefinition = "bit")
     @ColumnDefault("0")
     private boolean isFlag;
+
+    @ColumnDefault("0")
+    @Column(columnDefinition = "bit")
+    private boolean isFeature;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
@@ -41,9 +42,8 @@ public class Article {
         this.img = img;
         this.content = content;
         this.publicDate = publicDate;
-        this.isFeature = isFeature;
-
         this.isFlag = isFlag;
+        this.isFeature = isFeature;
         this.employee = employee;
     }
 
@@ -87,20 +87,20 @@ public class Article {
         this.publicDate = publicDate;
     }
 
-    public boolean isFeature() {
-        return isFeature;
-    }
-
-    public void setFeature(boolean feature) {
-        isFeature = feature;
-    }
-
     public boolean isFlag() {
         return isFlag;
     }
 
     public void setFlag(boolean flag) {
         isFlag = flag;
+    }
+
+    public boolean isFeature() {
+        return isFeature;
+    }
+
+    public void setFeature(boolean feature) {
+        isFeature = feature;
     }
 
     public Employee getEmployee() {
@@ -110,4 +110,9 @@ public class Article {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
+
 }
+
+

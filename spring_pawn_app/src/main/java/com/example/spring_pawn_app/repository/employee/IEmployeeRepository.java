@@ -11,10 +11,12 @@ import java.util.List;
 
 @Repository
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
+
     @Query(value = "select e.id, e.address, e.avatar, e.date_of_birth, e.email, e.gender, e.id_card, e.is_flag, e.`name`, e.phone " +
                    "from employee as e inner join user as u on e.id = u.employee_id " +
                    "where u.user_name = :username", nativeQuery = true)
     Employee findEmployeeByUserName(@Param("username") String username);
+
     /**
      * Created by: TanNC
      * Date created: 12/05/2023

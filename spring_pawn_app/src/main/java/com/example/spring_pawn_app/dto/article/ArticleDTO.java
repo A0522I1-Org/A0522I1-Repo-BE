@@ -20,7 +20,6 @@ public class ArticleDTO implements Validator {
     private LocalDate publicDate;
     private boolean isFeature;
     private boolean isFlag;
-    private Integer employee;
 
     public ArticleDTO() {
     }
@@ -81,15 +80,8 @@ public class ArticleDTO implements Validator {
         isFlag = flag;
     }
 
-    public Integer getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Integer employee) {
-        this.employee = employee;
-    }
-
-    public ArticleDTO(Integer id, String title, String img, String content, LocalDate publicDate, Boolean isFeature, boolean isFlag, Integer employee) {
+    public ArticleDTO(Integer id, String title, String img, String content, LocalDate publicDate, Boolean isFeature, boolean isFlag) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -97,7 +89,6 @@ public class ArticleDTO implements Validator {
         this.publicDate = publicDate;
         this.isFeature = isFeature;
         this.isFlag = isFlag;
-        this.employee = employee;
     }
 
     @Override

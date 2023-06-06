@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class EmployeeService implements IEmployeeService {
     @Autowired
-    IEmployeeRepository iEmployeeRepository;
+    private IEmployeeRepository iEmployeeRepository;
 
     @Override
     public Employee findEmployeeByUserName(String username) {
@@ -31,8 +31,8 @@ public class EmployeeService implements IEmployeeService {
         List<ValidationError> errors = new ArrayList<>();
         Employee employee1 = this.finById(employee.getId());//employee current
         List<Employee> list1 = this.findByEmails(employee.getEmail());
-        List<Employee> list2 = this.findByPhone(employee.getPhone());
-        List<Employee> list3 = this.findByIdCard(employee.getIdCard());
+        List<Employee> list2 = this.findByPhones(employee.getPhone());
+        List<Employee> list3 = this.findByIdCards(employee.getIdCard());
         if (list1.size() > 0 && !employee1.getEmail().equals(employee.getEmail())) {
             errors.add(new ValidationError("duplicateEmail", "Email đã được đăng kí."));
         }
@@ -51,12 +51,12 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public List<Employee> findByPhone(String phone) {
+    public List<Employee> findByPhones(String phone) {
         return iEmployeeRepository.findByPhone(phone);
     }
 
     @Override
-    public List<Employee> findByIdCard(String idCard) {
+    public List<Employee> findByIdCards(String idCard) {
         return iEmployeeRepository.findByIdCard(idCard);
     }
 
@@ -71,3 +71,4 @@ public class EmployeeService implements IEmployeeService {
         return iEmployeeRepository.findByEmail(email);
     }
 }
+
