@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 @Service
 public class CustomerService implements ICustomerService {
     @Autowired
@@ -29,6 +28,11 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerMapper customerMapper;
 
+    /**
+     * @author Trần Thế Huy
+     * @version 2
+     * @since 6/6/2023
+     */
     @Override
     public Page<Customer> findByCustomer(String customer_name, PageRequest page) {
         return iCustomerRepository.findByCustomer(customer_name, page);

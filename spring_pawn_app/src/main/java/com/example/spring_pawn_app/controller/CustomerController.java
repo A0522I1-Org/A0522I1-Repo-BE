@@ -78,8 +78,11 @@ public class CustomerController {
      * @author Trần Thế Huy
      * @version 1
      * @since 28/5/2023
+     * @author Trần Thế Huy
+     * @version 2
+     * @since 6/6/2023
      */
-    @GetMapping()
+    @GetMapping("customers")
     public ResponseEntity<HttpResponse> getAllCustomer(@RequestParam Optional<String> valueReceived,
                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> searchDateOfBirth,
                                                        @RequestParam Optional<Integer> searchGender,
@@ -127,13 +130,14 @@ public class CustomerController {
         );
     }
 
-    @GetMapping("{id}")
+    @GetMapping("customers/{id}")
     public ResponseEntity<HttpResponse> getCustomerById(@PathVariable Integer id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Optional<CustomerDTODetail> optionalCustomer = iCustomerService.getCustomerById(id);
-        if (optionalCustomer.isPresent()) {
+        System.out.println(optionalCustomer);
+        if (optionalCustomer.get().getCustomerCode() != null) {
             CustomerDTODetail customerDtoDetail = optionalCustomer.get();
             return ResponseEntity.ok().body(
                     HttpResponse.builder()
@@ -149,14 +153,15 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("customers/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable("id") Integer id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
         Optional<CustomerDTODetail> customer = iCustomerService.getCustomerById(id);
-        if (!customer.isPresent()) {
+        System.out.println(customer);
+        if (customer.get().getId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // Xóa customer khỏi database
@@ -165,14 +170,15 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("customers/{id}")
     public ResponseEntity<?> restoreCustomer(@PathVariable("id") Integer id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         // Kiểm tra xem customer có tồn tại trong database hay không
         Optional<CustomerDTODetail> customer = iCustomerService.getCustomerByIdInRestore(id);
-        if (!customer.isPresent()) {
+        System.out.println(customer);
+        if (customer.get().getId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         // khôi phục customer lại database
@@ -183,7 +189,7 @@ public class CustomerController {
      * Created by: NamHV
      * Date create: 3/6/2023
      * */
-    @GetMapping("/customers")
+    @GetMapping("/customers/liquidation")
     public ResponseEntity<Page<Customer>> findAll(@RequestParam(value = "customer_name",defaultValue = "") String customer_name,
                                                   @RequestParam(defaultValue = "0") int page) {
         Page<Customer> customerPage = iCustomerService.findByCustomer(customer_name,PageRequest.of( page,5 ) );

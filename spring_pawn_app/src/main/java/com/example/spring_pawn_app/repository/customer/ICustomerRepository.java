@@ -40,11 +40,10 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
     @Modifying
     void updateCustomerName(String customerNameEdit, Integer id);
 
-
     /**
      * @author Trần Thế Huy
-     * @version 1
-     * @since 28/5/2023
+     * @version 2
+     * @since 6/6/2023
      */
     @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.phone, c.identityCard, COUNT(con.id) " +
             "FROM Customer c " +

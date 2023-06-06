@@ -32,6 +32,11 @@ public interface ICustomerService {
      */
     Customer createCustomer(Customer customer);
 
+    /**
+     * @author Trần Thế Huy
+     * @version 6
+     * @since 6/6/2023
+     */
     Optional<CustomerDTODetail> getCustomerById(Integer id);
 
     Optional<CustomerDTODetail> getCustomerByIdInRestore(Integer id);
