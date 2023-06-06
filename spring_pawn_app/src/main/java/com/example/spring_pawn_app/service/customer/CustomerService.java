@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,6 +54,37 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer createCustomer(Customer customer) {
         return iCustomerRepository.save(customer);
+    }
+
+    /**
+     * Create by: ManPD
+     * Date create: 6/6/2023
+     *
+     * @return String
+     */
+    @Override
+    public String createCustomerCode() {
+        Random random = new Random();
+        int customerIdInt;
+        String customerIdStr;
+        String customerCodeRamDum = "KH-";
+        do {
+            customerIdInt = random.nextInt(100000000);
+            customerIdStr = String.format("%08d", customerIdInt);
+            customerCodeRamDum = customerCodeRamDum + customerIdStr;
+        } while (this.getCustomerByCustomerCode(customerCodeRamDum) != null);
+        return customerCodeRamDum;
+    }
+
+    /**
+     * Create by: ManPD
+     * Date create: 6/6/2023
+     *
+     * @return customer
+     */
+    @Override
+    public Customer getCustomerByCustomerCode(String customerCode) {
+        return iCustomerRepository.findCustomerByCustomerCode(customerCode);
     }
 
     /**

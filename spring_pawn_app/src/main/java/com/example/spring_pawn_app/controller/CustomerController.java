@@ -12,11 +12,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,14 +58,23 @@ public class CustomerController {
         return customerPage;
     }
 
-    @PostMapping("/customers")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerRegisterDTO customerRegisterDTO) {
+    /**
+     *Create by: ManPD
+     *Date create: 21/5/2023
+     *
+     * @param customerRegisterDTO
+     * @return HttpStatus.CREATED
+     */
+    @PostMapping("dangkynhanh")
+    public ResponseEntity<Customer> addNewCustomer(@Valid @RequestBody CustomerRegisterDTO customerRegisterDTO) {
         Customer customer = new Customer();
         customer.setName(customerRegisterDTO.getCustomerName());
         customer.setEmail(customerRegisterDTO.getEmail());
         customer.setPhone(customerRegisterDTO.getPhone());
         customer.setAddress(customerRegisterDTO.getAddress());
         customer.setNote(customerRegisterDTO.getNote());
+        customer.setIdentityCard(customerRegisterDTO.getIdCardCustomer());
+        customer.setCustomerCode(iCustomerService.createCustomerCode());
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
@@ -267,4 +281,16 @@ public class CustomerController {
         return new ResponseEntity<Page<Customer>>(customerPage, HttpStatus.OK);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
+    }
 }
