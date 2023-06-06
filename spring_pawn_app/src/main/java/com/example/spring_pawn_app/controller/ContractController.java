@@ -25,6 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/contracts")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
+
 public class ContractController {
     @Autowired
     private IContractService iContractService;

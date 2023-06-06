@@ -53,7 +53,7 @@ public class ForgotPasswordService implements IForgotPasswordService{
         }
         else {
             // cập nhật mật khẩu mới
-            User user = userRepository.findUserByEmployee(employee).get();
+            User user = userRepository.findByEmployeeId(employee.getId());
             user.setPassword(newPassword);
             userRepository.save(user);
             //Xoa OTP ra khoi cache

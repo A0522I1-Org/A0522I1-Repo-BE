@@ -41,6 +41,10 @@ public class ArticleController {
 
     @GetMapping("/article-view/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
+        if (id == null) {
+            System.out.println("Có lỗi null");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(this.articleService.findArticleById(id), HttpStatus.OK);
     }
 

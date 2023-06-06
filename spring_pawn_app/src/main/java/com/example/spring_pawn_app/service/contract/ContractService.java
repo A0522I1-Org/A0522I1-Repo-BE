@@ -100,8 +100,9 @@ public class ContractService implements IContractService {
 
     @Override
     public void saveContract(ContractCreateDto contractDto) {
+
         Contract contract = new Contract();
-        Product product = new Product(contractDto.getNameProduct(), contractDto.getPrice(), contractDto.getCategory());
+        Product product = new Product(contractDto.getNameProduct().trim(), contractDto.getPrice(), contractDto.getCategory());
         Img img = new Img(contractDto.getImgPath(), product);
 
         productService.save(product);
@@ -109,8 +110,7 @@ public class ContractService implements IContractService {
 
         Employee employee = iEmployeeService.findEmployeeByUserName(contractDto.getUsername());
 
-        contract.setContractCode("CT-" + this.generateContractCode());
-        contract.setContractCode("HD-" + this.generateContractCode());
+        contract.setContractCode("HD-"+this.generateContractCode());
         contract.setBeginDate(contractDto.getBeginDate());
         contract.setEndDate(contractDto.getEndDate());
         contract.setCustomer(customerService.findCustomerById(contractDto.getCustomer().getId()));

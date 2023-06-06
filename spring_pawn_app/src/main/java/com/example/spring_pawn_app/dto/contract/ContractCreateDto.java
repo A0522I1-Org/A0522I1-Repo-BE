@@ -27,7 +27,6 @@ public class ContractCreateDto {
     @NotNull(message = "Bắt buộc")
     private Customer customer;
 
-    @Positive(message = "Lãi xuất là số dương")
     private double interest;
 
     @NotNull(message = "Bắt buộc")

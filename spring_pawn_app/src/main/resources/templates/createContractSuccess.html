@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .image {
+            text-align: center;
+        }
+
+        .image img {
+            width: 200px;
+            height: auto;
+        }
+
+        .my-btn-3 {
+            background-image: linear-gradient(#EE4D2D, #FF7337);
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            /*box-shadow: 0px 0px 10px #aaa;*/
+            width: 200px !important;
+            margin: 0 180px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="margin-top: 0px !important;"><b>THÊM HỢP ĐỒNG THÀNH CÔNG</b></h1>
+<div class="container">
+    <b><p style="color: #EE4D2D">Cảm ơn quý khách đã sử dụng dịch vụ của DANA88</p>
+        <p></span> Thông tin hợp đồng:
+        </p></b>
+    <div style="margin: 0 40px">
+        <p>Họ và tên: <span style="font-weight: bold" th:text="${name_customer}"></span></p>
+        <p>Điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+        <p>Ngày bắt đầu: <span style="font-weight: bold" th:text="${beginDate}"></span></p>
+        <p>Ngày kết thúc: <span style="font-weight: bold" th:text="${endDate}"></span></p>
+        <p>Tên sản pẩm: <span style="font-weight: bold" th:text="${nameProduct}"></span></p>
+        <p>Giá sản phẩm: <span style="font-weight: bold" th:text="${price}"></span></p>
+        <p>Lãi suất: <span style="font-weight: bold" th:text="${interest}"></span></p>
+        <p>Hợp đồng được tạo thành công lúc: <span style="font-weight: bold" th:text="${time}"></span></p>
+        <div class="d-flex flex-column ">
+            <b><p class="text-center">Xin cảm ơn!</p></b>
+        </div>
+    </div>
+</body>
+</html>

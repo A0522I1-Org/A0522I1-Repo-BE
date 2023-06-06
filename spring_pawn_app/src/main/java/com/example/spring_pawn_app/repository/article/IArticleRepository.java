@@ -33,7 +33,7 @@ public interface IArticleRepository extends JpaRepository<Article, Integer>{
 
     @Transactional
     @Modifying
-    @Query(value = "update pawnapp.article a set a.is_flag = 1 where a.id = ?;", nativeQuery = true)
+    @Query(value = "update pawn_shop.article a set a.is_flag = 1 where a.id = ?;", nativeQuery = true)
     void deleteArticle(int id);
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +

@@ -720,7 +720,4 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "WHERE contract.customer.name LIKE %?1% AND contract.product.name LIKE %?2% AND (contract.beginDate " +
             "BETWEEN ?3 AND ?4) AND contract.status.name = ?5 AND contract.isFlag = false")
     Page<Contract> findByCustomerAndProductAndBeginDateAndStatus(String customerName, String productName, LocalDate beforeDate, LocalDate afterDate, String status, Pageable pageable);
-
-
-
 }

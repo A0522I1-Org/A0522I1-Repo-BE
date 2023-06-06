@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
  */
 @Component
 public class CustomerMapper {
-
-
     private final ModelMapper modelMapper;
 
     public CustomerMapper() {

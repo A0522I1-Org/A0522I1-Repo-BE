@@ -3,6 +3,7 @@ package com.example.spring_pawn_app.repository.user;
 import com.example.spring_pawn_app.model.Employee;
 import com.example.spring_pawn_app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -24,5 +25,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
     User findByEmployee(Employee employee);
 
     Optional<User> findUserByEmployee (Employee employee);
+    @Query(value = "SELECT user from User user where user.employee.id = ?1")
+    User findByEmployeeId(Integer id);
 }
 

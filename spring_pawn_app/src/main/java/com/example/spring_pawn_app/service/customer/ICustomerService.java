@@ -1,16 +1,19 @@
 package com.example.spring_pawn_app.service.customer;
 
+import com.example.spring_pawn_app.dto.customer.CustomerDTO;
+import com.example.spring_pawn_app.model.Customer;
+
+import java.util.Optional;
+
 import com.example.spring_pawn_app.dto.contract.CustomerListDto;
 import com.example.spring_pawn_app.dto.customer.CustomerDTODetail;
 import com.example.spring_pawn_app.dto.customer.CustomerDTOList;
 import com.example.spring_pawn_app.dto.customer.CustomerDTORestore;
-import com.example.spring_pawn_app.model.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public interface ICustomerService {
     /**
@@ -48,4 +51,21 @@ public interface ICustomerService {
     Page<CustomerDTOList> getAllWithRequirement(String valueReceived, LocalDate searchDateOfBirth, Integer searchGender, Pageable pageable);
 
     Page<CustomerDTORestore> getAllWithRequirementInRestore(String valueReceived, Pageable pageable);
+
+    /**
+     * @author TuanVD
+     * @version 1
+     * @since 06/06/2023
+     */
+    CustomerDTO addNewCustomer(CustomerDTO customer);
+
+    void updateCustomer(CustomerDTO customer);
+
+    String existsByCustomerEmail(String email);
+
+    String existsByCustomerPhone(String phone);
+
+    String existsByCustomerIdentityCard(String idCard);
+
+    String existsByCustomerCode(String code);
 }

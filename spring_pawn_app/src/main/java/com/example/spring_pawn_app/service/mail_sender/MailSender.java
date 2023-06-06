@@ -1,7 +1,8 @@
 package com.example.spring_pawn_app.service.mail_sender;
-
-import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
+import com.example.spring_pawn_app.model.Customer;
+import com.example.spring_pawn_app.service.customer.ICustomerService;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,12 +18,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-
 
 @Component
 @EnableScheduling
@@ -30,45 +28,20 @@ public class MailSender {
     @Autowired
     private JavaMailSender javaMailSender;
     @Autowired
+    private ICustomerService iCustomerService;
+    @Autowired
     private IContractRepository iContractRepository;
+
 
     /**
      * Created By: HoangVV
      * Date create: 15/05/2023
+     *
      * @param contract
      * @throws MessagingException
      */
     public void sendEmailPay(ContractDto contract) throws MessagingException {
         LocalDate currentDate = LocalDate.now();
-        MimeMessage messages = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(messages, true,"UTF-8");
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML");
-
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-
-        Context context = new Context();
-
-        context.setVariable("name",contract.getCustomer().getName());
-        context.setVariable("dateOfBirth",contract.getCustomer().getDateOfBirth());
-        context.setVariable("gender",contract.getCustomer().getGender());
-        context.setVariable("address",contract.getCustomer().getAddress());
-        context.setVariable("phone",contract.getCustomer().getPhone());
-        context.setVariable("time",currentDate);
-
-
-        String html = templateEngine.process("addContractSuccess", context);
-        messages.setContent(html, "text/html; charset=UTF-8");
-        helper.setTo(contract.getCustomer().getEmail());
-        helper.setSubject("Thông báo thanh toán thành công");
-
-        this.javaMailSender.send(messages);
-    }
-
-    public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true, "UTF-8");
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -80,14 +53,49 @@ public class MailSender {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
+
         context.setVariable("name", contract.getCustomer().getName());
         context.setVariable("dateOfBirth", contract.getCustomer().getDateOfBirth());
         context.setVariable("gender", contract.getCustomer().getGender());
         context.setVariable("address", contract.getCustomer().getAddress());
         context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("time", currentDate);
+
 
         String html = templateEngine.process("addContractSuccess", context);
-        messages.setContent(html, "text/html");
+        messages.setContent(html, "text/html; charset=UTF-8");
+        helper.setTo(contract.getCustomer().getEmail());
+        helper.setSubject("Thông báo thanh toán thành công");
+
+        this.javaMailSender.send(messages);
+    }
+
+    public void sendEmailCreate(ContractCreateDto contract) throws MessagingException {
+        LocalDate localDate = LocalDate.now();
+        Customer customer = iCustomerService.findCustomerById(contract.getCustomer().getId());
+        MimeMessage messages = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(messages, true, "UTF-8");
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML");
+
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        Context context = new Context();
+        context.setVariable("name_customer", customer.getName());
+        System.out.println(contract.getCustomer());
+        context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("beginDate", contract.getBeginDate());
+        context.setVariable("endDate", contract.getEndDate());
+        context.setVariable("nameProduct", contract.getNameProduct());
+        context.setVariable("price", contract.getPrice());
+        context.setVariable("interest", contract.getInterest());
+        context.setVariable("time", localDate);
+
+        String html = templateEngine.process("createContractSuccess", context);
+        messages.setContent(html, "text/html; charset=UTF-8");
         helper.setTo(contract.getCustomer().getEmail());
         helper.setSubject("Thông báo thêm mới thành công");
 
@@ -135,14 +143,16 @@ public class MailSender {
             }
         }
     }
-    public void sendOtpMail(String email,String otp){
+
+    public void sendOtpMail(String email, String otp) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Xác thực đổi mật khẩu");
         message.setText("Mã OTP của bạn là " + otp);
         javaMailSender.send(message);
     }
-    public void sendPassword(String email,String newPassword){
+
+    public void sendPassword(String email, String newPassword) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Thay đổi mật khẩu");
