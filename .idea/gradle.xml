@@ -2,6 +2,7 @@
 <project version="4">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   <component name="GradleMigrationSettings" migrationVersion="1" />
 =======
@@ -39,6 +40,12 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/spring_pawn_app" />
         <option name="gradleJvm" value="1.8" />
 >>>>>>> cc1e1dfaac0e7ae84e95251154ea3ec191e0e786
+=======
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/spring_pawn_app" />
+>>>>>>> origin/TuanVD
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/spring_pawn_app" />

@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -13,10 +14,13 @@
 >>>>>>> origin/TinPNT
 =======
 >>>>>>> origin/ThuongVTH
+=======
+>>>>>>> origin/TuanVD
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/spring_pawn_app" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -41,4 +45,7 @@
 >>>>>>> origin/TinPNT
 =======
 >>>>>>> origin/ThuongVTH
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+>>>>>>> origin/TuanVD
 </project>

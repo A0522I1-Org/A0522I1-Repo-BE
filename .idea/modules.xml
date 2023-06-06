@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" filepath="$PROJECT_DIR$/.idea/A0522I1-Repo-BE.iml" />
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -19,6 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.test.iml" />
 >>>>>>> origin/TinPNT
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_pawn_app.main.iml" />
+>>>>>>> origin/TuanVD
     </modules>
   </component>
 </project>
