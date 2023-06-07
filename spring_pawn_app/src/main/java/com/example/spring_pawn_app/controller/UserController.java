@@ -2,7 +2,10 @@ package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.dto.request.ResetPasswordForm;
 import com.example.spring_pawn_app.service.forgotpassword.ForgotPasswordService;
+import com.example.spring_pawn_app.service.forgotpassword.OtpGenerator;
+import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.spring_pawn_app.dto.request.SignInForm;
 import com.example.spring_pawn_app.dto.request.SignUpForm;
 import com.example.spring_pawn_app.dto.response.JwtResponse;
@@ -24,6 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,12 +36,13 @@ import java.util.Set;
 @RequestMapping("api/auth")
 public class UserController {
     @Autowired
+    private MailSender mailSender;
+    @Autowired
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
     @Autowired
     private ForgotPasswordService forgotPasswordService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -50,7 +55,6 @@ public class UserController {
         if (userService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("exist account in DB!"), HttpStatus.OK);
         }
-
         User user = new User(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()));
         Set<String> strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();
@@ -71,23 +75,28 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getAuthorities()));
+        LocalDateTime now = LocalDateTime.now();
+        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getAuthorities(),now));
     }
     @GetMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestParam("email") String email) {
         // Gọi service để gửi mã OTP qua email
-
-        forgotPasswordService.sendOtpByEmail(email);
-
-        return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
+        try {
+            forgotPasswordService.sendOtpByEmail(email);
+            return new ResponseEntity<>(new ResponseMessage("Mã OTP đã gửi qua email"),HttpStatus.OK);
+        }
+        catch (RuntimeException e){
+            return new ResponseEntity<>(new ResponseMessage("Email không tồn tại trong hệ thống."),HttpStatus.NOT_ACCEPTABLE);
+        }
     }
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordForm resetPasswordForm) {
         try {
             // Gọi service để kiểm tra và đổi mật khẩu
-            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), resetPasswordForm.getNewPassword());
-
-            return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
+            String newPassword = passwordEncoder.encode(resetPasswordForm.getNewPassword());
+            forgotPasswordService.resetPassword(resetPasswordForm.getEmail(), resetPasswordForm.getOtp(), newPassword);
+            mailSender.sendPassword(resetPasswordForm.getEmail(),resetPasswordForm.getNewPassword());
+             return new ResponseEntity(new ResponseMessage("đổi mật khẩu thành công"),HttpStatus.OK);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("Mã OTP không hợp lệ");
         }

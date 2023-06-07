@@ -3,11 +3,15 @@ package com.example.spring_pawn_app.dto.customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+/**
+ * @author Trần Thế Huy
+ * @version 2
+ * @since 6/6/2023
+ */
 @Data
 @SuperBuilder
 @AllArgsConstructor

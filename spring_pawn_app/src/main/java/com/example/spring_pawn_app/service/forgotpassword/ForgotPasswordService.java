@@ -10,7 +10,8 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class ForgotPasswordService implements IForgotPasswordService{
@@ -23,7 +24,10 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
     @Override
     public void sendOtpByEmail(String email) {
-
+        Employee employee = employeeService.findByEmail(email);
+        if(employee == null){
+            throw new RuntimeException("Email khong tồn tại trong hệ thống");
+        }
         String otp = OtpGenerator.generateOtp();
         // Gửi email
         mailSender.sendOtpMail(email,otp);
@@ -31,6 +35,9 @@ public class ForgotPasswordService implements IForgotPasswordService{
         // Lưu OTP vào cache
         Cache otpCache = cacheManager.getCache("otpCache");
         otpCache.put(email,otp);
+
+        evictAllcachesAtIntervals();
+        System.out.println("bat dong bo");
 
     }
 
@@ -46,14 +53,31 @@ public class ForgotPasswordService implements IForgotPasswordService{
         }
         else {
             // cập nhật mật khẩu mới
-            User user = userRepository.findUserByEmployee(employee).get();
+            User user = userRepository.findByEmployeeId(employee.getId());
             user.setPassword(newPassword);
             userRepository.save(user);
-
             //Xoa OTP ra khoi cache
             otpCache.evict(email);
 
         }
+    }
+    public void evictAllCaches() {
+        cacheManager.getCacheNames().stream()
+                .forEach(cacheName -> cacheManager.getCache(cacheName).clear());
+    }
 
+    public void evictAllcachesAtIntervals() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            // Giả lập thực hiện một tác vụ bất đồng bộ
+            try {
+                Thread.sleep(1000 * 5 * 60  );
+                evictAllCaches();
+                System.out.println("da xoa cache");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Tác vụ bất đồng bộ đã hoàn thành");
+        });
     }
 }

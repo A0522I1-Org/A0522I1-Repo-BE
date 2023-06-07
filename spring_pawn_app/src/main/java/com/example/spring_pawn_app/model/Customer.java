@@ -175,5 +175,24 @@ public class Customer {
     public void setFlag(boolean flag) {
         isFlag = flag;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", customerCode='" + customerCode + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", identityCard='" + identityCard + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", status='" + status + '\'' +
+                ", note='" + note + '\'' +
+                ", isFlag=" + isFlag +
+                '}';
+    }
 }
 

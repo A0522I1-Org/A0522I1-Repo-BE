@@ -3,9 +3,7 @@ package com.example.spring_pawn_app.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,13 +11,16 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @NotNull
     @Column(columnDefinition = ("varchar(45)"))
+    @Size(min = 4,max = 45)
     private String userName;
     @NotNull
     @Column(columnDefinition = ("varchar(255)"))
+    @Size(min = 4,max = 100)
     private String password;
 
     @OneToOne
@@ -31,7 +32,7 @@ public class User {
     private boolean isFlag;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"),
-             inverseJoinColumns= @JoinColumn(name = "role_id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
     public User(Integer id, String userName, String password, Employee employee, boolean isFlag, Set<Role> roles) {

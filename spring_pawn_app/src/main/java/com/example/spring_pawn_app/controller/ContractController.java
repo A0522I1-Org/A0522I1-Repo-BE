@@ -1,9 +1,9 @@
 package com.example.spring_pawn_app.controller;
 
-import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
-import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.dto.contract.ContractEditDto;
+import com.example.spring_pawn_app.dto.contract.ContractDto;
 import com.example.spring_pawn_app.model.Contract;
+import com.example.spring_pawn_app.dto.contract.ContractCreateDto;
 import com.example.spring_pawn_app.service.contract.IContractService;
 import com.example.spring_pawn_app.service.mail_sender.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,22 @@ import java.util.List;
 @RestController
 @RequestMapping("api/contracts")
 @CrossOrigin(origins = "http://localhost:4200/", allowedHeaders = "*")
+
 public class ContractController {
     @Autowired
     private IContractService iContractService;
     @Autowired
-    private MailSender mailSender;
+     private MailSender mailSender;
 
+    /**
+     * Created by: NamHV
+     * Date create: 3/6/2023
+     * */
+    @PutMapping("/liquidation/{id}")
+    public ResponseEntity<?> updateContractLiquidation(@PathVariable Integer id){
+        iContractService.updateContractPayment( id );
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     /**
      * Created by: HoangVV,
      * Date create: 20/05/2023
@@ -56,7 +66,6 @@ public class ContractController {
      * Created by: HoangVV,
      * Date create: 15/05/2023
      * Function: get contract with id
-     *
      * @param id
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
@@ -72,7 +81,6 @@ public class ContractController {
      * Created by: HoangVV
      * Date create: 15/05/2023
      * Function: update contract with id
-     *
      * @param id
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      * @throws MessagingException
@@ -89,7 +97,7 @@ public class ContractController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /** Create by PhongTD
+     /** Create by PhongTD
      * Date created: 20/05/2023
      * @param pageable
      * @return page<Contract>
@@ -155,21 +163,7 @@ public class ContractController {
         return iContractService.search(customerName, productName, beforeDate, afterDate, status, pageable);
 
     }
-
-    //    @PostMapping("")
-//    public ResponseEntity<?> saveContract(@RequestBody ContractCreateDto contractDto){
-//        iContractService.saveContract(contractDto);
-//        try {
-//            mailSender.sendEmailCreate(contractDto);
-//        } catch (MessagingException e) {
-//            throw new RuntimeException(e);
-//     /** Create by ThuongVTH
-//     * Date create: 02/06/2023
-//     * @param contractDto
-//     * @param bindingResult
-//     * @return
-//     */
-    @PostMapping("/contract")
+    @PostMapping("")
     public ResponseEntity<?> saveContract(@Validated @RequestBody ContractCreateDto contractDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             List<ObjectError> errors = bindingResult.getAllErrors();
@@ -186,3 +180,4 @@ public class ContractController {
         }
     }
 }
+

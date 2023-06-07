@@ -1,22 +1,22 @@
 package com.example.spring_pawn_app.controller;
 
 import com.example.spring_pawn_app.model.Employee;
+import com.example.spring_pawn_app.model.Role;
+import com.example.spring_pawn_app.security.userprincal.UserPrinciple;
 import com.example.spring_pawn_app.service.employee.IEmployeeService;
+import com.example.spring_pawn_app.service.role.IRoleService;
 import com.example.spring_pawn_app.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.example.spring_pawn_app.dto.custom_error.InvalidDataException;
 import com.example.spring_pawn_app.dto.custom_error.ValidationError;
 import com.example.spring_pawn_app.dto.employee.EmployeeInforDTO;
-import com.example.spring_pawn_app.model.Role;
 import com.example.spring_pawn_app.model.User;
-import com.example.spring_pawn_app.security.userprincal.UserPrinciple;
-import com.example.spring_pawn_app.service.role.IRoleService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 
 
@@ -30,22 +30,29 @@ import java.util.*;
 public class EmployeeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private IRoleService roleService;
+
     @Autowired
     private IEmployeeService iEmployeeService;
 
     @Autowired
     private IUserService iUserService;
 
+    @Autowired
+    private IRoleService roleService;
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
 
     /**
      * Create by ThuongVTH
      * Date create: 02/06/2023
+     *
      * @param username
      * @return
      */
-    @GetMapping("/employees/{username}")
+    @GetMapping("/employee/{username}")
     public Employee findEmployeeByUserName(@PathVariable("username") String username) {
         return iEmployeeService.findEmployeeByUserName(username);
     }
@@ -97,7 +104,7 @@ public class EmployeeController {
                     });
             return ResponseEntity.badRequest().body(errors);
         }
-        if (employeeInforDTO.getPassword()!=null) {
+        if (employeeInforDTO.getPassword() != null) {
             User user = iUserService.findByIdEmployee(employeeInforDTO.getId());
             user = new User(user.getId(), employeeInforDTO.getUserName(), passwordEncoder.encode(employeeInforDTO.getPassword()), user.getEmployee(), user.isFlag());
             Set<Role> roles = new HashSet<>();

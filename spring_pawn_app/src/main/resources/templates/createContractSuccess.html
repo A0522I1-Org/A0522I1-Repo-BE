@@ -52,27 +52,23 @@
     </style>
 </head>
 <body>
-<div class="image">
-    <img src="https://firebasestorage.googleapis.com/v0/b/demofirebase-bd2d9.appspot.com/o/LOGO-01.png?alt=media&token=d55810bb-aedb-4643-967b-059d4da64745" alt="null">
-</div>
-<h1 style="margin-top: 0px !important;"><b>THANH TOÁN THÀNH CÔNG</b></h1>
+<h1 style="margin-top: 0px !important;"><b>THÊM HỢP ĐỒNG THÀNH CÔNG</b></h1>
 <div class="container">
-    <b><p style="color: #EE4D2D">Cảm ơn quý khách đã sử dụng dịch vụ</p>
-        <p><span style="color: #EE4D2D">DANA88</span> xin thông báo giao dịch của Quý khách đã được thực hiện như sau:
+    <b><p style="color: #EE4D2D">Cảm ơn quý khách đã sử dụng dịch vụ của DANA88</p>
+        <p></span> Thông tin hợp đồng:
         </p></b>
     <div style="margin: 0 40px">
-        <p>Họ và tên: <span style="font-weight: bold" th:text="${name}"></span></p>
-        <p>Sinh nhật: <span style="font-weight: bold" th:text="${dateOfBirth}"></span></p>
-        <p>Giới tính: <span style="font-weight: bold" th:text="${gender == 1 ? 'Nam' : 'Nữ'}"></span></p>
-        <p>Địa chỉ: <span style="font-weight: bold" th:text="${address}"></span></p>
-        <p>Số điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
-        <p>Bạn đã hoàn thành thanh toán vào thời gian: <span style="font-weight: bold" th:text="${time}"></span></p>
+        <p>Họ và tên: <span style="font-weight: bold" th:text="${name_customer}"></span></p>
+        <p>Điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+        <p>Ngày bắt đầu: <span style="font-weight: bold" th:text="${beginDate}"></span></p>
+        <p>Ngày kết thúc: <span style="font-weight: bold" th:text="${endDate}"></span></p>
+        <p>Tên sản pẩm: <span style="font-weight: bold" th:text="${nameProduct}"></span></p>
+        <p>Giá sản phẩm: <span style="font-weight: bold" th:text="${price}"></span></p>
+        <p>Lãi suất: <span style="font-weight: bold" th:text="${interest}"></span></p>
+        <p>Hợp đồng được tạo thành công lúc: <span style="font-weight: bold" th:text="${time}"></span></p>
+        <div class="d-flex flex-column ">
+            <b><p class="text-center">Xin cảm ơn!</p></b>
+        </div>
     </div>
-
-    <div class="d-flex flex-column ">
-        <b><p class="text-center">Để tiếp tục với giao dịch vui lòng Nhấp vào</p></b>
-        <button class="my-btn-3">Nhấp chuột tại đây</button>
-    </div>
-</div>
 </body>
 </html>

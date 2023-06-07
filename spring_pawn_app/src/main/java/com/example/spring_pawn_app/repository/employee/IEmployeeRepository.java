@@ -1,11 +1,9 @@
 package com.example.spring_pawn_app.repository.employee;
-
 import com.example.spring_pawn_app.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 
@@ -42,4 +40,5 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      */
     List<Employee> findByIdCard(String idCard);
     Employee findEmployeeByEmail(String email);
+
 }

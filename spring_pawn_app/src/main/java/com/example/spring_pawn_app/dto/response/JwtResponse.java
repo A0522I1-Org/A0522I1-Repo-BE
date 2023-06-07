@@ -2,6 +2,7 @@ package com.example.spring_pawn_app.dto.response;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 public class JwtResponse {
@@ -9,7 +10,7 @@ public class JwtResponse {
     private String type = "Bearer";
     private String name;
     private Collection<? extends GrantedAuthority> roles;
-
+    private LocalDateTime createdTime;
     public JwtResponse() {
     }
 
@@ -23,7 +24,12 @@ public class JwtResponse {
         this.roles = roles;
     }
 
-
+    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> roles, LocalDateTime createdTime) {
+        this.token = token;
+        this.name = name;
+        this.roles = roles;
+        this.createdTime = createdTime;
+    }
 
     public String getToken() {
         return token;
@@ -55,5 +61,13 @@ public class JwtResponse {
 
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }
