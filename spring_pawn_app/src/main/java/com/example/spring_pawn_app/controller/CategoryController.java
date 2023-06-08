@@ -27,7 +27,7 @@ public class CategoryController {
      *
      * @return List of category
      */
-    @GetMapping("/category")
+    @GetMapping("/categories")   
     public ResponseEntity<List<Category>> findAll() {
         List<Category> categoryList = iCategoryService.findAllCategory();
         if (iCategoryService.findAllCategory() == null) {

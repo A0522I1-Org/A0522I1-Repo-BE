@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c40c4b41-3303-4173-992a-544b0f6d6b32" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/dto/contract/ContractProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/model/UserHasRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/repository/user_has_role/IUserHasRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user_has_role/IUserHasRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring_pawn_app/src/main/java/com/example/spring_pawn_app/service/user_has_role/UserHasRoleService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +79,17 @@
       <workItem from="1684762046912" duration="8000" />
       <workItem from="1685605221759" duration="1074000" />
       <workItem from="1685685086692" duration="4651000" />
+      <workItem from="1685703335120" duration="2357000" />
+      <workItem from="1685845843339" duration="1376000" />
+      <workItem from="1685850053233" duration="3089000" />
+      <workItem from="1685886906124" duration="1590000" />
+      <workItem from="1685899735677" duration="1841000" />
+      <workItem from="1685962501613" duration="2628000" />
+      <workItem from="1685972231840" duration="221000" />
+      <workItem from="1685972696747" duration="44000" />
+      <workItem from="1686057187494" duration="3687000" />
+      <workItem from="1686124907872" duration="2229000" />
+      <workItem from="1686140739024" duration="2092000" />
     </task>
     <servers />
   </component>
