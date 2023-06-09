@@ -59,6 +59,7 @@ public class MailSender {
         context.setVariable("gender", contract.getCustomer().getGender());
         context.setVariable("address", contract.getCustomer().getAddress());
         context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("items", contract.getProduct().getName());
         context.setVariable("time", currentDate);
 
 

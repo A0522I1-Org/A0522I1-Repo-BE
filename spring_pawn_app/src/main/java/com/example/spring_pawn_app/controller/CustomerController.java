@@ -74,7 +74,7 @@ public class CustomerController {
         customer.setAddress(customerRegisterDTO.getAddress());
         customer.setNote(customerRegisterDTO.getNote());
         customer.setIdentityCard(customerRegisterDTO.getIdCardCustomer());
-        customer.setCustomerCode(iCustomerService.createCustomerCode());
+//        customer.setCustomerCode(iCustomerService.createCustomerCode());
         return new ResponseEntity<>(iCustomerService.createCustomer(customer), HttpStatus.CREATED);
     }
 
