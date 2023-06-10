@@ -113,6 +113,12 @@ public class MailSender {
         LocalDate expiryDate = LocalDate.now();
         List<Contract> contracts = iContractRepository.findAll();
         for (Contract contract : contracts) {
+            if ((contract.getEndDate().getYear() > expiryDate.getYear()) || (contract.getEndDate().getYear()
+                    == expiryDate.getYear() && contract.getEndDate().getMonthValue() > expiryDate.getDayOfMonth()) ||
+                    (contract.getEndDate().getYear() == expiryDate.getYear() && contract.getEndDate().getMonthValue()
+                            == expiryDate.getMonthValue() && contract.getEndDate().getDayOfMonth() == expiryDate.getDayOfMonth())) {
+                iContractRepository.changStatusContractExpire(contract.getId());
+            }
             if (contract.getEndDate().getYear() == expiryDate.getYear()
                     && contract.getEndDate().getMonthValue() == expiryDate.getMonthValue()
                     && contract.getEndDate().getDayOfMonth() - 1 == expiryDate.getDayOfMonth()) {
