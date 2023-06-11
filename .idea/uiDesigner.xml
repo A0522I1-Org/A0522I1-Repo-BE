@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
+
     <component name="Palette2">
         <group name="Swing">
             <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer"
@@ -156,7 +156,7 @@
         </group>
     </component>
 </project>
-=======
+
   <component name="Palette2">
     <group name="Swing">
       <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
@@ -185,16 +185,7 @@
         <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
       </item>
       <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> origin/TinPNT
-=======
->>>>>>> origin/NamHV
-=======
-=======
->>>>>>> origin/TinPNT
->>>>>>> origin/main
->>>>>>> origin/NamHV
+
         <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
         <initial-values>
           <property name="text" value="Button" />
@@ -381,4 +372,4 @@
     </group>
   </component>
 </project>
->>>>>>> ed4feb539ab9e609b74322b04970e4ca84632d27
+

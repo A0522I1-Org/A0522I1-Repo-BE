@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
+
     <list default="true" id="c40c4b41-3303-4173-992a-544b0f6d6b32" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
@@ -189,9 +189,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-=======
+
     <list default="true" id="73518bdd-de91-4b55-9dae-e27163efe6bd" name="Changes" comment="" />
->>>>>>> origin/TuanVD
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -202,36 +202,29 @@
       <ProjectState />
     </projectState>
   </component>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> origin/ThuongVTH
+
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
         <projects_view>
           <tree_state>
-<<<<<<< HEAD
+
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="spring_pawn_app" type="f1a62948:ProjectNode" />
               </path>
             </expand>
-=======
+
             <expand />
->>>>>>> origin/ThuongVTH
+
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
   </component>
-<<<<<<< HEAD
-=======
->>>>>>> origin/TuanVD
->>>>>>> origin/ThuongVTH
+
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -248,14 +241,14 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-<<<<<<< HEAD
+
   <component name="ProjectId" id="2Q979mz8CuPEwmLkl2mm4zYWiaZ" />
   <component name="ProjectViewState">
-=======
+
   <component name="ProjectId" id="2Q653o9QVJVKHijzbqBLBIgy47H" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
->>>>>>> origin/TuanVD
+
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -264,7 +257,7 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-<<<<<<< HEAD
+
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -273,7 +266,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-=======
+
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "TuanVD",
@@ -286,15 +279,15 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
->>>>>>> origin/TuanVD
+
     "spring.configuration.checksum": "5b23cf4d61fac96f17c89aad9e749900",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-<<<<<<< HEAD
+
   <component name="RunManager">
     <configuration name="SpringPawnAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-=======
+
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CodeGym\Document\document_module06\project\A0522I1_Repo_BE\A0522I1-Repo-BE\spring_pawn_app\src\main\java\com\example\spring_pawn_app\repository" />
@@ -308,7 +301,7 @@
   </component>
   <component name="RunManager">
     <configuration name="SpringPawnAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
->>>>>>> origin/TuanVD
+
       <module name="spring_pawn_app.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.spring_pawn_app.SpringPawnAppApplication" />
       <method v="2">
@@ -319,7 +312,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
+
       <changelist id="c40c4b41-3303-4173-992a-544b0f6d6b32" name="Changes" comment="" />
       <created>1684753795743</created>
       <option name="number" value="Default" />
@@ -332,10 +325,9 @@
       <workItem from="1685775413908" duration="69000" />
       <workItem from="1685864217458" duration="108000" />
       <workItem from="1685864344815" duration="123000" />
-<<<<<<< HEAD
+
       <workItem from="1685884678044" duration="866000" />
-=======
-=======
+
       <changelist id="73518bdd-de91-4b55-9dae-e27163efe6bd" name="Changes" comment="" />
       <created>1684660995214</created>
       <option name="number" value="Default" />
@@ -346,15 +338,14 @@
       <workItem from="1684667891162" duration="256000" />
       <workItem from="1684669594027" duration="837000" />
       <workItem from="1684672629676" duration="2213000" />
->>>>>>> origin/TuanVD
->>>>>>> origin/ThuongVTH
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
+
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -366,6 +357,5 @@
       </map>
     </option>
   </component>
-=======
->>>>>>> origin/TuanVD
+
 </project>

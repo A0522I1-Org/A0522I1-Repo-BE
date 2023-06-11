@@ -25,10 +25,10 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             "where c.id = :id and c.is_flag = 0", nativeQuery = true)
     Customer findCustomerById(@Param("id") int id);
 
-    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone_number, c.id_card, c.address, c.email " +
             "from customer as c " +
             "where c.customer_name like %:nameCustomer% and c.is_flag = 0",
-            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone_number, c.id_card, c.address, c.email " +
                     "from customer as c " +
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<CustomerListDto> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
