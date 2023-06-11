@@ -66,12 +66,13 @@
         <p>Giới tính: <span style="font-weight: bold" th:text="${gender == 1 ? 'Nam' : 'Nữ'}"></span></p>
         <p>Địa chỉ: <span style="font-weight: bold" th:text="${address}"></span></p>
         <p>Số điện thoại: <span style="font-weight: bold" th:text="${phone}"></span></p>
+        <p>Đồ cầm: <span style="font-weight: bold" th:text="${items}"></span></p>
         <p>Bạn đã hoàn thành thanh toán vào thời gian: <span style="font-weight: bold" th:text="${time}"></span></p>
     </div>
 
     <div class="d-flex flex-column ">
-        <b><p class="text-center">Để tiếp tục với giao dịch vui lòng Nhấp vào</p></b>
-        <button class="my-btn-3">Nhấp chuột tại đây</button>
+        <b><p class="text-center">Để tiếp tục với dịch vụ của chúng tôi vui lòng Nhấp vào</p></b>
+        <button class="my-btn-3"><a href="http://localhost:4200/home" style="text-decoration: none; color: white">Nhấp chuột tại đây</a></button>
     </div>
 </div>
 </body>

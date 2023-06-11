@@ -25,10 +25,6 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * @param id
      * @return contract
      */
-//    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
-//    @Modifying
-//    void updateContractLiquidation(@Param("id") Integer id);
-//=======
     @Query(value = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id, c.employee_id, c.status_id, c.is_flag from contract as c where c.id = :id and c.is_flag = 0",
             countQuery = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id from contract as c where c.id = :id and c.is_flag = 0",
             nativeQuery = true)
@@ -725,6 +721,6 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * Date created: 11/06/2023
      */
     @Modifying
-    @Query("UPDATE Contract SET status = ?1 WHERE id = ?4")
+    @Query("UPDATE Contract SET status = 2 WHERE id = ?1")
     void changStatusContractExpire(Integer id);
 }
