@@ -1,4 +1,4 @@
-package com.example.spring_pawn_app.repository.role.product;
+package com.example.spring_pawn_app.repository.product;
 
 import com.example.spring_pawn_app.model.Category;
 import com.example.spring_pawn_app.model.Product;

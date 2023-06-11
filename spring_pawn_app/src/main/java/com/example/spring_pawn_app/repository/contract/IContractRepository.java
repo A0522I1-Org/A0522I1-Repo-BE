@@ -25,10 +25,6 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
      * @param id
      * @return contract
      */
-//    @Query(value = "update contract as c set c.status_id = 2 where c.id = :id", countQuery = "update contract as c set c.status_id = 2 where c.id = :id and c.is_flag = 0 and c.status_id = 1", nativeQuery = true)
-//    @Modifying
-//    void updateContractLiquidation(@Param("id") Integer id);
-//=======
     @Query(value = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id, c.employee_id, c.status_id, c.is_flag from contract as c where c.id = :id and c.is_flag = 0",
             countQuery = "select c.id,c.contract_code, c.customer_id, c.begin_date, c.end_date, c.interest, c.product_id from contract as c where c.id = :id and c.is_flag = 0",
             nativeQuery = true)
@@ -308,7 +304,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id " +
             "JOIN status s ON con.status_id = s.id " +
             "JOIN customer cus ON con.customer_id = cus.id " +
-            "WHERE con.status_id in (1) and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.name_category LIKE concat('%',?,'%') ", nativeQuery = true)
+            "WHERE con.status_id in (1,2) and con.is_flag = 0 AND cus.customer_name LIKE concat('%',?,'%') AND cate.name_category LIKE concat('%',?,'%') ", nativeQuery = true)
     Page<Contract> findAllProductNotPay(String nameCustomer, String categoryName, Pageable page);
 
     /**
@@ -322,7 +318,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "JOIN category cate ON cate.id = p.category_id\n" +
             "JOIN status s ON con.status_id = s.id\n" +
             "JOIN customer cus ON con.customer_id = cus.id\n" +
-            "WHERE con.status_id IN (1) and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
+            "WHERE con.status_id IN (1,2) and con.is_flag = 0  And con.id = ?;", nativeQuery = true)
     Contract findContractNotPayByID(int id);
 
     /**
@@ -720,4 +716,11 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "WHERE contract.customer.name LIKE %?1% AND contract.product.name LIKE %?2% AND (contract.beginDate " +
             "BETWEEN ?3 AND ?4) AND contract.status.name = ?5 AND contract.isFlag = false")
     Page<Contract> findByCustomerAndProductAndBeginDateAndStatus(String customerName, String productName, LocalDate beforeDate, LocalDate afterDate, String status, Pageable pageable);
+    /**
+     * Create by PhongTD
+     * Date created: 11/06/2023
+     */
+    @Modifying
+    @Query("UPDATE Contract SET status = 2 WHERE id = ?1")
+    void changStatusContractExpire(Integer id);
 }
