@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -66,15 +67,7 @@ public class ContractService implements IContractService {
         return iContractRepository.findContractByCustomerId( id );
     }
     private String generateContractCode() {
-        int codeLength = 4; // Độ dài của mã xác thực
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Các ký tự có thể sử dụng trong mã xác thực
-        SecureRandom random = new SecureRandom();
-        StringBuilder codeBuilder = new StringBuilder(codeLength);
-        for (int i = 0; i < codeLength; i++) {
-            int randomIndex = random.nextInt(characters.length());
-            codeBuilder.append(characters.charAt(randomIndex));
-        }
-        return codeBuilder.toString();
+        return String.valueOf(iContractRepository.generate()+1);
     }
 
     /**

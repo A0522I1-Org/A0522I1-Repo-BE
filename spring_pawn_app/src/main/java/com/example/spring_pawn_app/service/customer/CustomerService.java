@@ -42,6 +42,13 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<CustomerListDto> findAllCustomerWithPage(PageRequest pageRequest, String nameCustomer) {
+//       Page<CustomerListDto> rs = iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
+//           List<CustomerListDto> rs1 = rs.stream().filter(customer -> customer.getCustomer_name().contains(nameCustomer)).collect(Collectors.toList());
+//       int start = pageRequest.getPageNumber()*pageRequest.getPageSize();
+//       int end = Math.min(start + pageRequest.getPageSize(),rs1.size());
+//       List<CustomerListDto> subList = rs1.subList(start,end);
+//       Pageable pageable = PageRequest.of(pageRequest.getPageNumber(), pageRequest.getPageSize());
+//       return new PageImpl<>(subList,pageable, rs1.size());
         return iCustomerRepository.findAllCustomerWithPage(pageRequest, nameCustomer);
     }
 
