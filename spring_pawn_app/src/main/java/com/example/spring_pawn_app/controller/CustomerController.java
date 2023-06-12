@@ -187,7 +187,7 @@ public class CustomerController {
         );
     }
 
-    @GetMapping("/restore")
+    @GetMapping("/customers/restore")
     public ResponseEntity<HttpResponse> getAllCustomerRestore(@RequestParam Optional<String> valueReceived,
                                                               @RequestParam Optional<Integer> page,
                                                               @RequestParam Optional<Integer> size) {

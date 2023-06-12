@@ -41,6 +41,7 @@ public class MailSender {
      * @throws MessagingException
      */
     public void sendEmailPay(ContractDto contract) throws MessagingException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         LocalDate currentDate = LocalDate.now();
         MimeMessage messages = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(messages, true, "UTF-8");
@@ -55,12 +56,12 @@ public class MailSender {
         Context context = new Context();
 
         context.setVariable("name", contract.getCustomer().getName());
-        context.setVariable("dateOfBirth", contract.getCustomer().getDateOfBirth());
+        context.setVariable("dateOfBirth", contract.getCustomer().getDateOfBirth().format(formatter));
         context.setVariable("gender", contract.getCustomer().getGender());
         context.setVariable("address", contract.getCustomer().getAddress());
         context.setVariable("phone", contract.getCustomer().getPhone());
         context.setVariable("items", contract.getProduct().getName());
-        context.setVariable("time", currentDate);
+        context.setVariable("time", currentDate.format(formatter));
 
 
         String html = templateEngine.process("addContractSuccess", context);
@@ -87,7 +88,7 @@ public class MailSender {
         Context context = new Context();
         context.setVariable("name_customer", customer.getName());
         System.out.println(contract.getCustomer());
-        context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("phone", customer.getPhone());
         context.setVariable("beginDate", contract.getBeginDate());
         context.setVariable("endDate", contract.getEndDate());
         context.setVariable("nameProduct", contract.getNameProduct());

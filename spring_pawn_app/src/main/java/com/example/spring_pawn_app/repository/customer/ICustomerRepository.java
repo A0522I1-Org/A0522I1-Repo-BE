@@ -25,10 +25,10 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             "where c.id = :id and c.is_flag = 0", nativeQuery = true)
     Customer findCustomerById(@Param("id") int id);
 
-    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+    @Query(value = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone_number, c.id_card, c.address, c.email " +
             "from customer as c " +
             "where c.customer_name like %:nameCustomer% and c.is_flag = 0",
-            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone, c.id_card, c.address, c.email " +
+            countQuery = "select c.id, c.customer_code, c.customer_name, c.gender, c.phone_number, c.id_card, c.address, c.email " +
                     "from customer as c " +
                     "where c.customer_name like %:nameCustomer% and c.is_flag = 0", nativeQuery = true)
     Page<CustomerListDto> findAllCustomerWithPage(Pageable pageable, @Param("nameCustomer") String nameCustomer);
@@ -49,7 +49,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
      * @version 2
      * @since 6/6/2023
      */
-    @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.phone, c.identityCard, COUNT(con.id) " +
+    @Query(value = "SELECT c.id, c.customerCode, c.name, c.gender, c.dateOfBirth, c.phone, c.identityCard, COALESCE(COUNT(con.id), 0) " +
             "FROM Customer c " +
             "LEFT JOIN Contract con ON c.id = con.customer.id " +
             "WHERE ((CONCAT(c.customerCode, c.name, c.phone, c.identityCard) LIKE %?1%) " +

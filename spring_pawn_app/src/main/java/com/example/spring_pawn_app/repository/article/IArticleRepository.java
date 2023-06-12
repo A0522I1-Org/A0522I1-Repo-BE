@@ -23,7 +23,7 @@ public interface IArticleRepository extends JpaRepository<Article, Integer>{
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
             "join employee e on a.employee_id = e.id\n" +
-            "where a.is_flag = 0 and a.is_feature = 1",nativeQuery = true  )
+            "where a.is_flag = 0 and a.is_feature = 1 limit 3",nativeQuery = true  )
     List<Article> findAllWithFeature();
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
@@ -33,7 +33,7 @@ public interface IArticleRepository extends JpaRepository<Article, Integer>{
 
     @Transactional
     @Modifying
-    @Query(value = "update pawn_app.article a set a.is_flag = 1 where a.id = ?;", nativeQuery = true)
+    @Query(value = "update pawnapp.article a set a.is_flag = 1 where a.id = ?;", nativeQuery = true)
     void deleteArticle(int id);
 
     @Query(value = "select a.id, a.content, a.public_date, a.img, a.title,a.employee_id, a.is_feature,a.is_flag,e.name from article a\n" +
