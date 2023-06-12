@@ -723,4 +723,6 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
     @Modifying
     @Query("UPDATE Contract SET status = 2 WHERE id = ?1")
     void changStatusContractExpire(Integer id);
+    @Query(value = "SELECT MAX(id) FROM contract;", nativeQuery = true)
+    Integer generate();
 }
