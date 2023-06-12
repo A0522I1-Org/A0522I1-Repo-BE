@@ -5,7 +5,7 @@ public interface CustomerListDto {
     public String getCustomer_code();
     public String getCustomer_name();
     public Integer getGender();
-    public String getPhone();
+    public String getPhone_number();
     public String getId_card();
     public String getAddress();
     public String getEmail();

@@ -88,7 +88,7 @@ public class MailSender {
         Context context = new Context();
         context.setVariable("name_customer", customer.getName());
         System.out.println(contract.getCustomer());
-        context.setVariable("phone", contract.getCustomer().getPhone());
+        context.setVariable("phone", customer.getPhone());
         context.setVariable("beginDate", contract.getBeginDate());
         context.setVariable("endDate", contract.getEndDate());
         context.setVariable("nameProduct", contract.getNameProduct());
